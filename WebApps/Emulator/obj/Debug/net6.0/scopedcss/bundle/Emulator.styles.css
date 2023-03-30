@@ -1,15 +1,6 @@
 /* _content/Emulator/Pages/Shared/_Layout.cshtml.rz.scp.css */
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-.dark-edge[b-nl6cpq5umg] {
-  background-color: #202020;
-  color:#1a528a;
-}
-.dark-mid[b-nl6cpq5umg] {
-  background-color: #333333;
-  color:#c9c9c9;
-}
-
 a.navbar-brand[b-nl6cpq5umg] {
   white-space: normal;
   text-align: center;

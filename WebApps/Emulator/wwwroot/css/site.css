@@ -32,4 +32,12 @@ body {
 .pad-r {
   padding-inline-end: 12px;
 }
+.dark-edge {
+  background-color: #303030;
+  color:#acacac;
+}
+.dark-mid {
+  background-color: #111111;
+  color:#c9c9c9;
+}
 

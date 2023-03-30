@@ -14,6 +14,16 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
+         ;
+    }
 
+    public void OnPost()
+    {
+        ;
+    }
+    public IActionResult OnPostSomething()
+    {
+        return RedirectToPage("/Error");
+    //    return Page();
     }
 }
