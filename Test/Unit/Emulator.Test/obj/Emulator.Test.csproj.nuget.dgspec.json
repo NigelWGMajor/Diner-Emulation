@@ -1,0 +1,371 @@
+{
+  "format": 1,
+  "restore": {
+    "N:\\Pix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj": {}
+  },
+  "projects": {
+    "N:\\Pix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "N:\\Pix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj",
+        "projectName": "KitchenService",
+        "projectPath": "N:\\Pix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj",
+        "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
+        "outputPath": "N:\\Pix\\DinerEmulation\\Imports\\KitchenService\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\NickMajor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/DEGREED/index.json": {},
+          "n:\\nix-nuget": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj",
+        "projectName": "RestaurantService",
+        "projectPath": "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj",
+        "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
+        "outputPath": "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\NickMajor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/DEGREED/index.json": {},
+          "n:\\nix-nuget": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "N:\\Pix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "N:\\Pix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj",
+        "projectName": "WorkflowManager",
+        "projectPath": "N:\\Pix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj",
+        "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
+        "outputPath": "N:\\Pix\\DinerEmulation\\Imports\\WorkflowManager\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\NickMajor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/DEGREED/index.json": {},
+          "n:\\nix-nuget": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "N:\\Pix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "N:\\Pix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj",
+        "projectName": "Emulator.Test",
+        "projectPath": "N:\\Pix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj",
+        "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
+        "outputPath": "N:\\Pix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\NickMajor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/DEGREED/index.json": {},
+          "n:\\nix-nuget": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "N:\\Pix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj": {
+                "projectPath": "N:\\Pix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.3.2, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "N:\\Pix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "N:\\Pix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj",
+        "projectName": "Emulator",
+        "projectPath": "N:\\Pix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj",
+        "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
+        "outputPath": "N:\\Pix\\DinerEmulation\\WebApps\\Emulator\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\NickMajor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/DEGREED/index.json": {},
+          "n:\\nix-nuget": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "N:\\Pix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj": {
+                "projectPath": "N:\\Pix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj"
+              },
+              "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj": {
+                "projectPath": "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj"
+              },
+              "N:\\Pix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj": {
+                "projectPath": "N:\\Pix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
