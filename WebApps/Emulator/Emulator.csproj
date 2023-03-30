@@ -4,6 +4,7 @@
     <ProjectReference Include="..\..\Imports\KitchenService\KitchenService.csproj" />
     <ProjectReference Include="..\..\Imports\RestaurantService\RestaurantService.csproj" />
     <ProjectReference Include="..\..\Imports\WorkflowManager\WorkflowManager.csproj" />
+    <ProjectReference Include="..\..\Models\Models.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

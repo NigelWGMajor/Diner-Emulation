@@ -74,5 +74,38 @@ The emulator should be able to inject different levels of error (from retry/dela
 Each order/item can be time tracked, and incoming orders compared with outgoing orders, to know what is in flight at ant time, what is proceeding normally, what is pending resolution and what has failed.
 We should be able to visualize these somehow as the emulator is run, anf compare different levels of entropy.
 
+## Implementation strategy
+
+We have four (or five) components
+- KitchenService    prepares items 
+- RestaurantService orders and accepts completed items
+- FlowManager       manages the process
+- (ModelTester)     tests the model through a console
+- Emulator          tests the model through a web interface
+
+The hidden part of this is a data source to manage the flows.
+
+To start out, we need to define the simplest possible models
+
+Then we arrange to be able to store state of orders in flight (requested orders might be a subset?)
+
+Then we need to be able to 
+- send an order to the restaurant from the emulator
+- Have the flow manager pick up the order
+- translate that into the items that need prep 
+- order the items from the kitchen
+- wait until the order is completed
+- notify the restaurant that it is ready
+
+Then we need to be able to inject errors into the items
+
+And we need to be able to view what happens!
+
+Architecturally, the Emulator or ModelTester simply use the FlowMaster, which uses the KitchenService and RestaurantService.
+All elements reference the Core.Models
+
+
+
+
 
 

@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
@@ -31,6 +31,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emulator", "WebApps\Emulato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emulator.Test", "Test\Unit\Emulator.Test\Emulator.Test.csproj", "{6D876AD9-ED18-4519-AE1A-94AB4D09559C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{C8F79681-F99B-4D26-BAEA-EC984826C90B}"
+EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,8 +79,13 @@ Global
 		{6D876AD9-ED18-4519-AE1A-94AB4D09559C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D876AD9-ED18-4519-AE1A-94AB4D09559C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D876AD9-ED18-4519-AE1A-94AB4D09559C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8F79681-F99B-4D26-BAEA-EC984826C90B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8F79681-F99B-4D26-BAEA-EC984826C90B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8F79681-F99B-4D26-BAEA-EC984826C90B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F79681-F99B-4D26-BAEA-EC984826C90B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{C8F79681-F99B-4D26-BAEA-EC984826C90B} = {0558AF67-95A2-4365-B73E-2EF70B684832}
 		{BF1C88FA-527B-479F-AA15-FEF966AD8036} = {F81489BE-3B6F-446E-8A74-E5949DA39970}
 		{60D6AED6-B404-403C-80EE-4BCB1926FC38} = {17DC51B9-A06D-48D4-AFED-BE0622BDB049}
 		{CD36CED6-7EE6-44C4-A34A-3F1D6EE21486} = {60D6AED6-B404-403C-80EE-4BCB1926FC38}
