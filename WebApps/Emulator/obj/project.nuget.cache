@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "S5hAVFwVGN4cVGKyzC6ZWrC3dWn5FxhN0KaBa1Pwbo31J4lFPJZ3PavcBCnRzYgjBzrKtlfZOfNMxPezdxO7Iw==",
+  "dgSpecHash": "dNkVFdAVME5bSK3hRx+gpPQOYJW+eFbgON6y0H3sMR0VlDrF2tPU/Ab7yYt5tNigftKyPSBlCnykVfeKdeMFPA==",
   "success": true,
-  "projectFilePath": "N:\\Pix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj",
+  "projectFilePath": "c:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -25,6 +25,16 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Models.dll": {}
+        }
       }
     }
   },
@@ -171,10 +181,16 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../../Models/Models.csproj",
+      "msbuildProject": "../../Models/Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "Models >= 1.0.0",
       "NETStandard.Library >= 2.0.3"
     ]
   },
@@ -186,11 +202,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj",
+      "projectUniqueName": "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj",
       "projectName": "RestaurantService",
-      "projectPath": "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj",
+      "projectPath": "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj",
       "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
-      "outputPath": "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\obj\\",
+      "outputPath": "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -214,7 +230,11 @@
       "frameworks": {
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj": {
+              "projectPath": "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

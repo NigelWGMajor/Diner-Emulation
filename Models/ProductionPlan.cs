@@ -1,4 +1,6 @@
-﻿namespace Models;
+﻿using static Models.Enumerations;
+
+namespace Models;
 public class ProductionPlan
 {
     public OperationType RequiredSteps { get; set; }

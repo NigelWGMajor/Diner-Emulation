@@ -1809,9 +1809,22 @@
           "build/netcoreapp3.1/xunit.runner.visualstudio.props": {}
         }
       },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Models.dll": {}
+        }
+      },
       "RestaurantService/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Models": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/RestaurantService.dll": {}
         },
@@ -6105,6 +6118,11 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../../../Models/Models.csproj",
+      "msbuildProject": "../../../Models/Models.csproj"
+    },
     "RestaurantService/1.0.0": {
       "type": "project",
       "path": "../../../Imports/RestaurantService/RestaurantService.csproj",
@@ -6128,11 +6146,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "N:\\Pix\\DinerEmulation\\Test\\Unit\\RestaurantService.Test\\RestaurantService.Test.csproj",
+      "projectUniqueName": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\RestaurantService.Test\\RestaurantService.Test.csproj",
       "projectName": "RestaurantService.Test",
-      "projectPath": "N:\\Pix\\DinerEmulation\\Test\\Unit\\RestaurantService.Test\\RestaurantService.Test.csproj",
+      "projectPath": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\RestaurantService.Test\\RestaurantService.Test.csproj",
       "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
-      "outputPath": "N:\\Pix\\DinerEmulation\\Test\\Unit\\RestaurantService.Test\\obj\\",
+      "outputPath": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\RestaurantService.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -6157,8 +6175,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj": {
-              "projectPath": "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj"
+            "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj": {
+              "projectPath": "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj"
             }
           }
         }

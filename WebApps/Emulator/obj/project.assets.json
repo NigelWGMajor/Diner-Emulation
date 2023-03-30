@@ -5,6 +5,9 @@
       "KitchenService/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Models": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/KitchenService.dll": {}
         },
@@ -12,9 +15,22 @@
           "bin/placeholder/KitchenService.dll": {}
         }
       },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Models.dll": {}
+        }
+      },
       "RestaurantService/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Models": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/RestaurantService.dll": {}
         },
@@ -25,6 +41,9 @@
       "WorkflowManager/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Models": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/WorkflowManager.dll": {}
         },
@@ -40,6 +59,11 @@
       "path": "../../Imports/KitchenService/KitchenService.csproj",
       "msbuildProject": "../../Imports/KitchenService/KitchenService.csproj"
     },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../../Models/Models.csproj",
+      "msbuildProject": "../../Models/Models.csproj"
+    },
     "RestaurantService/1.0.0": {
       "type": "project",
       "path": "../../Imports/RestaurantService/RestaurantService.csproj",
@@ -54,6 +78,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "KitchenService >= 1.0.0",
+      "Models >= 1.0.0",
       "RestaurantService >= 1.0.0",
       "WorkflowManager >= 1.0.0"
     ]
@@ -66,11 +91,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "N:\\Pix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj",
+      "projectUniqueName": "c:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj",
       "projectName": "Emulator",
-      "projectPath": "N:\\Pix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj",
+      "projectPath": "c:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj",
       "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
-      "outputPath": "N:\\Pix\\DinerEmulation\\WebApps\\Emulator\\obj\\",
+      "outputPath": "c:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -95,14 +120,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "N:\\Pix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj": {
-              "projectPath": "N:\\Pix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj"
+            "c:\\source\\Nix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj": {
+              "projectPath": "c:\\source\\Nix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj"
             },
-            "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj": {
-              "projectPath": "N:\\Pix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj"
+            "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj": {
+              "projectPath": "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj"
             },
-            "N:\\Pix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj": {
-              "projectPath": "N:\\Pix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj"
+            "c:\\source\\Nix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj": {
+              "projectPath": "c:\\source\\Nix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj"
+            },
+            "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj": {
+              "projectPath": "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj"
             }
           }
         }

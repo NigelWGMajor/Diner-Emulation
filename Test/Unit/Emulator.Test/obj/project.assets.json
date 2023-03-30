@@ -1814,6 +1814,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "KitchenService": "1.0.0",
+          "Models": "1.0.0",
           "RestaurantService": "1.0.0",
           "WorkflowManager": "1.0.0"
         },
@@ -1830,6 +1831,9 @@
       "KitchenService/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Models": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/KitchenService.dll": {}
         },
@@ -1837,9 +1841,22 @@
           "bin/placeholder/KitchenService.dll": {}
         }
       },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Models.dll": {}
+        }
+      },
       "RestaurantService/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Models": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/RestaurantService.dll": {}
         },
@@ -1850,6 +1867,9 @@
       "WorkflowManager/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Models": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/WorkflowManager.dll": {}
         },
@@ -6153,6 +6173,11 @@
       "path": "../../../Imports/KitchenService/KitchenService.csproj",
       "msbuildProject": "../../../Imports/KitchenService/KitchenService.csproj"
     },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../../../Models/Models.csproj",
+      "msbuildProject": "../../../Models/Models.csproj"
+    },
     "RestaurantService/1.0.0": {
       "type": "project",
       "path": "../../../Imports/RestaurantService/RestaurantService.csproj",
@@ -6181,11 +6206,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "N:\\Pix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj",
+      "projectUniqueName": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj",
       "projectName": "Emulator.Test",
-      "projectPath": "N:\\Pix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj",
+      "projectPath": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj",
       "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
-      "outputPath": "N:\\Pix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\obj\\",
+      "outputPath": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -6210,8 +6235,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "N:\\Pix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj": {
-              "projectPath": "N:\\Pix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj"
+            "c:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj": {
+              "projectPath": "c:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj"
             }
           }
         }

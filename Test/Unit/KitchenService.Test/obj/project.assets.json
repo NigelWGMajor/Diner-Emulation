@@ -1812,11 +1812,24 @@
       "KitchenService/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Models": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/KitchenService.dll": {}
         },
         "runtime": {
           "bin/placeholder/KitchenService.dll": {}
+        }
+      },
+      "Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Models.dll": {}
         }
       }
     }
@@ -6109,6 +6122,11 @@
       "type": "project",
       "path": "../../../Imports/KitchenService/KitchenService.csproj",
       "msbuildProject": "../../../Imports/KitchenService/KitchenService.csproj"
+    },
+    "Models/1.0.0": {
+      "type": "project",
+      "path": "../../../Models/Models.csproj",
+      "msbuildProject": "../../../Models/Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6128,11 +6146,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "N:\\Pix\\DinerEmulation\\Test\\Unit\\KitchenService.Test\\KitchenService.Test.csproj",
+      "projectUniqueName": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\KitchenService.Test\\KitchenService.Test.csproj",
       "projectName": "KitchenService.Test",
-      "projectPath": "N:\\Pix\\DinerEmulation\\Test\\Unit\\KitchenService.Test\\KitchenService.Test.csproj",
+      "projectPath": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\KitchenService.Test\\KitchenService.Test.csproj",
       "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
-      "outputPath": "N:\\Pix\\DinerEmulation\\Test\\Unit\\KitchenService.Test\\obj\\",
+      "outputPath": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\KitchenService.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -6157,8 +6175,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "N:\\Pix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj": {
-              "projectPath": "N:\\Pix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj"
+            "c:\\source\\Nix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj": {
+              "projectPath": "c:\\source\\Nix\\DinerEmulation\\Imports\\KitchenService\\KitchenService.csproj"
             }
           }
         }

@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "KIfAHMLIm37iLeO4E07YGuPxN9fOPVBO6356AaEkseVaA9VF4QJmgSDkavmv1qYAKiQDIpgjY2mQQ5h5Zga8xQ==",
+  "dgSpecHash": "Rb4H8cDAMAWvBani9pUx3BQxoX9VA3So5XAqWWavmDUhcpvyEbcCLXNqxrcEA/1D6vW7gsS38CV9FcCY3BtoLg==",
   "success": true,
-  "projectFilePath": "C:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\NickMajor\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
