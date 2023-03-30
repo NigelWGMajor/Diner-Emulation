@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hU03hqWu3GKxcfCrUe0WF9/xZjdDWaFLlBjELk+Ixw0h1wBj8ZW5lmkYr4hee2SR6EngRUr+PObfxwNAGNWtkQ==",
+  "dgSpecHash": "GOhIy74+xZj4BXOetCrou1JQn34zJlNdn2Lm/UrFWXbtPyWpi5AI/wvNh7j2TMJmnyYAUdbrv3dZFsTqbfF95A==",
   "success": true,
-  "projectFilePath": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj",
+  "projectFilePath": "C:\\source\\Nix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\NickMajor\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\NickMajor\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EmTKx2kJzOCqETJJC3oXGsKdW8XuLvcfT8N/2PvfnXmRktszP2r1WfIzOAwcb8VETDIyVjhlavRX0KH07dQrCw==",
+  "dgSpecHash": "TowcglGzjdcsixu3lFIdkD+Ta/kzHel12gk/6R0Q36LIMhmUtQP1Y859tuFdYbcuem3ELWgR8tbTW+MNMxeM+g==",
   "success": true,
-  "projectFilePath": "c:\\source\\Nix\\DinerEmulation\\Tools\\ModelTester\\ModelTester.csproj",
+  "projectFilePath": "C:\\source\\Nix\\DinerEmulation\\Tools\\ModelTester\\ModelTester.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

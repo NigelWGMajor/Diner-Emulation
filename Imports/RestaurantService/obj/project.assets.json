@@ -231,8 +231,8 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj": {
-              "projectPath": "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj"
+            "C:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj": {
+              "projectPath": "C:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj"
             }
           }
         }

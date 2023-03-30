@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PnH1Vriyl8LRSTyaJF9Le2vlLNAGX+63P/xgXiKzKt3A/smrrjtYduSRH2Lhm0QmN2bXqZDHPNuTV1DzieTAUg==",
+  "dgSpecHash": "k4lWD1MtTnW9tCNoNGU90RUou2ltKcaaid6UcnM8F3jvT1bOx7aPuV3bc7pNctQOSzayzmF4fARI9OfXNjBwdA==",
   "success": true,
-  "projectFilePath": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\WorkflowManager.Test\\WorkflowManager.Test.csproj",
+  "projectFilePath": "C:\\source\\Nix\\DinerEmulation\\Test\\Unit\\WorkflowManager.Test\\WorkflowManager.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\NickMajor\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\NickMajor\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",

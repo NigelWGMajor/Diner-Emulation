@@ -202,11 +202,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\source\\Nix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj",
+      "projectUniqueName": "C:\\source\\Nix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj",
       "projectName": "WorkflowManager",
-      "projectPath": "c:\\source\\Nix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj",
+      "projectPath": "C:\\source\\Nix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj",
       "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
-      "outputPath": "c:\\source\\Nix\\DinerEmulation\\Imports\\WorkflowManager\\obj\\",
+      "outputPath": "C:\\source\\Nix\\DinerEmulation\\Imports\\WorkflowManager\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -231,8 +231,8 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "projectReferences": {
-            "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj": {
-              "projectPath": "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj"
+            "C:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj": {
+              "projectPath": "C:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj"
             }
           }
         }

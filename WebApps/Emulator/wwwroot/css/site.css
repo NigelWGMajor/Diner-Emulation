@@ -15,4 +15,21 @@ html {
 
 body {
   margin-bottom: 60px;
+  background:  #202020;
+  color: #c0c0c0;
 }
+
+.space-mid {
+   margin: 8px;
+   padding: 8px;
+}
+
+.space-low {
+  margin: 4px;
+  padding: 4px;
+ 
+}
+.pad-r {
+  padding-inline-end: 12px;
+}
+

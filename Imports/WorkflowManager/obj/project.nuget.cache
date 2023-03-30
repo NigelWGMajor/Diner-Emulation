@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xvIBOiB9Z1UqZu37BAU6RQkqSIoAKs5hRi/o9rYgiov5MbW+qth1vapOAAOmkmKxBrOKDh7BO/tgUskaH/5gpw==",
+  "dgSpecHash": "hIoI3o/qqObdDuln5JeJgXpLOGOkpv2CUa1UGMVlBPSjNHtrzGR8MOH5jKK6dqzd0r85B9wQXTpThiVWCLn21g==",
   "success": true,
-  "projectFilePath": "c:\\source\\Nix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj",
+  "projectFilePath": "C:\\source\\Nix\\DinerEmulation\\Imports\\WorkflowManager\\WorkflowManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\NickMajor\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

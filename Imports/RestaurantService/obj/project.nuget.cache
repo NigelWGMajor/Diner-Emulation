@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "n5+vuPsiEnM1eWyD5DZEBvCRGvSWa6s/lRwvj3JeINRbo0cE0wKAblbD1t1nuZzaMi5cd2VL6+0n4EUZp0t9BA==",
+  "dgSpecHash": "SWaU6AWU80ffqZYBBKi61t8XbG3Aq0dFvytFeKWZLev+RBB6tTq8SaZgRCOvwDYQE5m0mUokpGV8qB/s2fXFgA==",
   "success": true,
-  "projectFilePath": "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj",
+  "projectFilePath": "C:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\NickMajor\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"

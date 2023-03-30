@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U33S0m9fzE1xEbvVjXGr++wVJsJkd5C6+0Nv9TQOreS5DXefPwOYFxvMH/pIdAn/p5FFtXIyImX6VbNQT6W6zA==",
+  "dgSpecHash": "zJtuoHeL7mvytv1YjsdBLFw4CeS2CEgeqkC6bEr3vbjOTligNd21SM42IdlZERobaaEINe0mWjkSE2DcgLcPrw==",
   "success": true,
-  "projectFilePath": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\KitchenService.Test\\KitchenService.Test.csproj",
+  "projectFilePath": "C:\\source\\Nix\\DinerEmulation\\Test\\Unit\\KitchenService.Test\\KitchenService.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\NickMajor\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\NickMajor\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",

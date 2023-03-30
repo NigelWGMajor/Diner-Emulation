@@ -6206,11 +6206,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj",
+      "projectUniqueName": "C:\\source\\Nix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj",
       "projectName": "Emulator.Test",
-      "projectPath": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj",
+      "projectPath": "C:\\source\\Nix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\Emulator.Test.csproj",
       "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
-      "outputPath": "c:\\source\\Nix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\obj\\",
+      "outputPath": "C:\\source\\Nix\\DinerEmulation\\Test\\Unit\\Emulator.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -6235,8 +6235,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "c:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj": {
-              "projectPath": "c:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj"
+            "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj": {
+              "projectPath": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\Emulator.csproj"
             }
           }
         }

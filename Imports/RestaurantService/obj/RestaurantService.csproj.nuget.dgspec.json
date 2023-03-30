@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj": {}
+    "C:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj": {}
   },
   "projects": {
-    "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj": {
+    "C:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj",
+        "projectUniqueName": "C:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj",
         "projectName": "RestaurantService",
-        "projectPath": "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj",
+        "projectPath": "C:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\RestaurantService.csproj",
         "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
-        "outputPath": "c:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\obj\\",
+        "outputPath": "C:\\source\\Nix\\DinerEmulation\\Imports\\RestaurantService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -36,8 +36,8 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj": {
-                "projectPath": "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj"
+              "C:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj": {
+                "projectPath": "C:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj"
               }
             }
           }
@@ -74,14 +74,14 @@
         }
       }
     },
-    "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj": {
+    "C:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "c:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj",
+        "projectPath": "C:\\source\\Nix\\DinerEmulation\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\NickMajor\\.nuget\\packages\\",
-        "outputPath": "c:\\source\\Nix\\DinerEmulation\\Models\\obj\\",
+        "outputPath": "C:\\source\\Nix\\DinerEmulation\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
