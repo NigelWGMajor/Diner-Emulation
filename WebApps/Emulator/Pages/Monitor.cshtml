@@ -16,3 +16,15 @@
         </i>Test Error from @Model.PageName</button>
     </a>
 </div>
+<div class="chart-container" width="600" height="400">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, @Html.Raw(Model.ChartJson) );
+
+    });
+</script>
