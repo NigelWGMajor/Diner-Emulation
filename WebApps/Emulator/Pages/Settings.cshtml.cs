@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Emulator.Pages
 {
     public class SettingsModel : PageModel
-    {
-             private readonly ILogger<SettingsModel> _logger;
+    {   public string PageName => "Settings";
+        private readonly ILogger<SettingsModel> _logger;
 
         public SettingsModel(ILogger<SettingsModel> logger)
         {

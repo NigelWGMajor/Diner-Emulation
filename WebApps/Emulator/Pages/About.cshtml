@@ -4,9 +4,15 @@
         ViewData["Title"] = "About";
 }
 <div class="text-center">
+    <!-- Button to call  On<verb><Handler> method in code behind -->
     <form method="post" asp-page-handler="something">
-        <button  class="pad-r navbar-brand space-low dark-edge" data-bs-toggle="tooltip" title="Return to home page">
-            <i class="space-low fa-solid fa-triangle-exclamation"></i>Error Test
+        <button  class="space-low dark-edge" data-bs-toggle="tooltip" title="Post Somethimg">
+            <i class="space-low fa-solid fa-triangle-exclamation"></i>PostSomething
         </button>        
     </form> 
+    <!-- Button to simply call a page with data -->
+    <a asp-area="" asp-page="/Error" asp-route-data=@Model.PageName>
+        <button class="space-low dark-edge"  data-bs-toggle="tooltip" title="show an error"><i class="fa-solid fa-bug">
+        </i>Test Error from @Model.PageName</button>
+    </a>
 </div>

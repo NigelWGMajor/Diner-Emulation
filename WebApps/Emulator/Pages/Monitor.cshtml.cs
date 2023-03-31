@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Emulator.Pages
 {
     public class MonitorModel : PageModel
-    {
+    {        public string PageName => "Monitor";
         private readonly ILogger<MonitorModel> _logger;
 
         public MonitorModel(ILogger<MonitorModel> logger)

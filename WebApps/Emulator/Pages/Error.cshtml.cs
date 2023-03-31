@@ -9,8 +9,10 @@ namespace Emulator.Pages;
 public class ErrorModel : PageModel
 {
     public string? RequestId { get; set; }
+    public string? Data { get; set; }
 
     public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+    public bool ShowData => !string.IsNullOrEmpty(Data);
 
     private readonly ILogger<ErrorModel> _logger;
 
@@ -19,9 +21,9 @@ public class ErrorModel : PageModel
         _logger = logger;
     }
 
-    public void OnGet()
+    public void OnGet(string? data)
     {
         RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+        Data = data;
     }
 }
-

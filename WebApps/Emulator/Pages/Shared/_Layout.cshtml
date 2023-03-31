@@ -10,29 +10,33 @@
     <link rel="stylesheet" href="~/lib/fontawesome-free-6.4.0-web/css/all.css" />
 </head>
 <body class="dark-mid">
-
+    <!-- static page header -->
     <header class="dark-edge">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3">
-
-            <a class="navbar-brand dark-edge" data-bs-toggle="tooltip" title="Welcome to  the emulator" asp-area="" asp-page="/Index"> <i class="space-mid fa-solid fa-mug-saucer"></i>Emulator</a>
+            <!-- Retun to landing page - not button -->
+            <a class="navbar-brand dark-edge" data-bs-toggle="tooltip" title="Welcome to  the emulator" asp-area="" asp-page="/Index"> 
+                <i class="space-mid fa-solid fa-mug-saucer"></i>Emulator</a>
+            <!-- Page launch buttons -->
+            <!-- Monitor -->
             <button  class="pad-r navbar-brand space-low dark-mid" onclick="location='/Monitor';return false;" data-bs-toggle="tooltip" title="Go to Monitor page">
-                  <i class="space-low fa-solid fa-chart-line"></i>Monitor
-            </button>  
+                  <i class="space-low fa-solid fa-chart-line"></i>Monitor</button>  
+            <!-- Settings -->
             <button  class="pad-r navbar-brand space-low dark-mid" onclick="location='/Settings';return false;" data-bs-toggle="tooltip" title="Go to Settings page">
-                  <i class="space-low fa-solid fa-cogs"></i>Settings
-            </button>  
+                  <i class="space-low fa-solid fa-cogs"></i>Settings</button>  
+            <!-- About -->
             <button  class="pad-r navbar-brand space-low dark-mid" onclick="location='/About';return false;" data-bs-toggle="tooltip" title="Go to information page">
-                  <i class="space-low fa-solid fa-info-circle"></i>About
-            </button>  
+                  <i class="space-low fa-solid fa-info-circle"></i>About</button>  
         </nav>
     </header>
     </div>
+    <!-- static page payload -->
     <div class="dark-mid container">
         <main role="main" class="dark-mid pb-3">
+            <!-- This is the child page host area -->
             @RenderBody()
         </main>
     </div>
-
+    <!-- Static footer -->
     <footer class="dark-edge border-top footer text-muted">
         <div class="container">
             &copy; 2023 - Diner Emulator
@@ -42,7 +46,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @await RenderSectionAsync("Scripts", required: false)
+     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

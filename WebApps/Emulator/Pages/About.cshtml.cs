@@ -5,6 +5,7 @@ namespace Emulator.Pages
 {
     public class AboutModel : PageModel
     {
+        public string PageName => "About";
         private readonly ILogger<AboutModel> _logger;
 
         public AboutModel(ILogger<AboutModel> logger)
