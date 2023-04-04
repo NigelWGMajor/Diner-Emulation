@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\js\\index.js",
+      "PackagePath": "staticwebassets\\js\\index.js"
+    },
+    {
       "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
@@ -197,6 +201,38 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
+<<<<<<< HEAD
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\chart.esm.js",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\chart.esm.js"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\chart.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\chart.esm.min.js"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\chart.js",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\chart.js"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\chart.min.js",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\chart.min.js"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\chart.mjs",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\chart.mjs"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\helpers.esm.js",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\helpers.esm.js"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\helpers.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\helpers.esm.min.js"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\helpers.mjs",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\helpers.mjs"
+=======
       "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.bundle.js",
       "PackagePath": "staticwebassets\\lib\\chartjs\\Chart.bundle.js"
     },
@@ -219,6 +255,7 @@
     {
       "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.min.js",
       "PackagePath": "staticwebassets\\lib\\chartjs\\Chart.min.js"
+>>>>>>> main
     },
     {
       "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\fontawesome-free-6.4.0-web\\LICENSE.txt",
@@ -8703,6 +8740,14 @@
     {
       "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\microsoft-signalr\\signalr.js",
+      "PackagePath": "staticwebassets\\lib\\microsoft-signalr\\signalr.js"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\microsoft-signalr\\signalr.min.js",
+      "PackagePath": "staticwebassets\\lib\\microsoft-signalr\\signalr.min.js"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Emulator.Microsoft.AspNetCore.StaticWebAssets.props",

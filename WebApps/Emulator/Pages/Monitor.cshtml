@@ -1,8 +1,16 @@
 ﻿@page
+@using Emulator.Services
+@inject Buffer<Point> Buffer
+
 @model MonitorModel
 @{
     ViewData["Title"] = "Monitor";
+
+    
+    var labels = Buffer.Select(x => x.Label);
+    var data = Buffer.Select(x => x.Value);
 }
+<body>
 <div class="text-center">
     <!-- Button to call  On<verb><Handler> method in code behind -->
     <form method="post" asp-page-handler="something">
@@ -15,6 +23,41 @@
         <button class="space-low dark-edge"  data-bs-toggle="tooltip" title="show an error"><i class="fa-solid fa-bug">
         </i>Test Error from @Model.PageName</button>
     </a>
+<<<<<<< HEAD
+
+</div>
+<div>
+    <div style="width: 800px; height: 600px">
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+    <script id="data" type="application/json">
+    @Json.Serialize(
+        new
+        {
+            labels,
+            limit = Buffer.MaxCapacity.GetValueOrDefault(10),
+            url = "/chart",
+            datasets = new object[]
+            {
+                new
+                {
+                    label = "SignalR Dataset",
+                    data,
+                    fill = false,
+                    borderColor = "rgb(75, 192, 192)",
+                    tension = 0.1
+                }
+            }
+        })    
+    </script>
+    </div>
+</body>
+<script src="~/lib/microsoft-signalr/signalr.min.js"></script>
+<script src="~/lib/chartjs/chart.min.js"></script>
+<script defer src="~/js/index.js"></script>
+</html>
+
+=======
 </div>
 <div class="chart-container" width="600" height="400">
     <canvas id="myChart"></canvas>
@@ -28,3 +71,4 @@
 
     });
 </script>
+>>>>>>> main
