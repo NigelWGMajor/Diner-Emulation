@@ -39,3 +39,7 @@ C:\source\Nix\DinerEmulation\WebApps\Emulator\obj\Debug\net6.0\Emulator.pdb
 C:\source\Nix\DinerEmulation\WebApps\Emulator\obj\Debug\net6.0\Emulator.genruntimeconfig.cache
 C:\source\Nix\DinerEmulation\WebApps\Emulator\obj\Debug\net6.0\ref\Emulator.dll
 C:\source\Nix\DinerEmulation\WebApps\Emulator\bin\Debug\net6.0\libman.json
+<<<<<<< HEAD
+=======
+C:\source\Nix\DinerEmulation\WebApps\Emulator\bin\Debug\net6.0\Newtonsoft.Json.dll
+>>>>>>> main

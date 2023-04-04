@@ -201,6 +201,7 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
+<<<<<<< HEAD
       "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\chart.esm.js",
       "PackagePath": "staticwebassets\\lib\\chartjs\\chart.esm.js"
     },
@@ -231,6 +232,30 @@
     {
       "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\helpers.mjs",
       "PackagePath": "staticwebassets\\lib\\chartjs\\helpers.mjs"
+=======
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\Chart.bundle.js"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\Chart.bundle.min.js"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.css",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\Chart.css"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.js",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\Chart.js"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.min.css",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\Chart.min.css"
+    },
+    {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.min.js",
+      "PackagePath": "staticwebassets\\lib\\chartjs\\Chart.min.js"
+>>>>>>> main
     },
     {
       "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\fontawesome-free-6.4.0-web\\LICENSE.txt",

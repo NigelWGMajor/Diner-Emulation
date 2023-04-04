@@ -1,6 +1,10 @@
 {
   "Version": 1,
+<<<<<<< HEAD
   "Hash": "RKnwQF66MI2Vk/p9msilJBXuXxfxDpqvr7UWI5vl3z0=",
+=======
+  "Hash": "rgVbPUF4J5Nl4wQInSVitz5oanNSdpg/+4shrqaJcq0=",
+>>>>>>> main
   "Source": "Emulator",
   "BasePath": "_content/Emulator",
   "Mode": "Default",
@@ -884,12 +888,20 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
+<<<<<<< HEAD
       "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\chart.esm.js",
+=======
+      "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.bundle.js",
+>>>>>>> main
       "SourceId": "Emulator",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\",
       "BasePath": "_content/Emulator",
+<<<<<<< HEAD
       "RelativePath": "lib/chartjs/chart.esm.js",
+=======
+      "RelativePath": "lib/chartjs/Chart.bundle.js",
+>>>>>>> main
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -898,15 +910,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
+<<<<<<< HEAD
       "OriginalItemSpec": "wwwroot\\lib\\chartjs\\chart.esm.js"
     },
     {
       "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\chart.esm.min.js",
+=======
+      "OriginalItemSpec": "wwwroot\\lib\\chartjs\\Chart.bundle.js"
+    },
+    {
+      "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.bundle.min.js",
+>>>>>>> main
       "SourceId": "Emulator",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\",
       "BasePath": "_content/Emulator",
+<<<<<<< HEAD
       "RelativePath": "lib/chartjs/chart.esm.min.js",
+=======
+      "RelativePath": "lib/chartjs/Chart.bundle.min.js",
+>>>>>>> main
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -915,15 +938,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
+<<<<<<< HEAD
       "OriginalItemSpec": "wwwroot\\lib\\chartjs\\chart.esm.min.js"
     },
     {
       "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\chart.js",
+=======
+      "OriginalItemSpec": "wwwroot\\lib\\chartjs\\Chart.bundle.min.js"
+    },
+    {
+      "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.css",
+>>>>>>> main
       "SourceId": "Emulator",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\",
       "BasePath": "_content/Emulator",
+<<<<<<< HEAD
       "RelativePath": "lib/chartjs/chart.js",
+=======
+      "RelativePath": "lib/chartjs/Chart.css",
+>>>>>>> main
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -932,15 +966,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
+<<<<<<< HEAD
       "OriginalItemSpec": "wwwroot\\lib\\chartjs\\chart.js"
     },
     {
       "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\chart.min.js",
+=======
+      "OriginalItemSpec": "wwwroot\\lib\\chartjs\\Chart.css"
+    },
+    {
+      "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.js",
+>>>>>>> main
       "SourceId": "Emulator",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\",
       "BasePath": "_content/Emulator",
+<<<<<<< HEAD
       "RelativePath": "lib/chartjs/chart.min.js",
+=======
+      "RelativePath": "lib/chartjs/Chart.js",
+>>>>>>> main
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -949,15 +994,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
+<<<<<<< HEAD
       "OriginalItemSpec": "wwwroot\\lib\\chartjs\\chart.min.js"
     },
     {
       "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\chart.mjs",
+=======
+      "OriginalItemSpec": "wwwroot\\lib\\chartjs\\Chart.js"
+    },
+    {
+      "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.min.css",
+>>>>>>> main
       "SourceId": "Emulator",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\",
       "BasePath": "_content/Emulator",
+<<<<<<< HEAD
       "RelativePath": "lib/chartjs/chart.mjs",
+=======
+      "RelativePath": "lib/chartjs/Chart.min.css",
+>>>>>>> main
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -966,15 +1022,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
+<<<<<<< HEAD
       "OriginalItemSpec": "wwwroot\\lib\\chartjs\\chart.mjs"
     },
     {
       "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\helpers.esm.js",
+=======
+      "OriginalItemSpec": "wwwroot\\lib\\chartjs\\Chart.min.css"
+    },
+    {
+      "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\chartjs\\Chart.min.js",
+>>>>>>> main
       "SourceId": "Emulator",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\",
       "BasePath": "_content/Emulator",
+<<<<<<< HEAD
       "RelativePath": "lib/chartjs/helpers.esm.js",
+=======
+      "RelativePath": "lib/chartjs/Chart.min.js",
+>>>>>>> main
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -983,6 +1050,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
+<<<<<<< HEAD
       "OriginalItemSpec": "wwwroot\\lib\\chartjs\\helpers.esm.js"
     },
     {
@@ -1018,6 +1086,9 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\chartjs\\helpers.mjs"
+=======
+      "OriginalItemSpec": "wwwroot\\lib\\chartjs\\Chart.min.js"
+>>>>>>> main
     },
     {
       "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\lib\\fontawesome-free-6.4.0-web\\css\\all.css",
