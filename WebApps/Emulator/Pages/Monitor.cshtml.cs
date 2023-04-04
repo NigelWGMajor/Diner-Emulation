@@ -6,9 +6,10 @@ namespace Emulator.Pages
 {
     public class MonitorModel : PageModel
     {    
+        
 	    public string PageName => "Monitor";
-        public ChartJs Chart { get; set; }
-        public string ChartJson { get; set; }
+        public static ChartJs Chart { get; set; } = new ChartJs();
+        public string ChartJson { get; set; } = "";
         private readonly ILogger<MonitorModel> _logger;
 
         public MonitorModel(ILogger<MonitorModel> logger)
@@ -20,7 +21,7 @@ namespace Emulator.Pages
             // Ref: https://www.chartjs.org/docs/latest/
             var chartData = @"
             {
-                type: 'line',
+                type: 'bar',
                 responsive: true,
                 data:
                 {
@@ -74,8 +75,17 @@ namespace Emulator.Pages
         }
         public IActionResult OnPostSomething()
         {
-            return RedirectToPage("/Error");
-        //    return Page();
+            Chart.data.datasets[0].backgroundColor = new string[] 
+            {"rgba(255, 255, 255, 0.2)",
+            "rgba(255, 255, 255, 0.2)",
+            "rgba(255, 255, 255, 0.2)",
+            "rgba(255, 255, 255, 0.2)",
+            "rgba(255, 255, 255, 0.2)",
+            "rgba(255, 255, 255, 0.2)"
+            };
+            
+            // return RedirectToPage("/Error");
+            return Page();
         }
     }
 }
