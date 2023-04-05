@@ -53,8 +53,41 @@ body {
   padding: 0;
   margin: 0;
 }
-
 .work-area {
-  width: 100%;
+  width: 95%;
   margin: 3px;
+  padding: 6 px;
+}
+.range {
+  color: #736f6f;
+  display: block;
+}
+.turned {
+  display: inline-block;
+  transform: rotate(270deg);
+  margin-right: 3-px;
+}
+.unturned {
+  display: inline-block;
+  transform: rotate(90deg);
+}
+.for-turned-range {
+  min-height: 300px;
+}
+.inline-block {
+  display: inline-block;
+}
+.inline {
+  display: inline;
+}
+.tight-above {
+  margin-top: 0;
+}
+.tight-above {
+  margin-bottom: 0;
+}
+.rule {
+  border-top: 3px;
+  border-bottom: 3px;
+  margin-bottom: 10px;
 }

@@ -23,6 +23,7 @@
         </i>Test Error from @Model.PageName</button>
     </a>
 </div>
+ <hr class="rule">
 <div>
     <div style="width: 600px; height: 400px">
         <canvas id="myChart" width="400" height="400"></canvas>
@@ -32,13 +33,13 @@
         new
         {
             labels,
-            limit = Buffer.MaxCapacity.GetValueOrDefault(10),
+            limit = Buffer.MaxCapacity.GetValueOrDefault(40),
             url = "/chart",
             datasets = new object[]
             {
                 new
                 {
-                    label = "SignalR Dataset",
+                    label = "Data flow",
                     data,
                     fill = false,
                     borderColor = "rgb(75, 192, 192)",

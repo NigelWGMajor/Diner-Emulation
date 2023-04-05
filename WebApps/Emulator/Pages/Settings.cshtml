@@ -3,16 +3,52 @@
 @{
         ViewData["Title"] = "Settings";
 }
-<div class="navitem text-center">
-    <!-- Button to call  On<verb><Handler> method in code behind -->
-    <form  class="navitem" method="post" asp-page-handler="something">
-        <button  class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Post Somethimg">
-            <i class="space-low fa-solid fa-triangle-exclamation"></i>PostSomething
-        </button>        
-    </form> 
-    <!-- Button to simply call a page with data -->
-    <a class="navitem no-pad" asp-area="" asp-page="/Error" asp-route-data=@Model.PageName>
-        <button class="navitem space-low dark-edge"  data-bs-toggle="tooltip" title="show an error"><i class="fa-solid fa-bug">
-        </i>Test Error from @Model.PageName</button>
-    </a>
+<div>
+    <div class="navitem text-center">
+        <!-- Button to call  On<verb><Handler> method in code behind -->
+        <form  class="navitem" method="post" asp-page-handler="something">
+            <button  class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Post Somethimg">
+                <i class="space-low fa-solid fa-triangle-exclamation"></i>PostSomething
+            </button>        
+        </form> 
+            <!-- Button to simply call a page with data -->
+            <a class="navitem no-pad" asp-area="" asp-page="/Error" asp-route-data=@Model.PageName>
+                <button class="navitem space-low dark-edge"  data-bs-toggle="tooltip" title="show an error"><i class="fa-solid fa-bug">
+                </i>Test Error from @Model.PageName</button>
+            </a>
+        </div>
+    </div>
+    <hr class="rule">
+    <div>
+        <form method="post" >
+            <div>
+                <label class="tight-below" for="SliderValue1" >Percentage    </label>
+                <input class="range block" value="@Model.SliderValue1" asp-for="SliderValue1" type="range" name="SliderValue1" id="sv1" max=100 min=0 step=5>
+                <div class="tight-above">@Model.SliderValue1<div>
+            </div>
+            <div>
+                <label class="tight-below" for="SliderValue2" >Percentage    </label>
+                <input class="range block" value="@Model.SliderValue2" asp-for="SliderValue2" type="range" name="SliderValue2" id="sv2" max=100 min=0 step=5>
+                <div class="tight-above">@Model.SliderValue2<div>
+            </div>
+                        <div>
+                <label class="tight-below" for="SliderValue3" >Percentage    </label>
+                <input class="range block" value="@Model.SliderValue3" asp-for="SliderValue3" type="range" name="SliderValue3" id="sv3" max=100 min=0 step=5>
+                <div class="tight-above">@Model.SliderValue3<div>
+            </div>
+            <input type="Date" name="DateValue1" id="mydate" asp-for="DateValue1" />
+            <hr>
+            
+            <div  >
+                <input type='submit' name="submit"/>
+            </div>
+        </form>
+
+
+        <div>
+            <hr>
+            $"the currently selected date is @Model.DateValue1"
+            <hr>
+        </div>
+    </div>
 </div>
