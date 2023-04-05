@@ -5,7 +5,7 @@
 @model MonitorModel
 @{
     ViewData["Title"] = "Monitor";
-
+ 
     
     var labels = Buffer.Select(x => x.Label);
     var data = Buffer.Select(x => x.Value);
@@ -23,11 +23,10 @@
         <button class="space-low dark-edge"  data-bs-toggle="tooltip" title="show an error"><i class="fa-solid fa-bug">
         </i>Test Error from @Model.PageName</button>
     </a>
-<<<<<<< HEAD
 
 </div>
 <div>
-    <div style="width: 800px; height: 600px">
+    <div style="width: 600px; height: 400px">
         <canvas id="myChart" width="400" height="400"></canvas>
     </div>
     <script id="data" type="application/json">
@@ -56,19 +55,14 @@
 <script src="~/lib/chartjs/chart.min.js"></script>
 <script defer src="~/js/index.js"></script>
 </html>
+</div>
 
-=======
-</div>
-<div class="chart-container" width="600" height="400">
-    <canvas id="myChart"></canvas>
-</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
 
         var ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, @Html.Raw(Model.ChartJson) );
-
     });
 </script>
->>>>>>> main
+

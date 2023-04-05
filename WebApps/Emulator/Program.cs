@@ -18,9 +18,6 @@ builder.Services.AddSingleton(_ => {
 
 builder.Services.AddHostedService<ChartValueGenerator>();
 
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
