@@ -40,4 +40,21 @@ body {
   background-color: #111111;
   color:#c9c9c9;
 }
+.navitem {
+  display: inline-block;
+  height: 42px;
+  text-align: left;
+  cursor: pointer;
+  padding-left: 7px;
+  padding-right: 7px;
+  font-weight: bold;
+}
+.no-pad {
+  padding: 0;
+  margin: 0;
+}
 
+.work-area {
+  width: 100%;
+  margin: 3px;
+}

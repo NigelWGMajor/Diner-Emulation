@@ -3,16 +3,16 @@
 @{
         ViewData["Title"] = "About";
 }
-<div class="text-center">
+<div class="navitem text-center">
     <!-- Button to call  On<verb><Handler> method in code behind -->
-    <form method="post" asp-page-handler="something">
-        <button  class="space-low dark-edge" data-bs-toggle="tooltip" title="Post Somethimg">
+    <form  class="navitem" method="post" asp-page-handler="something">
+        <button  class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Post Somethimg">
             <i class="space-low fa-solid fa-triangle-exclamation"></i>PostSomething
         </button>        
     </form> 
     <!-- Button to simply call a page with data -->
-    <a asp-area="" asp-page="/Error" asp-route-data=@Model.PageName>
-        <button class="space-low dark-edge"  data-bs-toggle="tooltip" title="show an error"><i class="fa-solid fa-bug">
+    <a class="navitem no-pad" asp-area="" asp-page="/Error" asp-route-data=@Model.PageName>
+        <button class="navitem space-low dark-edge"  data-bs-toggle="tooltip" title="show an error"><i class="fa-solid fa-bug">
         </i>Test Error from @Model.PageName</button>
     </a>
 </div>
