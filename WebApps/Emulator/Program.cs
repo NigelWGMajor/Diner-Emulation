@@ -18,6 +18,7 @@ builder.Services.AddSingleton(_ => {
 builder.Services.AddSingleton<IStorage, Storage>();
 builder.Services.AddSingleton<IEventMonitor, EventMonitor>();
 builder.Services.AddHostedService<ChartValueGenerator>();
+builder.Services.AddHostedService<EventMonitor>();
 
 var app = builder.Build();
 
@@ -38,4 +39,6 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapHub<ChartHub>(ChartHub.Url);
+app.MapHub<EventHub>(EventHub.Url);
+
 app.Run();
