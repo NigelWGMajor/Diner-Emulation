@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
-using Charts_RazorPage.Models.Chart;
+using Emulator.Models.Chart;
 
 namespace Emulator.Pages
 {

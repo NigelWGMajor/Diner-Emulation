@@ -10,6 +10,7 @@ C:\source\Nix\DinerEmulation\WebApps\Emulator\bin\Debug\net6.0\Emulator.deps.jso
 C:\source\Nix\DinerEmulation\WebApps\Emulator\bin\Debug\net6.0\Emulator.runtimeconfig.json
 C:\source\Nix\DinerEmulation\WebApps\Emulator\bin\Debug\net6.0\Emulator.dll
 C:\source\Nix\DinerEmulation\WebApps\Emulator\bin\Debug\net6.0\Emulator.pdb
+C:\source\Nix\DinerEmulation\WebApps\Emulator\bin\Debug\net6.0\Bogus.dll
 C:\source\Nix\DinerEmulation\WebApps\Emulator\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\source\Nix\DinerEmulation\WebApps\Emulator\bin\Debug\net6.0\KitchenService.dll
 C:\source\Nix\DinerEmulation\WebApps\Emulator\bin\Debug\net6.0\Models.dll

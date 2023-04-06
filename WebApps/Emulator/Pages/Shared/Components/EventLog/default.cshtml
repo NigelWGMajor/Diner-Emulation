@@ -1,0 +1,15 @@
+@model List<Emulator.Models.Log.LogItem>
+<h3>Events</h3>
+<ul>
+    @foreach (var entry in Model)
+    {
+        <li class="@entry.EventClass">
+          
+                @entry.EventTime 
+            ---
+                @entry.Content
+      
+            <hr class="rule">
+        </li>
+    }
+</ul>

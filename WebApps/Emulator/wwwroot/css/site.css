@@ -91,3 +91,12 @@ body {
   border-bottom: 3px;
   margin-bottom: 10px;
 }
+.log-failure {
+color:red;
+}
+.log-retry {
+color: yellow;
+}
+.log-success {
+  color: green;
+}

@@ -49,6 +49,11 @@
         })    
     </script>
     </div>
+    <!-- introduce a component-->
+     @await Component.InvokeAsync("EventLog", new Random().Next(1, 10))
+    <div>
+      
+    </div>
 
 <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
 <script src="~/lib/chartjs/chart.min.js"></script>

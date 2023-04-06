@@ -1,4 +1,4 @@
-﻿namespace Charts_RazorPage.Models.Chart
+﻿namespace Emulator.Models.Chart
 {
     public class yAxes
     {
