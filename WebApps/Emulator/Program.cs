@@ -39,6 +39,5 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapHub<ChartHub>(ChartHub.Url);
-app.MapHub<EventHub>(EventHub.Url);
 
 app.Run();
