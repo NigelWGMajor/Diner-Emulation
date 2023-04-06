@@ -15,7 +15,7 @@ builder.Services.AddSingleton(_ => {
 
     return buffer;
 });
-
+builder.Services.AddSingleton<IStorage, Storage>();
 builder.Services.AddHostedService<ChartValueGenerator>();
 
 var app = builder.Build();

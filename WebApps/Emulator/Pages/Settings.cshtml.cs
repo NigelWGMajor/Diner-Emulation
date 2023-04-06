@@ -1,3 +1,4 @@
+using Emulator.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -7,8 +8,9 @@ namespace Emulator.Pages
     {
         public string PageName => "Settings";
 
+        public string Message { get; set; }
         private readonly ILogger<SettingsModel> _logger;
-
+        private readonly IStorage _storage;
         private int _sliderValue;
 
         [BindProperty(SupportsGet = true)]
@@ -24,15 +26,18 @@ namespace Emulator.Pages
         [BindProperty(SupportsGet = true)]
         public int SliderValue3 { get; set; }
 
-        public SettingsModel(ILogger<SettingsModel> logger)
+        public SettingsModel(ILogger<SettingsModel> logger, IStorage storage)
         {
             _logger = logger;
+            _storage = storage;
+            Message = storage.GetTime();
         }
 
         public void OnGet()
         {
             SliderValue1 = 42;
             SliderValue3 = 100 - 42;
+
         }
 
         public IActionResult OnPostSomething()
