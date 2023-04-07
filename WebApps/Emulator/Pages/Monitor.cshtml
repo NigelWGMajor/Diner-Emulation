@@ -5,31 +5,32 @@
 @model MonitorModel
 @{
     ViewData["Title"] = "Monitor";
- 
-    
+
+
     var labels = Buffer.Select(x => x.Label);
     var data = Buffer.Select(x => x.Value);
 }
 <div class="spread ">
     <!-- Button to call  On<verb><Handler> method in code behind -->
-    <form  class="navitem" method="post" asp-page-handler="something">
-        <button  class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Post Somethimg">
+    <form class="navitem" method="post" asp-page-handler="something">
+        <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Post Somethimg">
             <i class="space-low fa-solid fa-triangle-exclamation"></i>PostSomething
-        </button>        
-    </form> 
+        </button>
+    </form>
     <!-- Button to simply call a page with data -->
     <a class="navitem no-pad" asp-area="" asp-page="/Error" asp-route-data=@Model.PageName>
-        <button class="navitem space-low dark-edge"  data-bs-toggle="tooltip" title="show an error"><i class="fa-solid fa-bug">
-        </i>Test Error from @Model.PageName</button>
+        <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="show an error"><i
+                class="fa-solid fa-bug">
+            </i>Test Error from @Model.PageName</button>
     </a>
 </div>
- <hr class="rule">
+<hr class="rule">
 <div>
     <div style="width: 600px; height: 400px">
         <canvas id="myChart" width="400" height="200"></canvas>
     </div>
     <script id="data" type="application/json">
-    @Json.Serialize(
+        @Json.Serialize(
         new
         {
             labels,
@@ -48,21 +49,25 @@
             }
         })    
     </script>
-    </div>
-    <!-- introduce a component-->
-     @await Component.InvokeAsync("EventLog")
-    <div>
-      
-    </div>
+</div>
+<!-- introduce a component-->
+@await Component.InvokeAsync("EventLog")
+<div>
+
+
+</div>
 
 <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
 <script src="~/lib/chartjs/chart.min.js"></script>
 <script defer src="~/js/index.js"></script>
+
 </html>
 </div>
 
 
 <script>
+    
+
     document.addEventListener('DOMContentLoaded', (event) => {
 
         var ctx = document.getElementById('myChart');

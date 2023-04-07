@@ -19,17 +19,17 @@ const chartConnection = new signalR.HubConnectionBuilder()
     .configureLogging(signalR.LogLevel.Information)
     .build();
 
-    // const eventLogConnection = new signalR.HubConnectionBuilder()
-    // .withUrl('/event')
-    // .configureLogging(signalR.LogLevel.Information)
-    // .build();
+    const eventLogConnection = new signalR.HubConnectionBuilder()
+    .withUrl('/event')
+    .configureLogging(signalR.LogLevel.Information)
+    .build();
 
 async function start() {
     try {
         await chartConnection.start();
         console.log("*** SignalR Connected Chart.");
-        // await eventLogConnection.start();
-        // console.log("SignalR Connected Event.");
+        await eventLogConnection.start();
+        console.log("*** SignalR Connected Event.");
     } catch (err) {
         console.log(err);
         setTimeout(start, 5000);
@@ -39,9 +39,9 @@ async function start() {
 chartConnection.onclose(async () => {
     await start();
 });
-// eventLogConnection.onclose(async () => {
-//     await start();
-// });
+ eventLogConnection.onclose(async () => {
+     await start();
+ });
 
 chartConnection.on("addChartData", function(point) {
     
@@ -61,9 +61,12 @@ chartConnection.on("addChartData", function(point) {
     }
 });
 
-// eventLogConnection.on("addEvent", function (event) {
-//     myEventlog.update();
-// });
+eventLogConnection.on("addEvent", function (event) {
+    const li = document.createElement("li");
+    li.textContent = JSON.stringify(event);
+    document.getElementById("eventList").appendChild(li);
+ 
+ });
 
 // Start the connection.
 start().then(() => {});

@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\js\\index.js"
     },
     {
+      "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\js\\sampleUpdate.js",
+      "PackagePath": "staticwebassets\\js\\sampleUpdate.js"
+    },
+    {
       "Id": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

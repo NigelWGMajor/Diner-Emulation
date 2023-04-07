@@ -17,7 +17,8 @@ namespace ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var x = _counterService.GetCounter();
-            return View(x);
+            ViewData["Count"] = x;
+            return View(); // if empty, this passes the default view - in this case the IndexModel.
         }
     }
 }

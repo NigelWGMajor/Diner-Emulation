@@ -1,9 +1,9 @@
 @model List<Emulator.Models.Log.LogItem>
 
-<div id="eventLog">
+<div id='eventLog'>
 <h3>Events</h3>
-<ul>
-    @foreach (var entry in Model)
+<ul id='eventList'>
+    @* @foreach (var entry in Model)
     {
         <li class="@entry.EventClass">
           
@@ -12,6 +12,6 @@
                 @entry.Content
          
         </li>
-    }
+    } *@
 </ul>
 </div>

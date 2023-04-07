@@ -1,6 +1,6 @@
 using Emulator.Hubs;
 using Emulator.Services;
-using Hubs;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,5 +44,6 @@ app.MapRazorPages();
 app.MapHub<ChartHub>(ChartHub.Url);
 app.MapHub<EventLogHub>(EventLogHub.Url);
 app.MapHub<CounterHub>(CounterHub.Url);
+app.MapHub<ChatHub>("./chatHub");
 
 app.Run();

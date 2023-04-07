@@ -5,10 +5,17 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace Emulator.Services
 {
+    public interface IUpdateable
+    {
+        void Update(List<LogItem> target);
+    }
+
     public interface IEventMonitor
     {
         Task<IEnumerable<LogItem>> GetEvents();
         LogItem AddEvent();
+
+        void SetRemote(IUpdateable remote);
     }
 
     public class EventMonitor : BackgroundService, IEventMonitor
@@ -40,6 +47,14 @@ namespace Emulator.Services
             return _events;
         }
 
+        private static IUpdateable? _remote;
+        public delegate void UpdateRemoteEvents(List<LogItem> events);
+
+        public void SetRemote(IUpdateable remote)
+        {
+            _remote = remote;
+        }
+
         public LogItem AddEvent()
         {
             var x = GenerateRandomEvents(1);
@@ -47,6 +62,10 @@ namespace Emulator.Services
             if (_events.Count > _length)
             {
                 _events.RemoveAt(0);
+            }
+            if (_remote != null)
+            {
+                _remote.Update(_events);
             }
             return x[0];
         }

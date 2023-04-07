@@ -1,4 +1,4 @@
-using Hubs;
+using Emulator.Hubs;
 using Microsoft.AspNetCore.SignalR;
 
 namespace Emulator.Services
@@ -11,7 +11,7 @@ namespace Emulator.Services
     public class CounterService : BackgroundService, ICounterService 
     {
         private readonly IHubContext<CounterHub> _hub;
-        private static int _count;
+        private static int _count = 1000;
 
         public CounterService(IHubContext<CounterHub> hub)
         {
