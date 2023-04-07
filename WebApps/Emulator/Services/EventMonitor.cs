@@ -15,11 +15,11 @@ namespace Emulator.Services
     {
         private static string[] classes = { "log-failure", "log-retry", "log-success" };
         private List<LogItem> _events = new();
-       
+        private readonly IHubContext<EventLogHub> _hub;
 
-        public EventMonitor()
+        public EventMonitor(IHubContext<EventLogHub> hub)
         {
-           
+            _hub = hub;
             Randomizer.Seed = new Random(3897234);
         }
 
@@ -39,7 +39,7 @@ namespace Emulator.Services
             await Task.CompletedTask;
             return _events;
         }
-        
+
         public LogItem AddEvent()
         {
             var x = GenerateRandomEvents(1);
@@ -50,9 +50,9 @@ namespace Emulator.Services
             }
             return x[0];
         }
+
         public List<LogItem> GenerateRandomEvents(int n)
         {
-
             return _userFaker.Generate(n);
         }
 
@@ -60,6 +60,12 @@ namespace Emulator.Services
         {
             while (!stoppingToken.IsCancellationRequested)
             {
+                await _hub.Clients.All.SendAsync(
+                    "addEvent",
+                    AddEvent(),
+                    cancellationToken: stoppingToken
+                );
+
                 await Task.Delay(TimeSpan.FromSeconds(2), stoppingToken);
             }
         }

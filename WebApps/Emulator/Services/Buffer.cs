@@ -13,13 +13,13 @@ public class Buffer<T> : Queue<T>
     public Buffer(int capacity) { MaxCapacity = capacity; }
     public int TotalItemsAddedCount { get; private set; }
 
-    public void Add(T newElement)
-    {
-        // not thread safe 🤷‍
-        if (Count == (MaxCapacity ?? -1)) Dequeue();
-        Enqueue(newElement);
-        TotalItemsAddedCount++;
-    }
+    // public void Add(T newElement)
+    // {
+    //     // not thread safe 🤷‍
+    //     if (Count == (MaxCapacity ?? -1)) Dequeue();
+    //     Enqueue(newElement);
+    //     TotalItemsAddedCount++;
+    // }
 }
 
 public static class BufferExtensions
@@ -30,7 +30,7 @@ public static class BufferExtensions
         var year = now.Year;
         var monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(now.Month);
         var point = new Point($"{monthName} ({year})", RandomNumberGenerator.GetInt32(1, 11));
-        buffer.Add(point);
+       // buffer.Add(point);
         return point;
     }
 }
