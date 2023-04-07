@@ -63,10 +63,14 @@ chartConnection.on("addChartData", function(point) {
 
 eventLogConnection.on("addEvent", function (event) {
     const li = document.createElement("li");
-    li.textContent = JSON.stringify(event);
-    document.getElementById("eventList").appendChild(li);
- 
- });
+    li.innerHTML = event;
+    li.className = event.className;
+    var target = document.getElementById("eventList");
+    if (target.children.length > 10)    {
+        target.children[0].remove();
+    }
+    target.appendChild(li);
+  });
 
 // Start the connection.
 start().then(() => {});
