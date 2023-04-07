@@ -1,5 +1,6 @@
 using Emulator.Hubs;
 using Emulator.Services;
+using Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +18,10 @@ builder.Services.AddSingleton(_ => {
 });
 builder.Services.AddSingleton<IStorage, Storage>();
 builder.Services.AddSingleton<IEventMonitor, EventMonitor>();
+builder.Services.AddSingleton<ICounterService, CounterService>();
 builder.Services.AddHostedService<ChartValueGenerator>();
 builder.Services.AddHostedService<EventMonitor>();
+builder.Services.AddHostedService<CounterService>();
 
 var app = builder.Build();
 
@@ -40,5 +43,6 @@ app.UseAuthorization();
 app.MapRazorPages();
 app.MapHub<ChartHub>(ChartHub.Url);
 app.MapHub<EventLogHub>(EventLogHub.Url);
+app.MapHub<CounterHub>(CounterHub.Url);
 
 app.Run();
