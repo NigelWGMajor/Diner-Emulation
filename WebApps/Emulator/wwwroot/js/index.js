@@ -1,5 +1,6 @@
 const data = JSON.parse(document.getElementById('data').innerHTML);
 const ctx = document.getElementById('myChart').getContext('2d');
+const myEventLog = document.getElementById('eventLog');
 const myChart = new Chart(ctx, {
     type: 'line',
     data: data,
@@ -13,26 +14,36 @@ const myChart = new Chart(ctx, {
     }
 });
 
-const connection = new signalR.HubConnectionBuilder()
-    .withUrl(data.url)
+const chartConnection = new signalR.HubConnectionBuilder()
+    .withUrl('/chart')
+    .configureLogging(signalR.LogLevel.Information)
+    .build();
+
+    const eventLogConnection = new signalR.HubConnectionBuilder()
+    .withUrl('/event')
     .configureLogging(signalR.LogLevel.Information)
     .build();
 
 async function start() {
     try {
-        await connection.start();
-        console.log("SignalR Connected.");
+        await chartConnection.start();
+        console.log("*** SignalR Connected Chart.");
+        await eventLogConnection.start();
+        console.log("*** SignalR Connected Event.");
     } catch (err) {
         console.log(err);
         setTimeout(start, 5000);
     }
 }
 
-connection.onclose(async () => {
+chartConnection.onclose(async () => {
     await start();
 });
+ eventLogConnection.onclose(async () => {
+     await start();
+ });
 
-connection.on("addChartData", function(point) {
+chartConnection.on("addChartData", function(point) {
     
     myChart.data.labels.push(point.label);
     myChart.data.datasets.forEach((dataset) => {
@@ -49,6 +60,17 @@ connection.on("addChartData", function(point) {
         myChart.update();
     }
 });
+
+eventLogConnection.on("addEvent", function (event) {
+    const li = document.createElement("li");
+    li.innerHTML = event;
+    li.className = event.className;
+    var target = document.getElementById("eventList");
+    if (target.children.length > 10)    {
+        target.children[0].remove();
+    }
+    target.appendChild(li);
+  });
 
 // Start the connection.
 start().then(() => {});

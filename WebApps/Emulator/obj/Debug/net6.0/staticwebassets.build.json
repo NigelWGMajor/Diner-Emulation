@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qyROG1CMPvVP6Bxy9x4wSSUZD/YdpCtBeCmdXehP/sQ=",
+  "Hash": "cfbYPYV616xfbYFAnJBDuXitfzcD7cFble+DiTf58QQ=",
   "Source": "Emulator",
   "BasePath": "_content/Emulator",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\index.js"
+    },
+    {
+      "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\js\\sampleUpdate.js",
+      "SourceId": "Emulator",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\",
+      "BasePath": "_content/Emulator",
+      "RelativePath": "js/sampleUpdate.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\sampleUpdate.js"
     },
     {
       "Identity": "C:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\wwwroot\\js\\site.js",

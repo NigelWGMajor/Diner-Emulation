@@ -5,21 +5,27 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace Emulator.Services
 {
+    public interface IUpdateable
+    {
+        void Update(List<LogItem> target);
+    }
+
     public interface IEventMonitor
     {
         Task<IEnumerable<LogItem>> GetEvents();
-        LogItem AddEvent();
+        string AddEvent();
+      
     }
 
     public class EventMonitor : BackgroundService, IEventMonitor
     {
         private static string[] classes = { "log-failure", "log-retry", "log-success" };
         private List<LogItem> _events = new();
-       
+        private readonly IHubContext<EventLogHub> _hub;
 
-        public EventMonitor()
+        public EventMonitor(IHubContext<EventLogHub> hub)
         {
-           
+            _hub = hub;
             Randomizer.Seed = new Random(3897234);
         }
 
@@ -39,8 +45,16 @@ namespace Emulator.Services
             await Task.CompletedTask;
             return _events;
         }
-        
-        public LogItem AddEvent()
+
+        // private static IUpdateable? _remote;
+        public delegate void UpdateRemoteEvents(List<LogItem> events);
+
+        // public void SetRemote(IUpdateable remote)
+        // {
+        //     _remote = remote;
+        // }
+
+        public string AddEvent()
         {
             var x = GenerateRandomEvents(1);
             _events.AddRange(x);
@@ -48,11 +62,16 @@ namespace Emulator.Services
             {
                 _events.RemoveAt(0);
             }
-            return x[0];
+            return AsListItem(x[0]);
         }
+
+        private string AsListItem(LogItem item) 
+        { 
+            return $"<li class='{item.EventClass}'> {item.EventTime:hh=MM-ss} --- {item.Content}</li>";
+        }
+
         public List<LogItem> GenerateRandomEvents(int n)
         {
-
             return _userFaker.Generate(n);
         }
 
@@ -60,6 +79,12 @@ namespace Emulator.Services
         {
             while (!stoppingToken.IsCancellationRequested)
             {
+                await _hub.Clients.All.SendAsync(
+                    "addEvent",
+                    AddEvent(),
+                    cancellationToken: stoppingToken
+                );
+
                 await Task.Delay(TimeSpan.FromSeconds(2), stoppingToken);
             }
         }
