@@ -13,9 +13,8 @@ namespace Emulator.Services
     public interface IEventMonitor
     {
         Task<IEnumerable<LogItem>> GetEvents();
-        LogItem AddEvent();
-
-        void SetRemote(IUpdateable remote);
+        string AddEvent();
+      
     }
 
     public class EventMonitor : BackgroundService, IEventMonitor
@@ -47,15 +46,15 @@ namespace Emulator.Services
             return _events;
         }
 
-        private static IUpdateable? _remote;
+        // private static IUpdateable? _remote;
         public delegate void UpdateRemoteEvents(List<LogItem> events);
 
-        public void SetRemote(IUpdateable remote)
-        {
-            _remote = remote;
-        }
+        // public void SetRemote(IUpdateable remote)
+        // {
+        //     _remote = remote;
+        // }
 
-        public LogItem AddEvent()
+        public string AddEvent()
         {
             var x = GenerateRandomEvents(1);
             _events.AddRange(x);
@@ -63,11 +62,12 @@ namespace Emulator.Services
             {
                 _events.RemoveAt(0);
             }
-            if (_remote != null)
-            {
-                _remote.Update(_events);
-            }
-            return x[0];
+            return AsListItem(x[0]);
+        }
+
+        private string AsListItem(LogItem item) 
+        { 
+            return $"<li class='{item.EventClass}'> {item.EventTime:hh=MM-ss} --- {item.Content}</li>";
         }
 
         public List<LogItem> GenerateRandomEvents(int n)

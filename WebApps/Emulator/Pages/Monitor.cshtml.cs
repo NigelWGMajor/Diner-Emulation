@@ -13,7 +13,7 @@ namespace Emulator.Pages
     { 
         void SetRemote(T element);
     }
-    public class MonitorModel : PageModel, IUpdateable
+    public class MonitorModel : PageModel
     {    
         private readonly IJSRuntime _js;
 
@@ -28,15 +28,15 @@ namespace Emulator.Pages
         {
             _js = js;
             _logger = logger;
-            _eventMonitor = eventMonitor;
-            _eventMonitor.SetRemote(this);
+            // _eventMonitor = eventMonitor;
+            // _eventMonitor.SetRemote(this);
         }
 
-        public void Update(List<LogItem> events)
-        {
-            Events = events;
-            _js.InvokeVoidAsync("onUpdateXXX()");
-        }
+        // public void Update(List<LogItem> events)
+        // {
+        //     Events = events;
+        //     _js.InvokeVoidAsync("onUpdateXXX()");
+        // }
         public void OnGet()
         {
            
