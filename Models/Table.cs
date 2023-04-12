@@ -1,6 +1,9 @@
-﻿namespace Models;
-public class Table
+namespace Models
 {
-    int TableNumber { get; set; }
-    List<Diner> Diners { get; set; }
+    public class Table
+    {
+        public int TableNumber {get; set; }
+        public Server Server {get; set;}
+        public List<Diner> Diners {get; set; } = new();
+    }
 }
