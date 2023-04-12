@@ -19,7 +19,7 @@ const chartConnection = new signalR.HubConnectionBuilder()
     .configureLogging(signalR.LogLevel.Information)
     .build();
 
-    const eventLogConnection = new signalR.HubConnectionBuilder()
+const eventLogConnection = new signalR.HubConnectionBuilder()
     .withUrl('/event')
     .configureLogging(signalR.LogLevel.Information)
     .build();
