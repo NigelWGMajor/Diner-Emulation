@@ -1,30 +1,23 @@
-﻿namespace Models;
-public class Enumerations
+﻿namespace Models
 {
-    public enum ResultState
+    public enum PlanStatus
     {
-        Waiting = -2,
-        Errored = -1,
-        Unknown = 0,
-        Pending = 1,
-        Started = 2,
-        Resuming = 3,
-        Completed = 4,
+        Pending,
+        Opening,
+        InProgress,
+        Retrying,
+        Completed,
+        Failed
+        // Waiting
     }
-    public enum ItemType
+
+    public enum RecoveryStrategy
     {
-        Entree,
-        Side
-    }
-    [Flags]
-    public enum OperationType
-    {
-        NOP = 0,
-        Stock = 1,  // Get supplies into storage
-        Fetch = 2,  // Get ingredients from supplies
-        Prepare = 4,// wash, cut, whatever 
-        Cook = 8,   // Fire
-        Plate = 16,  // 
-        Garnish = 32, // add finishing stuff
+        Ignore,
+        Retry,
+        Delay,
+        RedoLast,
+        Restart,
+        Fail
     }
 }
