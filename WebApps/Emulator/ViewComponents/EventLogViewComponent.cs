@@ -17,7 +17,7 @@ namespace Emulator.ViewComponents
         // You can have zero or more parameters, and they may be optional if >= net6.0
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var events =await _eventMonitor.GetEvents();
+            IEnumerable<Models.Log.LogItem> events = await _eventMonitor.GetEvents();
             return View(events);
         }
     }
