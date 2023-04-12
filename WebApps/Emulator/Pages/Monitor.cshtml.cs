@@ -28,15 +28,9 @@ namespace Emulator.Pages
         {
             _js = js;
             _logger = logger;
-            // _eventMonitor = eventMonitor;
-            // _eventMonitor.SetRemote(this);
+            _eventMonitor = eventMonitor;
         }
 
-        // public void Update(List<LogItem> events)
-        // {
-        //     Events = events;
-        //     _js.InvokeVoidAsync("onUpdateXXX()");
-        // }
         public void OnGet()
         {
            
@@ -49,7 +43,6 @@ namespace Emulator.Pages
         public void OnPostSomething()
         {
             ;
-            
         }
     }
 }

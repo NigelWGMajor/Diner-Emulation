@@ -6,47 +6,32 @@
 
 <div class="navitem text-center">
     <!-- Button to call  On<verb><Handler> method in code behind -->
-    <form  class="navitem" method="post" asp-page-handler="something">
-        <button  class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Post Somethimg">
+    <form class="navitem" method="post" asp-page-handler="something">
+        <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Post Somethimg">
             <i class="space-low fa-solid fa-triangle-exclamation"></i>PostSomething
-        </button>        
-    </form> 
+        </button>
+    </form>
     <!-- Button to simply call a page with data -->
     <a class="navitem no-pad" asp-area="" asp-page="/Error" asp-route-data=@Model.PageName>
-        <button class="navitem space-low dark-edge"  data-bs-toggle="tooltip" title="show an error"><i class="fa-solid fa-bug">
-        </i>Test Error from @Model.PageName</button>
+        <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="show an error"><i
+                class="fa-solid fa-bug">
+            </i>Test Error from @Model.PageName</button>
     </a>
 </div>
 <div>
-     @await Component.InvokeAsync("Counter")
+    @await Component.InvokeAsync("Counter")
+    <div class="container">
+        <div class="row p-1">
+            <div class="col-1">Message</div>
+            <div class="col-5"><input type="text" class="w-100" id="messageInput" /></div>
+        </div>
+        <div class="row p-1">
+            <div class="col-6 text-end">
+                <input type="button" id="sendButton" value="Send Message" />
+            </div>
 
-<!-- this is te chat asample ... --> 
-     <div class="container">
-    <div class="row p-1">
-        <div class="col-1">User</div>
-        <div class="col-5"><input type="text" id="userInput" /></div>
-    </div>
-    <div class="row p-1">
-        <div class="col-1">Message</div>
-        <div class="col-5"><input type="text" class="w-100" id="messageInput" /></div>
-    </div>
-    <div class="row p-1">
-        <div class="col-6 text-end">
-            <input type="button" id="sendButton" value="Send Message" />
         </div>
+        <script src="~/js/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/chat.js"></script>
     </div>
-    <div class="row p-1">
-        <div class="col-6">
-            <hr />
-        </div>
-    </div>
-    <div class="row p-1">
-        <div class="col-6">
-            <ul id="messagesList"></ul>
-        </div>
-    </div>
-</div>
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
-</div>
- <hr class="rule">
+    <hr class="rule">
