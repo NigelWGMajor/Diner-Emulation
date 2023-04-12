@@ -1,8 +1,11 @@
 namespace Models
 {
-    public class Server
+    public class Server : Person
     {
-        public string Name {get; set; }
-        public List<int> TableNumbers {get; set; } = new();
+        public Server(string name)
+        {
+            Name = name;
+        }
+        public List<int> TableNumbers { get; set; } = new();
     }
 }

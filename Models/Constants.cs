@@ -20,4 +20,10 @@
         Restart,
         Fail
     }
+        public static class ItemKind
+    {
+        public static string Main => "Main";
+
+        public static string Side => "Side";
+    }
 }
