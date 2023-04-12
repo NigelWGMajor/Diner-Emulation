@@ -10,14 +10,13 @@ public class IndexModel : PageModel
 
     private readonly ILogger<IndexModel> _logger;
         public string PageName => "Index";
-    private readonly ICounterService _counterService;
-    public IndexModel(ILogger<IndexModel> logger, ICounterService counterService)
+   
+    public IndexModel(ILogger<IndexModel> logger)
     {
-        _counterService = counterService;
+   
         _logger = logger;
         
     }
-    public int Count { get => _counterService.GetCounter(); }  
     public void OnGet()
     {
          ;

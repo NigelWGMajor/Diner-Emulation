@@ -14262,23 +14262,6 @@
         }
       },
       {
-        "HashCode": 641070333,
-        "Kind": "MVC.ViewComponent",
-        "Name": "__Generated__CounterViewComponentTagHelper",
-        "AssemblyName": "Emulator",
-        "CaseSensitive": false,
-        "TagMatchingRules": [
-          {
-            "TagName": "vc:counter"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "ITagHelper",
-          "Common.TypeName": "__Generated__CounterViewComponentTagHelper",
-          "MVC.ViewComponent.Name": "Counter"
-        }
-      },
-      {
         "HashCode": 1217636312,
         "Kind": "Components.Bind",
         "Name": "Bind",
@@ -16354,11 +16337,6 @@
     {
       "FilePath": "c:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\Pages\\Shared\\Components\\EventLog\\default.cshtml",
       "TargetPath": "Pages\\Shared\\Components\\EventLog\\default.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\source\\Nix\\DinerEmulation\\WebApps\\Emulator\\Pages\\Shared\\Components\\Counter\\default.cshtml",
-      "TargetPath": "Pages\\Shared\\Components\\Counter\\default.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -18,7 +18,6 @@ builder.Services.AddSingleton(_ => {
 });
 builder.Services.AddSingleton<IStorage, Storage>();
 builder.Services.AddSingleton<IEventMonitor, EventMonitor>();
-builder.Services.AddSingleton<ICounterService, CounterService>();
 builder.Services.AddHostedService<ChartValueGenerator>();
 builder.Services.AddHostedService<EventMonitor>();
 // builder.Services.AddHostedService<CounterService>();
