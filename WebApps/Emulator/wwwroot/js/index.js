@@ -43,6 +43,7 @@ chartConnection.onclose(async () => {
      await start();
  });
 
+ // An example of injecting into a js object from the SignalR ChartHub
 chartConnection.on("addChartData", function(point) {
     
     myChart.data.labels.push(point.label);
@@ -60,7 +61,8 @@ chartConnection.on("addChartData", function(point) {
         myChart.update();
     }
 });
-
+// An example of how to inject an element from the SignalR EventHub directly into the html.
+// THis is injecting into the EventLog component at pages/components/eventlog/default
 eventLogConnection.on("addEvent", function (event) {
     const li = document.createElement("li");
     li.innerHTML = event;
