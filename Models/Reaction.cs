@@ -14,7 +14,7 @@ namespace Models
 
         private string _message;
 
-        protected string Message
+        public string Message
         {
             get
             {
@@ -84,7 +84,7 @@ namespace Models
         public override RecoveryStrategy Strategy => RecoveryStrategy.RedoLast;
     }
 
-    public class ReactRestart : Reaction
+    public class ReactRestart : Reaction 
     {
         public ReactRestart(string message = "", int retryCount = 2) :
             base(message, retryCount)

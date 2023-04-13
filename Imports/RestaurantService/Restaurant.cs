@@ -20,7 +20,7 @@ namespace RestaurantService
 
         public Menu Menu;
 
-        public Plan[] Plans { get; set; }
+        public MenuPlan[] Plans { get; set; }
 
         public ActivityList Activities { get; set; }
 
@@ -58,10 +58,10 @@ namespace RestaurantService
             return result;
         }
 
-        private Plan[] GetMenuPlans()
+        private MenuPlan[] GetMenuPlans()
         {
-            return new Plan[] {
-                new Plan(ItemKind.Main,
+            return new MenuPlan[] {
+                new MenuPlan(ItemKind.Main,
                     "Catfish",
                     new Stage("Fetch",
                         Activities["Fetch"],
@@ -76,7 +76,7 @@ namespace RestaurantService
                         Activities["Plate"],
                         1,
                         new ReactDelay("Waiting on plates"))),
-                new Plan(ItemKind.Side,
+                new MenuPlan(ItemKind.Side,
                     "FrenchFries",
                     new Stage("Get Fries",
                         Activities["Fetch"],
@@ -92,7 +92,7 @@ namespace RestaurantService
                         Activities["Plate"],
                         1,
                         new ReactDelay("Waiting on plates"))),
-                new Plan(ItemKind.Main,
+                new MenuPlan(ItemKind.Main,
                     "Hamburger",
                     new Stage("Fetch",
                         Activities["Fetch"],
@@ -106,7 +106,7 @@ namespace RestaurantService
                         Activities["Plate"],
                         1,
                         new ReactDelay("Waiting on plates"))),
-                new Plan(ItemKind.Side,
+                new MenuPlan(ItemKind.Side,
                     "Salad",
                     new Stage("Get salad ingredients",
                         Activities["Fetch"],
@@ -123,7 +123,7 @@ namespace RestaurantService
                         Activities["Dress"],
                         1,
                         new ReactDelay("Waiting on plates"))),
-                new Plan(ItemKind.Main,
+                new MenuPlan(ItemKind.Main,
                     "Chicken",
                     new Stage("Fetch",
                         Activities["Fetch"],
@@ -137,7 +137,7 @@ namespace RestaurantService
                         Activities["Plate"],
                         1,
                         new ReactDelay("Waiting on plates"))),
-                new Plan(ItemKind.Side,
+                new MenuPlan(ItemKind.Side,
                     "Coleslaw",
                     new Stage("Get coleslaw",
                         Activities["Fetch"],
