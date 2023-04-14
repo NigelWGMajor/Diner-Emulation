@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Bogus;
-using Models;
+using Models.Common;
 
 namespace RestaurantService
 {
     public class Restaurant
     {
+        public Restaurant()
+        {
+            Initialize(6); // let's have some servers!
+        }
         private Faker _faker = new Faker();
 
-        private Faker<Models.Person>
+        private Faker<Models.Common.Person>
             _personFaker =
-                new Faker<Models.Person>()
+                new Faker<Models.Common.Person>()
                     .RuleFor(p => p.Name, f => f.Person.FirstName);
 
-        public Table[] Tables { get; set; }
+       // public Table[] Tables { get; set; }
 
         public Server[] Servers { get; set; }
 
@@ -24,17 +29,22 @@ namespace RestaurantService
 
         public ActivityList Activities { get; set; }
 
-        private void Initialize(int tableCount)
+        private (int Count, MenuItem[] Items) mains;
+        private (int Count, MenuItem[] Items) sides;
+
+        private void Initialize(int serverCount)
         {
-            Servers = GetServers(tableCount);
-            Activities = GetActivities();
+            Servers = GetServers(serverCount);
+            Activities = GetActivities(); // will be redundant, used for local menu mocking.
             Plans = GetMenuPlans();
-            Tables = AssignTables(tableCount);
+            // Tables = AssignTables(tableCount);
+            mains = (Plans.Count(a => a.ItemKind == ItemKind.Main), Plans.Where(a => a.ItemKind == ItemKind.Main).ToArray<MenuItem>());
+            sides = (Plans.Count(a => a.ItemKind == ItemKind.Side), Plans.Where(a => a.ItemKind == ItemKind.Side).ToArray<MenuItem>());
         }
 
         private Server[] GetServers(int tableCount)
         {
-            Models.Person[] persons =
+            Models.Common.Person[] persons =
                 _personFaker
                     .GenerateBetween(tableCount / 6 + 1, tableCount / 4 + 1)
                     .ToArray();
@@ -156,14 +166,33 @@ namespace RestaurantService
             };
         }
 
-        private Table[] AssignTables(int count)
+        public Table GetNewTable()
         {
-            var result = new Table[count];
-            for (int i = 0; i < count; i++)
+            var table = new Table(_faker.PickRandom(Servers));
+            int dinerCount = _faker.Random.Int(1, 8); // 1 to 6 diners per table
+            var dinerList = new List<Diner>();
+            dinerList.AddRange(
+                _personFaker.Generate(dinerCount).Select(p => new Diner(p.Name)));
+            foreach (var diner in dinerList)
             {
-                Tables[i] = new Table(_faker.PickRandom(Servers));
+                table.Seat(diner);
+                diner.OrderFood(
+                    _faker.PickRandom(mains.Items, 1).ToArray());
+                diner.OrderFood(
+                    _faker.PickRandom(sides.Items, _faker.Random.Int(1, Math.Min(sides.Count, 4))).ToArray());
             }
-            return result;
+            table.Diners = dinerList;
+            return table;
         }
+        
+        //private Table[] AssignTables(int count)
+        //{
+        //    var result = new Table[count];
+        //    for (int i = 0; i < count; i++)
+        //    {
+        //        Tables[i] = new Table(_faker.PickRandom(Servers));
+        //    }
+        //    return result;
+        //}
     }
 }

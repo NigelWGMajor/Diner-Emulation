@@ -40,9 +40,9 @@ namespace Emulator.Pages
         {
             
         }
-        public void OnPostSomething()
+        public void OnPostTableOrder()
         {
-            ;
+            _eventMonitor.OrderFromTable();
         }
     }
 }

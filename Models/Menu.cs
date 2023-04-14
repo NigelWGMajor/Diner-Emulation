@@ -1,6 +1,8 @@
-﻿namespace Models;
-
-public class Menu
+﻿namespace Models.Common
 {
-    public List<MenuItem> MenuItems { get; set; } = new();
+
+    public class Menu
+    {
+        public List<MenuItem> MenuItems { get; set; } = new();
+    }
 }
