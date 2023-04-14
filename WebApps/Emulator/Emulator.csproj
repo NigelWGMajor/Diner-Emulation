@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Tooling\Nix-Tooling-Library-SqlStore\Nix.Library.SqlStore\Nix.Library.SqlStore.csproj" />
     <ProjectReference Include="..\..\Imports\KitchenService\KitchenService.csproj" />
     <ProjectReference Include="..\..\Imports\RestaurantService\RestaurantService.csproj" />
     <ProjectReference Include="..\..\Imports\WorkflowManager\WorkflowManager.csproj" />

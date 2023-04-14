@@ -5,41 +5,40 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Imports", "Imports", "{F81489BE-3B6F-446E-8A74-E5949DA39970}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KitchenService", "Imports\KitchenService\KitchenService.csproj", "{BF1C88FA-527B-479F-AA15-FEF966AD8036}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenService", "Imports\KitchenService\KitchenService.csproj", "{BF1C88FA-527B-479F-AA15-FEF966AD8036}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{17DC51B9-A06D-48D4-AFED-BE0622BDB049}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit", "Unit", "{60D6AED6-B404-403C-80EE-4BCB1926FC38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KitchenService.Test", "Test\Unit\KitchenService.Test\KitchenService.Test.csproj", "{CD36CED6-7EE6-44C4-A34A-3F1D6EE21486}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenService.Test", "Test\Unit\KitchenService.Test\KitchenService.Test.csproj", "{CD36CED6-7EE6-44C4-A34A-3F1D6EE21486}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantService", "Imports\RestaurantService\RestaurantService.csproj", "{AB638DE5-2C19-4619-8920-AE0CBF9D78FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantService", "Imports\RestaurantService\RestaurantService.csproj", "{AB638DE5-2C19-4619-8920-AE0CBF9D78FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantService.Test", "Test\Unit\RestaurantService.Test\RestaurantService.Test.csproj", "{D0B5F8B2-9291-43E0-A2AE-444007A88922}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestaurantService.Test", "Test\Unit\RestaurantService.Test\RestaurantService.Test.csproj", "{D0B5F8B2-9291-43E0-A2AE-444007A88922}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowManager", "Imports\WorkflowManager\WorkflowManager.csproj", "{27FF5EBC-0A8C-4CD9-82CF-77A06185F2AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowManager", "Imports\WorkflowManager\WorkflowManager.csproj", "{27FF5EBC-0A8C-4CD9-82CF-77A06185F2AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowManager.Test", "Test\Unit\WorkflowManager.Test\WorkflowManager.Test.csproj", "{0227E36E-A130-4400-B9B8-C6FA0198E402}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowManager.Test", "Test\Unit\WorkflowManager.Test\WorkflowManager.Test.csproj", "{0227E36E-A130-4400-B9B8-C6FA0198E402}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{DFE86977-C61C-423D-8DC0-70C1A683AA7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTester", "Tools\ModelTester\ModelTester.csproj", "{D4266F99-AEA8-4677-853B-10DB893FA4C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelTester", "Tools\ModelTester\ModelTester.csproj", "{D4266F99-AEA8-4677-853B-10DB893FA4C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{80AE76D6-B7A9-4496-A3BF-307C80B86ACA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emulator", "WebApps\Emulator\Emulator.csproj", "{445A8BC9-959D-4E6A-91E8-ABF1F646FCA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emulator", "WebApps\Emulator\Emulator.csproj", "{445A8BC9-959D-4E6A-91E8-ABF1F646FCA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emulator.Test", "Test\Unit\Emulator.Test\Emulator.Test.csproj", "{6D876AD9-ED18-4519-AE1A-94AB4D09559C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emulator.Test", "Test\Unit\Emulator.Test\Emulator.Test.csproj", "{6D876AD9-ED18-4519-AE1A-94AB4D09559C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{77D46B1B-AEF9-44C8-9443-C17D78AA965E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{77D46B1B-AEF9-44C8-9443-C17D78AA965E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nix.Library.SqlStore", "..\..\Tooling\Nix-Tooling-Library-SqlStore\Nix.Library.SqlStore\Nix.Library.SqlStore.csproj", "{6E8ECC42-5CAD-48D2-A04E-2CE053EFA9E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BF1C88FA-527B-479F-AA15-FEF966AD8036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -82,6 +81,13 @@ Global
 		{77D46B1B-AEF9-44C8-9443-C17D78AA965E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77D46B1B-AEF9-44C8-9443-C17D78AA965E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77D46B1B-AEF9-44C8-9443-C17D78AA965E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E8ECC42-5CAD-48D2-A04E-2CE053EFA9E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E8ECC42-5CAD-48D2-A04E-2CE053EFA9E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E8ECC42-5CAD-48D2-A04E-2CE053EFA9E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E8ECC42-5CAD-48D2-A04E-2CE053EFA9E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BF1C88FA-527B-479F-AA15-FEF966AD8036} = {F81489BE-3B6F-446E-8A74-E5949DA39970}
