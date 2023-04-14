@@ -6,7 +6,7 @@ namespace Models.Common
 {
     public class Operation
     {
-        public long ReqestId { get; set; }
+        public long RequestId { get; set; }
         public long MenuPlanId { get; set; }
         public long StageId { get; set; }
         public int Sequence { get; set; }

@@ -43,21 +43,28 @@ namespace WorkflowManager
             }
             return id;
         }
-        // For each menu item, we create potential operations for that, one reactiion per each.
-        private void CreateOperations(long requestId, int tableNumber, int DinerNumber, string MenuItem)
+        // For each menu item, we create potential operations for that, one reaction per each.
+        private async Task CreateOperations(long requestId, int tableNumber, int DinerNumber, string MenuItem)
         {
             var ops = _client.SpAsType<Operation>("OperationsForMenuItem", ("@ItemName", MenuItem));
+            foreach (var operation in ops) 
+            {
+                operation.Attempts = 0;
+                operation.RequestId = requestId;
+                operation.ErrorCount = 0;
+                operation.IsComplete = 0;
+                await _client.InsertAsync("Operations", operation);
+            }
         }
-        // The Executor claims a task
+        // The Executor claims a task: this stops other folks from using it, and gives a reference to the request.
         public async Task<WorkTask> ClaimTask(string Executor)
         {
             var data = _client.SpAsType<WorkTask>("ClaimTask", ("@Name", Executor));
-            await GenerateOperations(data.First().Id);
             return await Task.FromResult(data.First());
         }
         // 
         // The Executor updates the status periodically
-        public async Task UpdateTask(long Id, string outcome)
+        /*public async Task UpdateTask(long Id, string outcome)
         {
             var _ = _client.SpAsType<WorkTask>("UpdateTask", ("@outcome", outcome));
         }
@@ -72,10 +79,7 @@ namespace WorkflowManager
         {
 
         }
-        private async Task GenerateOperations(long Id)
-        {
-
-        }
+       */
 
 
     }

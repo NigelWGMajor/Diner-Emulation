@@ -2,6 +2,9 @@ using Bogus;
 using Emulator.Hubs;
 using Emulator.Models.Log;
 using Microsoft.AspNetCore.SignalR;
+using Models.Common;
+using WorkflowManager;
+using RestaurantService;
 
 namespace Emulator.Services
 {
@@ -13,18 +16,24 @@ namespace Emulator.Services
     public interface IEventMonitor
     {
         Task<IEnumerable<LogItem>> GetEvents();
+        Task OrderFromTable();
         string AddEvent();
-      
+
     }
 
     public class EventMonitor : BackgroundService, IEventMonitor
     {
+        private WorkflowManager.Manager _manager;
+        private RestaurantService.Restaurant _restaurant;
+
         private static string[] classes = { "log-failure", "log-retry", "log-success" };
         private List<LogItem> _events = new();
         private readonly IHubContext<EventLogHub> _hub;
 
         public EventMonitor(IHubContext<EventLogHub> hub)
         {
+            _manager = new Manager();
+            _restaurant = new Restaurant();
             _hub = hub;
             Randomizer.Seed = new Random(3897234);
         }
@@ -34,6 +43,19 @@ namespace Emulator.Services
             .RuleFor(l => l.Content, (f, l) => f.Lorem.Lines(1))
             .RuleFor(l => l.EventClass, (f, l) => f.PickRandom(classes))
             .RuleFor(l => l.EventTime, DateTime.Now);
+
+        public async Task OrderFromTable()
+        {
+            var table = _restaurant.GetNewTable();
+            WorkflowManager.Models.WorkRequest request = new WorkflowManager.Models.WorkRequest
+            {
+                Initiator = table.Server.Name,
+                Contact = table.Server.Name,
+                ReceivedAt = DateTime.Now,
+                Table = table
+            };
+            await _manager.RequestWork(request);
+        }
 
         public async Task<IEnumerable<LogItem>> GetEvents()
         {
@@ -65,8 +87,8 @@ namespace Emulator.Services
             return AsListItem(x[0]);
         }
 
-        private string AsListItem(LogItem item) 
-        { 
+        private string AsListItem(LogItem item)
+        {
             return $"<li class='{item.EventClass}'> {item.EventTime:hh=MM-ss} --- {item.Content}</li>";
         }
 
