@@ -9,6 +9,10 @@ namespace Models
 		    Server = server;
 		    Server.TableNumbers.Add(TableNumber);
 	    }
+        public void Seat(Diner diner)
+        {
+            diner.TableNumber = TableNumber;
+        }
         public int TableNumber {get; set; }
         public Server Server {get; set;}
         public List<Diner> Diners {get; set; } = new();

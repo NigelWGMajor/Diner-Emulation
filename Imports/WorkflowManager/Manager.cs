@@ -33,6 +33,12 @@ namespace WorkflowManager
             request.ReceivedAt = DateTime.Now;
             request.IsActive = 1;
             int id = await _client.InsertAsync("Requests", request);
+            var request.Request.
+
+
+
+
+
             return id;
         }
         // The Executor claims a task
