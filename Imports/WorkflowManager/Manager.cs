@@ -1,8 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Design;
-using Azure;
 using Nix.Library.SqlStore;
-using Models;
+using Models.Common;
 using WorkflowManager.Models;
 using System.Threading.Tasks;
 using System.Linq;
@@ -33,13 +32,21 @@ namespace WorkflowManager
             request.ReceivedAt = DateTime.Now;
             request.IsActive = 1;
             int id = await _client.InsertAsync("Requests", request);
-            var request.Request.
-
-
-
-
-
+            int d = 0;
+            foreach (var diner in request.Table.Diners)
+            {
+                foreach (var selection in diner.Selection)
+                {
+                    CreateOperations(id, diner.TableNumber, d, selection.ItemName);
+                }
+                d++;
+            }
             return id;
+        }
+        // For each menu item, we create potential operations for that, one reactiion per each.
+        private void CreateOperations(long requestId, int tableNumber, int DinerNumber, string MenuItem)
+        {
+            var ops = _client.SpAsType<Operation>("OperationsForMenuItem", ("@ItemName", MenuItem));
         }
         // The Executor claims a task
         public async Task<WorkTask> ClaimTask(string Executor)
@@ -50,7 +57,7 @@ namespace WorkflowManager
         }
         // 
         // The Executor updates the status periodically
-        public async Task UpdateTask(long Id,  string outcome)
+        public async Task UpdateTask(long Id, string outcome)
         {
             var _ = _client.SpAsType<WorkTask>("UpdateTask", ("@outcome", outcome));
         }

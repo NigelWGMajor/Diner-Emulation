@@ -1,5 +1,6 @@
-namespace Models
+namespace Models.Common
 {
+
     public class MenuPlan : MenuItem
     {
         public MenuPlan(string kind, string name, params Stage[] stages) :

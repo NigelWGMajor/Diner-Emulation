@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Models.Common;
 
 namespace WorkflowManager.Models
 {
@@ -14,7 +15,7 @@ namespace WorkflowManager.Models
         public int Origin { get; set; }
         public string Initiator { get; set; }
         public string Contact { get; set; }
-        public string Request { get; set; }
+        public Table Table { get; set; }
         public DateTime ReceivedAt { get; set; }
         public int IsActive { get; set; }
     }

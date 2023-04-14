@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bogus;
-using Models;
+using Models.Common;
 
 namespace RestaurantService
 {
@@ -10,9 +10,9 @@ namespace RestaurantService
     {
         private Faker _faker = new Faker();
 
-        private Faker<Models.Person>
+        private Faker<Models.Common.Person>
             _personFaker =
-                new Faker<Models.Person>()
+                new Faker<Models.Common.Person>()
                     .RuleFor(p => p.Name, f => f.Person.FirstName);
 
        // public Table[] Tables { get; set; }
@@ -40,7 +40,7 @@ namespace RestaurantService
 
         private Server[] GetServers(int tableCount)
         {
-            Models.Person[] persons =
+            Models.Common.Person[] persons =
                 _personFaker
                     .GenerateBetween(tableCount / 6 + 1, tableCount / 4 + 1)
                     .ToArray();
