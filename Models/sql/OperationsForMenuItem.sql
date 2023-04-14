@@ -39,6 +39,6 @@ join Reactions re on re.StageId = st.Id
 
 where menuitemid = @menuitemid
 
-for json auto;
+for json path;
 
 -- exec OperationsForMenuItem 'catfish'

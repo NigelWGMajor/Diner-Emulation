@@ -31,45 +31,42 @@ namespace WorkflowManager
         {
             request.ReceivedAt = DateTime.Now;
             request.IsActive = 1;
-            int requestId = await _client.InsertAsync("Requests", request);
+            var summary = String.Join("\n", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray())+ "\n";            int requestId = (int) await _client.SpInsertAsync("Request_insert",
+                 ("@origin", table.TableNumber),
+                 ("@initiator", request.Initiator),
+                 ("@contact", request.Contact), 
+                 ("Request", summary)
+                );
             int dinerIndex = 0;
+
             foreach (var diner in table.Diners)
             {
+                int itemIndex = 0;
                 foreach (var selection in diner.Selection)
                 {
-                    CreateOperations(requestId, diner.TableNumber, dinerIndex, selection.ItemName);
+                    await CreateOperations(requestId, diner.TableNumber, dinerIndex, itemIndex++, selection.ItemName);
                 }
                 dinerIndex++;
             }
             return requestId;
         }
         // For each menu item, we create potential operations for that, one reaction per each.
-        private async Task CreateOperations(long requestId, int tableNumber, int DinerNumber, string MenuItem)
+        private async Task CreateOperations(long requestId, int tableNumber, int DinerNumber, int itemIndex, string MenuItem)
         {
             try
             {
-                var ops = _client.SpAsJson("OperationsForMenuItem", ("@ItemName", MenuItem));
+                var ops = _client.SpAsType<Operation>("OperationsForMenuItem", ("@ItemName", MenuItem)).ToArray();
 
-                //foreach (var operation in ops)
-                //{
-                //    operation.Attempts = 0;
-                //    operation.RequestId = requestId;
-                //    operation.ErrorCount = 0;
-                //    operation.IsComplete = 0;
-                //    await _client.InsertAsync("Operations", operation);
-
-
-
-
-
-
-
-
-
-
-
-
-                //}
+                foreach (var operation in ops)
+                {
+                    operation.Attempts = 0;
+                    operation.RequestId = requestId;
+                    operation.ErrorCount = 0;
+                    operation.IsComplete = 0;
+                    operation.DinerIndex = DinerNumber;
+                    operation.ItemIndex = itemIndex;
+                    await _client.InsertAsync("Operations", operation);
+                }
             }
             catch (Exception ex)
             {

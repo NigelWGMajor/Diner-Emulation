@@ -8,6 +8,8 @@ namespace Models.Common
     {
         public long RequestId { get; set; }
         public long MenuPlanId { get; set; }
+        public int DinerIndex { get; set; }
+        public int ItemIndex { get; set; }
         public long StageId { get; set; }
         public int Sequence { get; set; }
         public string ItemName { get; set; }

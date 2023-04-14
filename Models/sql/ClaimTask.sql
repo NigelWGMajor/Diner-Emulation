@@ -12,6 +12,6 @@ as
 declare @id bigint;
 set @id = (select min(Id) from dbo.Requests where IsActive = 1 and Executor is null)
 update dbo.requests set Executor = @name, ReceivedAt = GetDate(), Outcome = 'Processing' where Id = @id;
-select * from dbo.Requests where Id = @id for json auto;
+select * from dbo.Requests where Id = @id for json path;
 
 -- exec claimtask @Name='Nick'
