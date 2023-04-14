@@ -52,9 +52,9 @@ namespace Emulator.Services
                 Initiator = table.Server.Name,
                 Contact = table.Server.Name,
                 ReceivedAt = DateTime.Now,
-                Table = table
+                Origin = table.TableNumber
             };
-            await _manager.RequestWork(request);
+            await _manager.RequestWork(request, table);
         }
 
         public async Task<IEnumerable<LogItem>> GetEvents()

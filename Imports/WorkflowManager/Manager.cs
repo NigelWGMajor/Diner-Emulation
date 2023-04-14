@@ -27,33 +27,53 @@ namespace WorkflowManager
             _client = new SqlClient(_connection);
         }
         // The Initiator Places the work request 
-        public async Task<int> RequestWork(WorkRequest request)
+        public async Task<int> RequestWork(WorkRequest request, Table table)
         {
             request.ReceivedAt = DateTime.Now;
             request.IsActive = 1;
-            int id = await _client.InsertAsync("Requests", request);
-            int d = 0;
-            foreach (var diner in request.Table.Diners)
+            int requestId = await _client.InsertAsync("Requests", request);
+            int dinerIndex = 0;
+            foreach (var diner in table.Diners)
             {
                 foreach (var selection in diner.Selection)
                 {
-                    CreateOperations(id, diner.TableNumber, d, selection.ItemName);
+                    CreateOperations(requestId, diner.TableNumber, dinerIndex, selection.ItemName);
                 }
-                d++;
+                dinerIndex++;
             }
-            return id;
+            return requestId;
         }
         // For each menu item, we create potential operations for that, one reaction per each.
         private async Task CreateOperations(long requestId, int tableNumber, int DinerNumber, string MenuItem)
         {
-            var ops = _client.SpAsType<Operation>("OperationsForMenuItem", ("@ItemName", MenuItem));
-            foreach (var operation in ops) 
+            try
             {
-                operation.Attempts = 0;
-                operation.RequestId = requestId;
-                operation.ErrorCount = 0;
-                operation.IsComplete = 0;
-                await _client.InsertAsync("Operations", operation);
+                var ops = _client.SpAsJson("OperationsForMenuItem", ("@ItemName", MenuItem));
+
+                //foreach (var operation in ops)
+                //{
+                //    operation.Attempts = 0;
+                //    operation.RequestId = requestId;
+                //    operation.ErrorCount = 0;
+                //    operation.IsComplete = 0;
+                //    await _client.InsertAsync("Operations", operation);
+
+
+
+
+
+
+
+
+
+
+
+
+                //}
+            }
+            catch (Exception ex)
+            {
+                await Console.Out.WriteLineAsync(ex.Message);
             }
         }
         // The Executor claims a task: this stops other folks from using it, and gives a reference to the request.

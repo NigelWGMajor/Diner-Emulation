@@ -15,7 +15,6 @@ namespace WorkflowManager.Models
         public int Origin { get; set; }
         public string Initiator { get; set; }
         public string Contact { get; set; }
-        public Table Table { get; set; }
         public DateTime ReceivedAt { get; set; }
         public int IsActive { get; set; }
     }

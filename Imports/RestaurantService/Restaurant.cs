@@ -8,6 +8,10 @@ namespace RestaurantService
 {
     public class Restaurant
     {
+        public Restaurant()
+        {
+            Initialize(6); // let's have some servers!
+        }
         private Faker _faker = new Faker();
 
         private Faker<Models.Common.Person>
@@ -28,9 +32,9 @@ namespace RestaurantService
         private (int Count, MenuItem[] Items) mains;
         private (int Count, MenuItem[] Items) sides;
 
-        private void Initialize(int tableCount)
+        private void Initialize(int serverCount)
         {
-            Servers = GetServers(tableCount);
+            Servers = GetServers(serverCount);
             Activities = GetActivities(); // will be redundant, used for local menu mocking.
             Plans = GetMenuPlans();
             // Tables = AssignTables(tableCount);

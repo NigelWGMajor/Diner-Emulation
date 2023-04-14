@@ -37,6 +37,8 @@ from MenuPlans mp
 join Stages st on mp.Id = st.MenuItemId
 join Reactions re on re.StageId = st.Id
 
-where menuitemid = @menuitemid;
+where menuitemid = @menuitemid
+
+for json auto;
 
 -- exec OperationsForMenuItem 'catfish'
