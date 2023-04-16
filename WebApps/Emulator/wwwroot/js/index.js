@@ -4,9 +4,9 @@ const myEventLog = document.getElementById('eventLog');
 const myChart = new Chart(ctx, {
     type: 'line',
     data: data,
-    options : {
+    options: {
         scales: {
-            y : {
+            y: {
                 suggestedMax: 10,
                 suggestedMin: 1
             }
@@ -39,22 +39,29 @@ async function start() {
 chartConnection.onclose(async () => {
     await start();
 });
- eventLogConnection.onclose(async () => {
-     await start();
- });
+eventLogConnection.onclose(async () => {
+    await start();
+});
 
- // An example of injecting into a js object from the SignalR ChartHub
-chartConnection.on("addChartData", function(point) {
-    
-    myChart.data.labels.push(point.label);
-    myChart.data.datasets.forEach((dataset) => {
-        dataset.data.push(point.value);
-    });
+// An example of injecting into a js object from the SignalR ChartHub
+chartConnection.on("addChartData", function (pointset) {
+
+    myChart.data.labels.push(pointset.label);
+    //myChart.data.datasets.forEach((dataset) => {
+    //    i = 1;
+    //    dataset.data.push(pointset.values[i]);
+    //    i++;
+    //});
+    myChart.data.datasets[0].data.push(pointset.values[0]);
+    myChart.data.datasets[1].data.push(pointset.values[1]);
+    myChart.data.datasets[2].data.push(pointset.values[2]);
+    myChart.data.datasets[3].data.push(pointset.values[3]);
 
     myChart.update();
 
     if (myChart.data.labels.length > data.limit) {
         myChart.data.labels.splice(0, 1);
+
         myChart.data.datasets.forEach((dataset) => {
             dataset.data.splice(0, 1);
         });
@@ -68,11 +75,11 @@ eventLogConnection.on("addEvent", function (event) {
     li.innerHTML = event;
     li.className = event.className;
     var target = document.getElementById("eventList");
-    if (target.children.length > 10)    {
+    if (target.children.length > 10) {
         target.children[0].remove();
     }
     target.appendChild(li);
-  });
+});
 
 // Start the connection.
-start().then(() => {});
+start().then(() => { });
