@@ -1,14 +1,14 @@
 ﻿@page
 @using Emulator.Services
-@inject Buffer<Point> Buffer
+@*@inject Buffer<Point> Buffer*@
 
 @model MonitorModel
 @{
     ViewData["Title"] = "Monitor";
 
 
-    var labels = Buffer.Select(x => x.Label);
-    var data = Buffer.Select(x => x.Value);
+    var labels = "";
+    var data = new int[] { 1, 2, 3, 4 };
 }
 <div class="spread ">
     <!-- Button to call  On<verb><Handler> method in code behind -->
@@ -19,9 +19,10 @@
     </form>
     <!-- Button to simply call a page with data -->
     <a class="navitem no-pad" asp-area="" asp-page="/Error" asp-route-data=@Model.PageName>
-        <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="show an error"><i
-                class="fa-solid fa-bug">
-            </i>Test Error from @Model.PageName</button>
+        <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="show an error">
+            <i class="fa-solid fa-bug">
+            </i>Test Error from @Model.PageName
+        </button>
     </a>
 </div>
 <hr class="rule">
@@ -34,14 +35,14 @@
         new
         {
             labels,
-            limit = Buffer.MaxCapacity.GetValueOrDefault(40),
+            limit = 40,
             url = "/chart",
             datasets = new object[]
             {
                 new
                 {
                     label = "A",
-                    data,
+                    data = new [] {1, -1,1},
                     fill = false,
                     borderColor = "rgb(75, 192, 192 )",
                     tension = 0.1
@@ -49,21 +50,34 @@
                 new
                 {
                     label = "B",
-                    data,
+                    data = new [] {2, 2, 4},
                     fill = false,
                     borderColor = "rgb(192, 75, 192 )",
                     tension = 0.1
+                },
+                new
+                {
+                    label = "C",
+                    data = new [] {0, 3, 2},
+                    fill = false,
+                    borderColor = "rgb(192, 192, 75 )",
+                    tension = 0.1
+                },
+                new
+                {
+                    label = "D",
+                    data =new[] { 4 , 0, 0},
+                    fill = false,
+                    borderColor = "rgb(120, 120, 120 )",
+                    tension = 0.1
                 }
-
             }
-        })    
+        })
     </script>
 </div>
 <!-- introduce a component-->
 @await Component.InvokeAsync("EventLog")
 <div>
-
-
 </div>
 
 <script src="~/lib/microsoft-signalr/signalr.min.js"></script>
@@ -75,7 +89,7 @@
 
 
 <script>
-    
+
 
     document.addEventListener('DOMContentLoaded', (event) => {
 

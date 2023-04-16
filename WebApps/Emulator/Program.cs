@@ -7,15 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSignalR();
-// our data source, could be a database
-builder.Services.AddSingleton(_ => {
-    var buffer = new Buffer<Point>(10);
-    // start with something that can grow
-    for (var i = 0; i < 7; i++) 
-        buffer.AddNewRandomPoint();
-
-    return buffer;
-});
+// our data source, could be a database//
+//builder.Services.AddSingleton(_ => {
+//    var buffer = new Buffer<PointSer>(10);
+//    // start with something that can grow
+//    for (var i = 0; i < 7; i++) 
+//        buffer.AddNewRandomPoint();
+//
+//    return buffer;
+//});
 builder.Services.AddSingleton<IStorage, Storage>();
 builder.Services.AddSingleton<IEventMonitor, EventMonitor>();
 builder.Services.AddHostedService<ChartValueGenerator>();

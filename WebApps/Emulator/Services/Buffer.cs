@@ -1,8 +1,9 @@
 using System.Globalization;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 
-namespace Emulator.Services;
-
+namespace Emulator.Services { }
+/*
 /// <summary>
 /// https://stackoverflow.com/questions/12294296/list-with-limited-item
 /// </summary>
@@ -24,13 +25,15 @@ public class Buffer<T> : Queue<T>
 
 public static class BufferExtensions
 {
-    public static Point AddNewRandomPoint(this Buffer<Point> buffer)
+    public static PointSet AddNewRandomPoint(this Buffer<Point> buffer)
     {
         var now = DateTime.Now.AddMonths(buffer.TotalItemsAddedCount);
         var year = now.Year;
         var monthName = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(now.Month);
-        var point = new Point($"{monthName} ({year})", RandomNumberGenerator.GetInt32(1, 11));
+        var points = new PointSet("", RandomNumberGenerator.GetInt32(1, 11), RandomNumberGenerator.GetInt32(1, 11), RandomNumberGenerator.GetInt32(1, 11), RandomNumberGenerator.GetInt32(1, 11));
+        var point = new Point($"", RandomNumberGenerator.GetInt32(1, 11));
        // buffer.Add(point);
-        return point;
+        return points;
     }
 }
+*/
