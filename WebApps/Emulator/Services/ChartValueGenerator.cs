@@ -18,7 +18,7 @@ public class ChartValueGenerator : BackgroundService
     
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        while(false) // (!stoppingToken.IsCancellationRequested)
+        while(!stoppingToken.IsCancellationRequested)
         {
             await _hub.Clients.All.SendAsync(
                 "addChartData",
