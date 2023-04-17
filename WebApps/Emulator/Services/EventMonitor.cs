@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SignalR;
 using Models.Common;
 using WorkflowManager;
 using RestaurantService;
+using Azure.Core;
 
 namespace Emulator.Services
 {
@@ -17,7 +18,13 @@ namespace Emulator.Services
     {
         Task<IEnumerable<EventLogItem>> GetEvents();
         Task OrderFromTable();
+
+        Task ClaimResponsibility(string executor);
         string AddEvent();
+
+        Task<Attempt> GetNextOperationAsync(string executor);
+
+        Task NotifyResultAsync(Attempt attempt);
 
     }
 
@@ -54,7 +61,20 @@ namespace Emulator.Services
                 ReceivedAt = DateTime.Now,
                 Origin = table.TableNumber
             };
-            await _manager.RequestWork(request, table);
+            await _manager.RequestDeliverable(request, table);
+        }
+
+        public async Task ClaimResponsibility(string executor)
+        {
+            await _manager.ClaimResponsibility(executor);
+        }
+        public async Task<Attempt> GetNextOperationAsync(string executor)
+        {
+            return await _manager.GetNextOperationAsync(executor);
+        }
+        public async Task NotifyResultAsync(Attempt attempt)
+        {
+            await _manager.NotifyResultAsync(attempt);
         }
 
         public async Task<IEnumerable<EventLogItem>> GetEvents()

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.ComponentModel.Design;
 using Nix.Library.SqlStore;
 using Models.Common;
 using WorkflowManager.Models;
 using System.Threading.Tasks;
 using System.Linq;
-using System.Numerics;
-using System.Net.Sockets;
 
 namespace WorkflowManager
 {
@@ -27,14 +24,16 @@ namespace WorkflowManager
             _client = new SqlClient(_connection);
         }
         // The Initiator Places the work request 
+        [Obsolete("Need to use RequestDeliverable")]
         public async Task<int> RequestWork(WorkRequest request, Table table)
         {
             request.ReceivedAt = DateTime.Now;
             request.IsActive = 1;
-            var summary = String.Join("\n", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray())+ "\n";            int requestId = (int) await _client.SpInsertAsync("Request_insert",
+            var summary = String.Join("\n", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray()) + "\n";
+            int requestId = (int)await _client.SpInsertAsync("Request_insert",
                  ("@origin", table.TableNumber),
                  ("@initiator", request.Initiator),
-                 ("@contact", request.Contact), 
+                 ("@contact", request.Contact),
                  ("Request", summary)
                 );
             int dinerIndex = 0;
@@ -73,31 +72,71 @@ namespace WorkflowManager
                 await Console.Out.WriteLineAsync(ex.Message);
             }
         }
-        // The Executor claims a task: this stops other folks from using it, and gives a reference to the request.
-        public async Task<WorkTask> ClaimTask(string Executor)
+        // new version
+        public async Task<int> RequestDeliverable(WorkRequest request, Table table)
         {
-            var data = _client.SpAsType<WorkTask>("ClaimTask", ("@Name", Executor));
-            return await Task.FromResult(data.First());
+            request.ReceivedAt = DateTime.Now;
+            request.IsActive = 1;
+            var summary = String.Join("\n",
+                table.Diners.Select(d => (d.Name, d.Selection))
+                .Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}")
+                .ToArray()) + "\n";
+            int requestId = (int)await _client.SpInsertAsync("Request_insert",
+                 ("@origin", table.TableNumber),
+                 ("@initiator", request.Initiator),
+                 ("@contact", request.Contact),
+                 ("Request", summary)
+                );
+            int dinerIndex = 0;
+            foreach (var diner in table.Diners)
+            {
+                int itemIndex = 0;
+                foreach (var item in diner.Selection)
+                {
+                    int count = (int)await _client.SpInsertAsync("Deliverable_insert",
+                        ("@requestId", requestId),
+                        ("@dinerIndex", dinerIndex),
+                        ("@itemIndex", itemIndex),
+                        ("@itemName", item.ItemName)
+                        );
+                    itemIndex++;
+                }
+                dinerIndex++;
+            }
+            return requestId;
         }
-        // 
-        // The Executor updates the status periodically
-        /*public async Task UpdateTask(long Id, string outcome)
+        // executor claim responsibility and gets a deliverable ID to work on.
+        public async Task<int> ClaimResponsibility(string executor) //! could also claim a particular type of deliverable....
         {
-            var _ = _client.SpAsType<WorkTask>("UpdateTask", ("@outcome", outcome));
+            try
+            {
+                int deliverableId = (int) await _client.SpExecuteAsync("Claim_Responsibility",
+                     ("@executor", executor)
+                     );
+
+                return deliverableId;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
-        // The Executor finalizes the task
-        public async Task CloseTask(long Id, string outcome, int churn)
+        public async Task<Attempt> GetNextOperationAsync(string executor)
         {
-            var _ = _client.SpAsType<WorkTask>("FinalizeTask", ("@outcome", outcome), ("@churn", churn));
             await Task.CompletedTask;
+            /// currently faked....
+            /// 
+
+            // need to get the next task from the data
+            return new Attempt();
         }
-        // The Initiator retrieves status
-        public async Task GetTaskStatus(long Id)
+
+        public async Task NotifyResultAsync(Attempt attempt)
         {
-
+            if (!attempt.Succeeded)
+            {
+                // publish the failed state...
+            }
         }
-       */
-
-
     }
 }

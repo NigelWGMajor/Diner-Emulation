@@ -6,6 +6,7 @@ using Emulator.Models.Log;
 using Emulator.Services;
 using Microsoft.JSInterop;
 using System.Threading;
+using Models.Common;
 
 namespace Emulator.Pages
 {
@@ -38,11 +39,23 @@ namespace Emulator.Pages
 
         public void OnPost()
         {
-            
+             _eventMonitor.OrderFromTable();
         }
-        public void OnPostTableOrder()
+        public void OnPostClaimResponsibility()
         {
-            _eventMonitor.OrderFromTable();
+            _eventMonitor.ClaimResponsibility("Chef Blaise");
+        }
+        public async Task OnPostTrySucceed()
+        {
+            Attempt attempt = await _eventMonitor.GetNextOperationAsync("Chef Blaise");
+            // pretend to do something with that!
+            _eventMonitor.NotifyResultAsync(attempt);
+        }
+        public async Task OnPostTryFail()
+        {
+            Attempt attempt = await _eventMonitor.GetNextOperationAsync("Chef Blaise");
+            // pretend to do something with that!
+            _eventMonitor.NotifyResultAsync(attempt);
         }
     }
 }

@@ -13,8 +13,23 @@
 <div class="spread ">
     <!-- Button to call  On<verb><Handler> method in code behind -->
     <form class="navitem" method="post" asp-page-handler="TableOrder">
-        <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Post Somethimg">
+        <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Take a set of orders from a table">
             <i class="space-low fa-solid fa-triangle-exclamation"></i>Order from table
+        </button>
+    </form>
+    <form class="navitem" method="post" asp-page-handler="ClaimResponsibility">
+        <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Claim responsibiity for a deliverable">
+            <i class="space-low fa-solid fa-triangle-exclamation"></i>Claim Deliverable
+        </button>
+    </form>
+    <form class="navitem" method="post" asp-page-handler="TrySucceed">
+        <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Try an operationand succeed">
+            <i class="space-low fa-solid fa-triangle-exclamation"></i>Do an operation
+        </button>
+    </form>
+    <form class="navitem" method="post" asp-page-handler="TryFail">
+        <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Try an operation and fail">
+            <i class="space-low fa-solid fa-triangle-exclamation"></i>Fail an operation
         </button>
     </form>
     <!-- Button to simply call a page with data -->
