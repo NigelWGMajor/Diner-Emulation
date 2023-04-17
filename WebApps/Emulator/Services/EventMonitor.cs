@@ -10,12 +10,12 @@ namespace Emulator.Services
 {
     public interface IUpdateable
     {
-        void Update(List<LogItem> target);
+        void Update(List<EventLogItem> target);
     }
 
     public interface IEventMonitor
     {
-        Task<IEnumerable<LogItem>> GetEvents();
+        Task<IEnumerable<EventLogItem>> GetEvents();
         Task OrderFromTable();
         string AddEvent();
 
@@ -27,7 +27,7 @@ namespace Emulator.Services
         private RestaurantService.Restaurant _restaurant;
 
         private static string[] classes = { "log-failure", "log-retry", "log-success" };
-        private List<LogItem> _events = new();
+        private List<EventLogItem> _events = new();
         private readonly IHubContext<EventLogHub> _hub;
 
         public EventMonitor(IHubContext<EventLogHub> hub)
@@ -39,7 +39,7 @@ namespace Emulator.Services
         }
 
         private int _length = 20;
-        private static Faker<LogItem> _userFaker = new Faker<LogItem>()
+        private static Faker<EventLogItem> _userFaker = new Faker<EventLogItem>()
             .RuleFor(l => l.Content, (f, l) => f.Lorem.Lines(1))
             .RuleFor(l => l.EventClass, (f, l) => f.PickRandom(classes))
             .RuleFor(l => l.EventTime, DateTime.Now);
@@ -57,7 +57,7 @@ namespace Emulator.Services
             await _manager.RequestWork(request, table);
         }
 
-        public async Task<IEnumerable<LogItem>> GetEvents()
+        public async Task<IEnumerable<EventLogItem>> GetEvents()
         {
             _events.AddRange(GenerateRandomEvents(1));
             if (_events.Count > _length)
@@ -69,7 +69,7 @@ namespace Emulator.Services
         }
 
         // private static IUpdateable? _remote;
-        public delegate void UpdateRemoteEvents(List<LogItem> events);
+        public delegate void UpdateRemoteEvents(List<EventLogItem> events);
 
         // public void SetRemote(IUpdateable remote)
         // {
@@ -87,12 +87,12 @@ namespace Emulator.Services
             return AsListItem(x[0]);
         }
 
-        private string AsListItem(LogItem item)
+        private string AsListItem(EventLogItem item)
         {
             return $"<li class='{item.EventClass}'> {item.EventTime:hh=MM-ss} --- {item.Content}</li>";
         }
 
-        public List<LogItem> GenerateRandomEvents(int n)
+        public List<EventLogItem> GenerateRandomEvents(int n)
         {
             return _userFaker.Generate(n);
         }

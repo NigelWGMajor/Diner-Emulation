@@ -18,7 +18,7 @@ namespace Emulator.Pages
         private readonly IJSRuntime _js;
 
         [BindProperty]
-        public List<LogItem> Events { get; set; } = new List<LogItem>();
+        public List<EventLogItem> Events { get; set; } = new List<EventLogItem>();
 	    public string PageName => "Monitor";
         public static ChartJs Chart { get; set; } = new ChartJs();
         public string ChartJson { get; set; } = "";
