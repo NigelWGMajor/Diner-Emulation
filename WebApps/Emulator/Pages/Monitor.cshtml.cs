@@ -48,13 +48,15 @@ namespace Emulator.Pages
         public async Task OnPostTrySucceed()
         {
             Attempt attempt = await _eventMonitor.GetNextOperationAsync("Chef Blaise");
-            // pretend to do something with that!
+            attempt.Succeeded = true;
+            // pretend to do something good!
             _eventMonitor.NotifyResultAsync(attempt);
         }
         public async Task OnPostTryFail()
         {
             Attempt attempt = await _eventMonitor.GetNextOperationAsync("Chef Blaise");
-            // pretend to do something with that!
+            attempt.Succeeded = false;
+            // pretend to do something bad!
             _eventMonitor.NotifyResultAsync(attempt);
         }
     }

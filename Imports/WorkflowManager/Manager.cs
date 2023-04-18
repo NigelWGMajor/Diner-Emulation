@@ -108,27 +108,21 @@ namespace WorkflowManager
         // executor claim responsibility and gets a deliverable ID to work on.
         public async Task<int> ClaimResponsibility(string executor) //! could also claim a particular type of deliverable....
         {
-            try
-            {
-                int deliverableId = (int) await _client.SpExecuteAsync("Claim_Responsibility",
-                     ("@executor", executor)
-                     );
-
-                return deliverableId;
-            }
-            catch (Exception ex)
-            {
-                return 0;
-            }
+            int deliverableId = (int)await _client.SpExecuteAsync("Claim_Responsibility",
+                ("@executor", executor)
+                );
+            return deliverableId;
         }
         public async Task<Attempt> GetNextOperationAsync(string executor)
         {
             await Task.CompletedTask;
-            /// currently faked....
-            /// 
+
+            var result = _client.SpAsType<Attempt>("Operation_Next",
+                ("@executor", executor)
+               ).First();
 
             // need to get the next task from the data
-            return new Attempt();
+            return result;
         }
 
         public async Task NotifyResultAsync(Attempt attempt)
