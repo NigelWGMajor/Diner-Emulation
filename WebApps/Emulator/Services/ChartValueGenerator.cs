@@ -27,7 +27,7 @@ public class ChartValueGenerator : BackgroundService
                 cancellationToken: stoppingToken
             );
 
-            await Task.Delay(TimeSpan.FromSeconds(0.2), stoppingToken);
+            await Task.Delay(TimeSpan.FromSeconds(200), stoppingToken);
         }
     }
 }

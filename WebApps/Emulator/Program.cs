@@ -18,7 +18,7 @@ builder.Services.AddSignalR();
 //});
 builder.Services.AddSingleton<IStorage, Storage>();
 builder.Services.AddSingleton<IEventMonitor, EventMonitor>();
-builder.Services.AddHostedService<ChartValueGenerator>();
+//builder.Services.AddHostedService<ChartValueGenerator>();
 builder.Services.AddHostedService<EventMonitor>();
 
 var app = builder.Build();

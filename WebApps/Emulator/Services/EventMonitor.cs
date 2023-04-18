@@ -148,13 +148,17 @@ namespace Emulator.Services
                         cancellationToken: stoppingToken
                     );
                 }
-                int i = RandomNumberGenerator.GetInt32(1, 11);
-                await _chartHub.Clients.All.SendAsync(
-                    "addChartData",
-                     _manager.GetStatistics(),
-                    cancellationToken: stoppingToken
-                );
+                if (_counter++ % 5 == 0)
+                {
+                    var stats = await _manager.GetStatistics();
 
+                    var data = new PointSet($"{_counter++}", new int[] { stats.Pending, stats.Started, stats.Failed, stats.Complete });
+                    await _chartHub.Clients.All.SendAsync(
+                        "addChartData",
+                         data,
+                        cancellationToken: stoppingToken
+                    );
+                }
 
                 await Task.Delay(TimeSpan.FromSeconds(0.5), stoppingToken);
             }
