@@ -127,10 +127,8 @@ namespace WorkflowManager
 
         public async Task NotifyResultAsync(Attempt attempt)
         {
-            if (!attempt.Succeeded)
-            {
-                // publish the failed state...
-            }
+            Console.WriteLine($"**** Result of operation: {attempt.Outcome}");// publish the failed state...
+            
         }
     }
 }
