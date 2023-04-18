@@ -98,18 +98,27 @@ namespace Emulator.Services
 
         public string AddEvent()
         {
-            var x = GenerateRandomEvents(1);
-            _events.AddRange(x);
+            var x = _manager.GetEvents();
+            //var x = GenerateRandomEvents(1);
+            EventLogItem item = x.FirstOrDefault(); ;
+            foreach (var i in x)
+            {
+                item = i;
+                _events.Add(i);
+            }
             if (_events.Count > _length)
             {
                 _events.RemoveAt(0);
             }
-            return AsListItem(x[0]);
+            return AsListItem(item);
         }
 
         private string AsListItem(EventLogItem item)
         {
-            return $"<li class='{item.EventClass}'> {item.EventTime:hh=MM-ss} --- {item.Content}</li>";
+            if (item != null)
+                return $"<li class='{item.EventClass}'> {item.EventTime:hh=MM-ss} --- {item.Content}</li>";
+            else
+                return "";
         }
 
         public List<EventLogItem> GenerateRandomEvents(int n)

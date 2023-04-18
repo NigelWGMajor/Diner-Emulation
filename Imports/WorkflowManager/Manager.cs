@@ -4,6 +4,8 @@ using Models.Common;
 using WorkflowManager.Models;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Collections.Generic;
+using Emulator.Models.Log;
 
 namespace WorkflowManager
 {
@@ -111,6 +113,7 @@ namespace WorkflowManager
             int deliverableId = (int)await _client.SpExecuteAsync("Claim_Responsibility",
                 ("@executor", executor)
                 );
+            _loggedEvents.Add(new EventLogItem { Content = $"Claimed Responsibility" });
             return deliverableId;
         }
         public async Task<Attempt> GetNextOperationAsync(string executor)
@@ -120,13 +123,31 @@ namespace WorkflowManager
             var result = _client.SpAsType<Attempt>("Operation_Next",
                 ("@executor", executor)
                ).First();
-
+            _loggedEvents.Add(new EventLogItem { Content = $"operation: {result.OperationName}" });
             // need to get the next task from the data
             return result;
         }
+        public IEnumerable<EventLogItem> GetEvents()
+        {
+            var result = _loggedEvents;
+            //_loggedEvents.Clear();
+            return result;
+        }
 
+        private List<EventLogItem> _loggedEvents { get; set;  } = new List<EventLogItem>();
         public async Task NotifyResultAsync(Attempt attempt)
         {
+            string x = "log-retry";
+            if (attempt.Outcome == "Succeeded")
+                x = "log-success";
+            if (attempt.Outcome == "Failed")
+                x = "log-failure";
+            _loggedEvents.Add(new EventLogItem
+            {
+                Content = $"Result of operation: {attempt.Outcome}",
+                EventClass = x,
+                EventTime = DateTime.Now
+            }); 
             Console.WriteLine($"**** Result of operation: {attempt.Outcome}");// publish the failed state...
             
         }
