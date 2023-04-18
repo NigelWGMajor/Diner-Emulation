@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
 using Emulator.Models.Log;
+using Emulator.Models;
 
 namespace WorkflowManager
 {
@@ -174,6 +175,13 @@ namespace WorkflowManager
                 EventClass = x,
                 EventTime = DateTime.Now
             });
+        }
+        public async Task<PointSet[]>GetStatistics()
+        {
+            return new PointSet[]
+            {
+
+            };
         }
     }
 }

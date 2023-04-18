@@ -10,6 +10,7 @@ using System.Text;
 using Person = Bogus.Person;
 using System.Xml;
 using System.Diagnostics.Metrics;
+using System.Security.Cryptography;
 
 namespace Emulator.Services
 {
@@ -40,13 +41,14 @@ namespace Emulator.Services
         private static string[] classes = { "log-red", "log-yellow", "log-green", "log-blue" };
         private static string[] executors = { "Chef Rachael Ray", "Chef Ramsey", "Chef Balise", "Chef Nyesha Arrington" };
         private List<EventLogItem> _events = new();
-        private readonly IHubContext<EventLogHub> _hub;
-
-        public EventMonitor(IHubContext<EventLogHub> hub)
+        private readonly IHubContext<EventLogHub> _eventHub;
+        private readonly IHubContext<ChartHub> _chartHub;
+        public EventMonitor(IHubContext<EventLogHub> eventHub, IHubContext<ChartHub> chartHub)
         {
             _manager = new Manager();
             _restaurant = new Restaurant();
-            _hub = hub;
+            _eventHub = eventHub;
+            _chartHub = chartHub;
             Randomizer.Seed = new Random(3897234);
         }
 
@@ -140,15 +142,23 @@ namespace Emulator.Services
                 if (!String.IsNullOrEmpty(x))
                 {
 
-                    await _hub.Clients.All.SendAsync(
+                    await _eventHub.Clients.All.SendAsync(
                         "addEvent",
                         x,
                         cancellationToken: stoppingToken
                     );
                 }
+                int i = RandomNumberGenerator.GetInt32(1, 11);
+                await _chartHub.Clients.All.SendAsync(
+                    "addChartData",
+                     _manager.GetStatistics(),
+                    cancellationToken: stoppingToken
+                );
+
 
                 await Task.Delay(TimeSpan.FromSeconds(0.5), stoppingToken);
             }
         }
     }
 }
+
