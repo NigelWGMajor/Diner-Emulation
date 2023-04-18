@@ -31,7 +31,7 @@ namespace WorkflowManager
         {
             request.ReceivedAt = DateTime.Now;
             request.IsActive = 1;
-            var summary = String.Join("\n", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray()) + "\n";
+            var summary = String.Join("<br>", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray()) + "<br>";
             int requestId = (int)await _client.SpInsertAsync("Request_insert",
                  ("@origin", table.TableNumber),
                  ("@initiator", request.Initiator),
@@ -49,6 +49,12 @@ namespace WorkflowManager
                 }
                 dinerIndex++;
             }
+
+            LoggedEvents.Insert(0, new EventLogItem
+            {
+                Content = $"Ordered: {String.Join("\n", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray())}",
+                EventTime = DateTime.Now
+            });
             return requestId;
         }
         // For each menu item, we create potential operations for that, one reaction per each.
@@ -105,6 +111,11 @@ namespace WorkflowManager
                 }
                 dinerIndex++;
             }
+            LoggedEvents.Insert(0, new EventLogItem
+            {
+                Content = $"Ordered: {String.Join("\n", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray())}",
+                EventTime = DateTime.Now
+            });
             return requestId;
         }
         // executor claim responsibility and gets a deliverable ID to work on.
@@ -113,7 +124,8 @@ namespace WorkflowManager
             int deliverableId = (int)await _client.SpExecuteAsync("Claim_Responsibility",
                 ("@executor", executor)
                 );
-            _loggedEvents.Add(new EventLogItem { Content = $"Claimed Responsibility" });
+            LoggedEvents.Insert(0, new EventLogItem { 
+                EventClass="log-blue", Content = $"{executor} Claimed Responsibility" });
             return deliverableId;
         }
         public async Task<Attempt> GetNextOperationAsync(string executor)
@@ -122,34 +134,46 @@ namespace WorkflowManager
 
             var result = _client.SpAsType<Attempt>("Operation_Next",
                 ("@executor", executor)
-               ).First();
-            _loggedEvents.Add(new EventLogItem { Content = $"operation: {result.OperationName}" });
-            // need to get the next task from the data
+               ).FirstOrDefault();
+            if (result != null)
+                LoggedEvents.Insert(0, new EventLogItem
+                {
+                    EventClass = "log-green",
+                    Content = $"Next operation for {executor}: {result.OperationName}"
+                });
+            else
+                LoggedEvents.Insert(0, new EventLogItem
+                {
+                    EventClass = "log-blue",
+                    Content = $"No pending operations."
+                });
+
             return result;
         }
         public IEnumerable<EventLogItem> GetEvents()
         {
-            var result = _loggedEvents;
-            //_loggedEvents.Clear();
+            var result = LoggedEvents.Take(20).ToArray();
             return result;
         }
 
-        private List<EventLogItem> _loggedEvents { get; set;  } = new List<EventLogItem>();
+        public static List<EventLogItem> LoggedEvents { get; set; } = new List<EventLogItem>();
         public async Task NotifyResultAsync(Attempt attempt)
         {
-            string x = "log-retry";
+            string x = "log-yellow";
+            bool showMessage= false;
             if (attempt.Outcome == "Succeeded")
-                x = "log-success";
+                x = "log-green";
             if (attempt.Outcome == "Failed")
-                x = "log-failure";
-            _loggedEvents.Add(new EventLogItem
             {
-                Content = $"Result of operation: {attempt.Outcome}",
+                x = "log-red";
+                showMessage = true;
+            }
+            LoggedEvents.Insert(0, new EventLogItem
+            {
+                Content = $"{attempt.OperationName}: {attempt.Outcome}. {(showMessage ? attempt.Message : "" )} ",
                 EventClass = x,
                 EventTime = DateTime.Now
-            }); 
-            Console.WriteLine($"**** Result of operation: {attempt.Outcome}");// publish the failed state...
-            
+            });
         }
     }
 }

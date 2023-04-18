@@ -7,6 +7,7 @@ using Emulator.Services;
 using Microsoft.JSInterop;
 using System.Threading;
 using Models.Common;
+using Emulator.Pages.Shared;
 
 namespace Emulator.Pages
 {
@@ -43,18 +44,22 @@ namespace Emulator.Pages
         }
         public void OnPostClaimResponsibility()
         {
-            _eventMonitor.ClaimResponsibility("Chef Blaise");
+            _eventMonitor.ClaimResponsibility();
         }
         public async Task OnPostTrySucceed()
         {
-            Attempt attempt = await _eventMonitor.GetNextOperationAsync("Chef Blaise");
-            attempt.Outcome = "Succeeded";
-            // pretend to do something good!
-            _eventMonitor.NotifyResultAsync(attempt);
+            Attempt attempt = await _eventMonitor.GetNextOperationAsync();
+            if (attempt != null)
+            {
+                attempt.Outcome = "Succeeded";
+                // pretend to do something good!
+                _eventMonitor.NotifyResultAsync(attempt);
+            }
         }
         public async Task OnPostTryFail()
         {
-            Attempt attempt = await _eventMonitor.GetNextOperationAsync("Chef Blaise");
+            Attempt attempt = await _eventMonitor.GetNextOperationAsync();
+            if (attempt == null) return;
             attempt.Outcome= "Failed";
             // pretend to do something bad!
             _eventMonitor.NotifyResultAsync(attempt);

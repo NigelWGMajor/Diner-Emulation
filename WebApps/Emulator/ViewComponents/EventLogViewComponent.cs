@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Emulator.Services;
 using System.Threading.Tasks;
+using Emulator.Models.Log;
 
 namespace Emulator.ViewComponents
 {
@@ -17,8 +18,8 @@ namespace Emulator.ViewComponents
         // You can have zero or more parameters, and they may be optional if >= net6.0
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            IEnumerable<Models.Log.EventLogItem> events = await _eventMonitor.GetEvents();
-            return View(events);
+           // IEnumerable<Models.Log.EventLogItem> events = await _eventMonitor.GetEvents();
+            return View(new List<EventLogItem>());
         }
     }
 }

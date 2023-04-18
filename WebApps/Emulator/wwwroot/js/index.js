@@ -71,14 +71,18 @@ chartConnection.on("addChartData", function (pointset) {
 // An example of how to inject an element from the SignalR EventHub directly into the html.
 // THis is injecting into the EventLog component at pages/components/eventlog/default
 eventLogConnection.on("addEvent", function (event) {
-    const li = document.createElement("li");
-    li.innerHTML = event;
-    li.className = event.className;
-    var target = document.getElementById("eventList");
-    if (target.children.length > 10) {
-        target.children[0].remove();
+    if (event.length > 0) {
+        const li = document.createElement("ul");
+        li.innerHTML = event;
+        li.className = event.className;
+        var target = document.getElementById("eventList");
+        target.replaceChildren(li);
+        //if (target.children.length > 10) {
+        //    target.children[0].remove();
+        //}
+        target.appendChild(li);
+        //target.children.innerHTML = event; 
     }
-    target.appendChild(li);
 });
 
 // Start the connection.
