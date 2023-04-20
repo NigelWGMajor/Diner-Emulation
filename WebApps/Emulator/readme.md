@@ -19,5 +19,5 @@ This has not been revised because the schema will be changed in futire and
 the strategy will be lean towards simpler crud ops on the database side and 
 more use if code, to promote db portability.
 
-This is being adjusted in branch 
+This is being adjusted in branch `refactor-simplify-database-ops-favoring-be-logic-and-tablename-constants`
 
