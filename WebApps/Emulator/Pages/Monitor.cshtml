@@ -22,14 +22,19 @@
             <i class="space-low fa-solid fa-triangle-exclamation"></i>Claim Deliverable
         </button>
     </form>
+    <form class="navitem" method="post" asp-page-handler="TryNext">
+        <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Get an operation to try">
+            <i class="space-low fa-solid fa-triangle-exclamation"></i>Get the next operation
+        </button>
+    </form>
     <form class="navitem" method="post" asp-page-handler="TrySucceed">
         <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Try an operationand succeed">
-            <i class="space-low fa-solid fa-triangle-exclamation"></i>Do an operation
+            <i class="space-low fa-solid fa-triangle-exclamation"></i>Do Success 
         </button>
     </form>
     <form class="navitem" method="post" asp-page-handler="TryFail">
         <button class="navitem space-low dark-edge" data-bs-toggle="tooltip" title="Try an operation and fail">
-            <i class="space-low fa-solid fa-triangle-exclamation"></i>Fail an operation
+            <i class="space-low fa-solid fa-triangle-exclamation"></i>Do Failure
         </button>
     </form>
     <!-- Button to simply call a page with data -->

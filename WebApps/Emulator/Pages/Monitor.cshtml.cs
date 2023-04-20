@@ -11,17 +11,17 @@ using Emulator.Pages.Shared;
 
 namespace Emulator.Pages
 {
-    public interface IUpdatable<T> 
-    { 
+    public interface IUpdatable<T>
+    {
         void SetRemote(T element);
     }
     public class MonitorModel : PageModel
-    {    
+    {
         private readonly IJSRuntime _js;
 
         [BindProperty]
         public List<EventLogItem> Events { get; set; } = new List<EventLogItem>();
-	    public string PageName => "Monitor";
+        public string PageName => "Monitor";
         public static ChartJs Chart { get; set; } = new ChartJs();
         public string ChartJson { get; set; } = "";
         private readonly ILogger<MonitorModel> _logger;
@@ -35,20 +35,35 @@ namespace Emulator.Pages
 
         public void OnGet()
         {
-           
+
         }
 
         public void OnPost()
         {
-             _eventMonitor.OrderFromTable();
+            _eventMonitor.OrderFromTable();
         }
         public void OnPostClaimResponsibility()
         {
             _eventMonitor.ClaimResponsibility();
         }
-        public async Task OnPostTrySucceed()
+        private static Queue<Attempt> _lastAttempts = new Queue<Attempt>();
+        public async Task OnPostTryNext()
         {
             Attempt attempt = await _eventMonitor.GetNextOperationAsync();
+            if (attempt != null)
+                _lastAttempts.Enqueue(attempt);
+        }
+        public async Task OnPostTrySucceed()
+        {
+            Attempt attempt;
+            if (_lastAttempts.Count > 0)
+            {
+                attempt = _lastAttempts.Dequeue();
+            }
+            else
+            {
+                attempt = await _eventMonitor.GetNextOperationAsync();
+            }
             if (attempt != null)
             {
                 attempt.Outcome = "Succeeded";
@@ -58,9 +73,17 @@ namespace Emulator.Pages
         }
         public async Task OnPostTryFail()
         {
-            Attempt attempt = await _eventMonitor.GetNextOperationAsync();
+            Attempt attempt;
+            if (_lastAttempts.Count > 0)
+            {
+                attempt = _lastAttempts.Dequeue();
+            }
+            else
+            {
+                attempt = await _eventMonitor.GetNextOperationAsync();
+            }
             if (attempt == null) return;
-            attempt.Outcome= "Failed";
+            attempt.Outcome = "Failed";
             // pretend to do something bad!
             _eventMonitor.NotifyResultAsync(attempt);
         }

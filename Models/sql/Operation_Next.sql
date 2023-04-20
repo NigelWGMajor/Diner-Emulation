@@ -1,10 +1,11 @@
 USE [nix]
 GO
+/****** Object:  StoredProcedure [dbo].[Operation_Next]    Script Date: 4/19/2023 8:35:20 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-alter procedure [dbo].[Operation_Next]
+ALTER procedure [dbo].[Operation_Next]
 (
 	@executor nvarchar(50)
 )
@@ -34,7 +35,7 @@ declare @operations table
 
 insert into @operations
 exec dbo.operations_forplanitem @planItemId;
-select * from @operations;
+--select * from @operations;
 if @currentStage < 0
 begin -- we haven't started yet!
 set @maxSequence = (select max([Sequence]) from @operations);
@@ -64,8 +65,8 @@ begin
 	  RetryCount,
 	  Message,
 	  x.Outcome,
-	  x.Executor
-  
+	  x.Executor, 
+      @deliverableId
   from @operations o
 	  join (select 'Working' Outcome, @executor Executor, @currentSequence SequenceX) x
 	  on [Sequence] = SequenceX
@@ -78,7 +79,7 @@ update dbo.Deliverables
 where Id = @deliverableId;
 
 
-   select  * from dbo.Attempts where id = @@IDENTITY for json path;
+   select  * from dbo.Attempts where (id = @@IDENTITY) for json path;
 end
 
 -- select @currentStage stage, @currentSequence sequence, @maxSequence maxSequence;

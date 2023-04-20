@@ -39,7 +39,7 @@ namespace Emulator.Services
         private RestaurantService.Restaurant _restaurant;
         private Faker _faker = new Faker();
         private static string[] classes = { "log-red", "log-yellow", "log-green", "log-blue" };
-        private static string[] executors = { "Chef Rachael Ray", "Chef Ramsey", "Chef Balise", "Chef Nyesha Arrington" };
+        private static string[] executors = { "Chef Ramsey", "Chef Blaise", "Chef Nyesha Arrington" };
         private List<EventLogItem> _events = new();
         private readonly IHubContext<EventLogHub> _eventHub;
         private readonly IHubContext<ChartHub> _chartHub;
@@ -66,16 +66,28 @@ namespace Emulator.Services
                 ReceivedAt = DateTime.Now,
                 Origin = table.TableNumber
             };
-            await _manager.RequestDeliverable(request, table);
+            await _manager.RequestDeliverableAsync(request, table);
         }
         private Stack<string> busyChefs = new Stack<string>();
         public async Task ClaimResponsibility()
         {
-            int x = await _manager.ClaimResponsibility(executors[0]);
+            int x = await _manager.ClaimResponsibilityAsync(executors[0]);
+            if (x ==0)
+            {
+                // nothing to claim
+                OrderFromTable();
+                _manager.ClaimResponsibilityAsync(executors[0]);
+            }
         }
         public async Task<Attempt> GetNextOperationAsync()
         {
-            return await _manager.GetNextOperationAsync(executors[0]);
+            var x = await _manager.GetNextOperationAsync(executors[0]);
+            if (x == null)
+            {
+                ClaimResponsibility();
+                x = await _manager.GetNextOperationAsync(executors[0]);
+            }
+            return x;
         }
         public async Task NotifyResultAsync(Attempt attempt)
         {

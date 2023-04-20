@@ -6,7 +6,7 @@ namespace Models.Common
 {
     public class Attempt
     {
-        //public int DeliverableId { get; set; }
+        public int DeliverableId { get; set; }
         public int MenuPlanId { get; set; }
         public int StageIndex { get; set; }
         public int Sequence { get; set; }

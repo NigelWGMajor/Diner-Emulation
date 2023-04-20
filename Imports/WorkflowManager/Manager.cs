@@ -28,62 +28,62 @@ namespace WorkflowManager
             _client = new SqlClient(_connection);
         }
         // The Initiator Places the work request 
-        [Obsolete("Need to use RequestDeliverable")]
-        public async Task<int> RequestWork(WorkRequest request, Table table)
-        {
-            request.ReceivedAt = DateTime.Now;
-            request.IsActive = 1;
-            var summary = String.Join("<br>", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray()) + "<br>";
-            int requestId = (int)await _client.SpInsertAsync("Request_insert",
-                 ("@origin", table.TableNumber),
-                 ("@initiator", request.Initiator),
-                 ("@contact", request.Contact),
-                 ("Request", summary)
-                );
-            int dinerIndex = 0;
+        //[Obsolete("Need to use RequestDeliverable")]
+        //public async Task<int> RequestWork(WorkRequest request, Table table)
+        //{
+        //    request.ReceivedAt = DateTime.Now;
+        //    request.IsActive = 1;
+        //    var summary = String.Join("<br>", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray()) + "<br>";
+        //    int requestId = (int)await _client.SpInsertAsync("Request_insert",
+        //         ("@origin", table.TableNumber),
+        //         ("@initiator", request.Initiator),
+        //         ("@contact", request.Contact),
+        //         ("Request", summary)
+        //        );
+        //    int dinerIndex = 0;
 
-            foreach (var diner in table.Diners)
-            {
-                int itemIndex = 0;
-                foreach (var selection in diner.Selection)
-                {
-                    await CreateOperations(requestId, diner.TableNumber, dinerIndex, itemIndex++, selection.ItemName);
-                }
-                dinerIndex++;
-            }
+        //    foreach (var diner in table.Diners)
+        //    {
+        //        int itemIndex = 0;
+        //        foreach (var selection in diner.Selection)
+        //        {
+        //            await CreateOperations(requestId, diner.TableNumber, dinerIndex, itemIndex++, selection.ItemName);
+        //        }
+        //        dinerIndex++;
+        //    }
 
-            LoggedEvents.Insert(0, new EventLogItem
-            {
-                Content = $"Ordered: {String.Join("\n", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray())}",
-                EventTime = DateTime.Now
-            });
-            return requestId;
-        }
+        //    LoggedEvents.Insert(0, new EventLogItem
+        //    {
+        //        Content = $"Ordered: {String.Join("\n", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray())}",
+        //        EventTime = DateTime.Now
+        //    });
+        //    return requestId;
+        //}
         // For each menu item, we create potential operations for that, one reaction per each.
-        private async Task CreateOperations(long requestId, int tableNumber, int DinerNumber, int itemIndex, string MenuItem)
-        {
-            try
-            {
-                var ops = _client.SpAsType<Operation>("OperationsForMenuItem", ("@ItemName", MenuItem)).ToArray();
+        //private async Task CreateOperations(long requestId, int tableNumber, int DinerNumber, int itemIndex, string MenuItem)
+        //{
+        //    try
+        //    {
+        //        var ops = _client.SpAsType<Operation>("OperationsForMenuItem", ("@ItemName", MenuItem)).ToArray();
 
-                foreach (var operation in ops)
-                {
-                    operation.Attempts = 0;
-                    operation.RequestId = requestId;
-                    operation.ErrorCount = 0;
-                    operation.IsComplete = 0;
-                    operation.DinerIndex = DinerNumber;
-                    operation.ItemIndex = itemIndex;
-                    await _client.InsertAsync("Operations", operation);
-                }
-            }
-            catch (Exception ex)
-            {
-                await Console.Out.WriteLineAsync(ex.Message);
-            }
-        }
+        //        foreach (var operation in ops)
+        //        {
+        //            operation.Attempts = 0;
+        //            operation.RequestId = requestId;
+        //            operation.ErrorCount = 0;
+        //            operation.IsComplete = 0;
+        //            operation.DinerIndex = DinerNumber;
+        //            operation.ItemIndex = itemIndex;
+        //            await _client.InsertAsync("Operations", operation);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await Console.Out.WriteLineAsync(ex.Message);
+        //    }
+        //}
         // new version
-        public async Task<int> RequestDeliverable(WorkRequest request, Table table)
+        public async Task<int> RequestDeliverableAsync(WorkRequest request, Table table)
         {
             request.ReceivedAt = DateTime.Now;
             request.IsActive = 1;
@@ -121,11 +121,12 @@ namespace WorkflowManager
             return requestId;
         }
         // executor claim responsibility and gets a deliverable ID to work on.
-        public async Task<int> ClaimResponsibility(string executor) //! could also claim a particular type of deliverable....
+        public async Task<int> ClaimResponsibilityAsync(string executor) //! could also claim a particular type of deliverable....
         {
             int deliverableId = (int)await _client.SpExecuteAsync("Claim_Responsibility",
                 ("@executor", executor)
                 );
+            if (deliverableId > 0)
             LoggedEvents.Insert(0, new EventLogItem { 
                 EventClass="log-blue", Content = $"{executor} Claimed Responsibility" });
             return deliverableId;
@@ -158,7 +159,7 @@ namespace WorkflowManager
             return result;
         }
 
-        public static List<EventLogItem> LoggedEvents { get; set; } = new List<EventLogItem>();
+        private static List<EventLogItem> LoggedEvents { get; set; } = new List<EventLogItem>();
         public async Task NotifyResultAsync(Attempt attempt)
         {
             string x = "log-yellow";
@@ -170,6 +171,8 @@ namespace WorkflowManager
                 x = "log-red";
                 showMessage = true;
             }
+            await _client.SpExecuteAsync("Attempt_Update", ("@deliverableId", attempt.DeliverableId), ("@outcome", attempt.Outcome));
+
             LoggedEvents.Insert(0, new EventLogItem
             {
                 Content = $"{attempt.OperationName}: {attempt.Outcome}. {(showMessage ? attempt.Message : "" )} ",
