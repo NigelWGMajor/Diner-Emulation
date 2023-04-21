@@ -59,7 +59,7 @@ namespace Emulator.Services
         public async Task OrderFromTable()
         {
             var table = _restaurant.GetNewTable();
-            WorkflowManager.Models.WorkRequest request = new WorkflowManager.Models.WorkRequest
+            WorkflowManager.Models.Request request = new WorkflowManager.Models.Request
             {
                 Initiator = table.Server.Name,
                 Contact = table.Server.Name,

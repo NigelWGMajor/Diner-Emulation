@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Tooling\Nix-Tooling-Library-SqlStore\Nix.Library.SqlStore\Nix.Library.SqlStore.csproj" />
     <ProjectReference Include="..\..\Models\Models.csproj" />
   </ItemGroup>
 

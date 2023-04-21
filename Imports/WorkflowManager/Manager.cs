@@ -83,7 +83,7 @@ namespace WorkflowManager
         //    }
         //}
         // new version
-        public async Task<int> RequestDeliverableAsync(WorkRequest request, Table table)
+        public async Task<int> RequestDeliverableAsync(Request request, Table table)
         {
             request.ReceivedAt = DateTime.Now;
             request.IsActive = 1;
