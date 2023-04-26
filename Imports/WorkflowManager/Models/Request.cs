@@ -9,7 +9,7 @@ namespace WorkflowManager.Models
     {
         // set by initiator
         public long RequestId { get; set; }
-        public long Origin { get; set; }
+        public long OriginId { get; set; }
         public string Initiator { get; set; }
         public string Contact { get; set; }
         public DateTime ReceivedAt { get; set; }

@@ -33,7 +33,7 @@ namespace Emulator.Services
 
     public class EventMonitor : BackgroundService, IEventMonitor
     {
-        private WorkflowManager.Manager _manager;
+        private WorkflowManager.FlowManager _manager;
         private RestaurantService.Restaurant _restaurant;
         private Faker _faker = new Faker();
         private static string[] classes = { "log-red", "log-yellow", "log-green", "log-blue" };
@@ -43,7 +43,7 @@ namespace Emulator.Services
         private readonly IHubContext<ChartHub> _chartHub;
         public EventMonitor(IHubContext<EventLogHub> eventHub, IHubContext<ChartHub> chartHub)
         {
-            _manager = new Manager();
+            _manager = new FlowManager(Environment.GetEnvironmentVariable("NIX_DB"));
             _restaurant = new Restaurant();
             _eventHub = eventHub;
             _chartHub = chartHub;
@@ -62,7 +62,7 @@ namespace Emulator.Services
                 Initiator = table.Server.Name,
                 Contact = table.Server.Name,
                 ReceivedAt = DateTime.Now,
-                Origin = table.TableNumber
+                OriginId = table.TableNumber
             };
             await _manager.RequestDeliverableAsync(request, table);
         }

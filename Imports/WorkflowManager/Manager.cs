@@ -1,83 +1,104 @@
 ﻿using System;
-using Nix.Library.SqlStore;
 using WorkflowManager.Models;
 using System.Threading.Tasks;
 using System.Linq;
+using WorkflowManager.Services;
+using System.Collections;
 using System.Collections.Generic;
-
-
 
 namespace WorkflowManager
 {
-    public class Manager
+    public enum CycleState
+    {   // need to be simple but useful
+        Unknown,
+        Ready,
+        Active,
+        Blocked,
+        Waiting,
+        Failed,
+        Complete,
+        Archived
+    }
+    public interface IFlowManager
     {
-       
-        public Manager()
+        Task<IActivation> ActivateAsync(IActivation activation); // Consumer Activates a request
+        Task<IOperable> GetNextAsync(IAbility ability); // Provider gets operatino based on ability
+        Task<IOperable> UpdateAsync(IOperable operation); // Update final or intermediate status or detect cancellation
+        Task<IActivation> DeliverAsync(IActivation activation); // Consumer retrieves final state/status
+    }
+    public interface IActivation       // The information needed to start or end a flow.
+    {
+        IEnumerable<IItem> Items { get; set; } // the items that make up this set
+        bool IsActive { get; set; }
+        bool IsComplete { get; set; }
+
+    }
+    public interface IItem           // identifies a single thing that has a single defined workflow
+    {
+        string Name { get; set; }    //  important, because this defines the workflow rules
+        string State { get; set; }   // json payload
+    }
+    public interface IOperable       // Information for the immediate task to be done 
+    {
+        string OperationName { get; set; } // to direct to the correct function
+        int Completion { get; set; }  // how complete this is (for progress)
+        bool IsCancelled { get; set; }// to signal no longer needed
+    }
+    public interface IAbility        // Qualifications for types of operation
+    {
+        string Name { get; set; }    // a predefined set 
+        int Capacity { get; set; }   // used for load balancing
+    }
+    
+    public class FlowManager : IFlowManager
+    {
+        // 
+        IDataService _store;       
+        public FlowManager(string connectionString)
         {
-            Initialize();
+            _store = new DataService(connectionString);
         }
-        private void Initialize()
+
+        public Task<IActivation> ActivateAsync(IActivation activation)
         {
-            InitializeDatabase();
+            // An activation may request multiple items.
+            // Each Item has its own initial state
+            
+            // Multiple items can be started in parallel.
+
+            // This method must enter the activation in the database
+            // enter the item instances requred with their metadata
+            // return the activation which shuold now have an identity
+            throw new NotImplementedException();
         }
-       
-        // The Initiator Places the work request 
-        //[Obsolete("Need to use RequestDeliverable")]
-        //public async Task<int> RequestWork(WorkRequest request, Table table)
-        //{
-        //    request.ReceivedAt = DateTime.Now;
-        //    request.IsActive = 1;
-        //    var summary = String.Join("<br>", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray()) + "<br>";
-        //    int requestId = (int)await _client.SpInsertAsync("Request_insert",
-        //         ("@origin", table.TableNumber),
-        //         ("@initiator", request.Initiator),
-        //         ("@contact", request.Contact),
-        //         ("Request", summary)
-        //        );
-        //    int dinerIndex = 0;
 
-        //    foreach (var diner in table.Diners)
-        //    {
-        //        int itemIndex = 0;
-        //        foreach (var selection in diner.Selection)
-        //        {
-        //            await CreateOperations(requestId, diner.TableNumber, dinerIndex, itemIndex++, selection.ItemName);
-        //        }
-        //        dinerIndex++;
-        //    }
+        public Task<IActivation> DeliverAsync(IActivation activation)
+        {
+            // update the status of an activation.
+            // If it is complete, the data can be finalized and the 
+            // activation slated for archive
+            throw new NotImplementedException();
+        }
 
-        //    LoggedEvents.Insert(0, new EventLogItem
-        //    {
-        //        Content = $"Ordered: {String.Join("\n", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray())}",
-        //        EventTime = DateTime.Now
-        //    });
-        //    return requestId;
-        //}
-        // For each menu item, we create potential operations for that, one reaction per each.
-        //private async Task CreateOperations(long requestId, int tableNumber, int DinerNumber, int itemIndex, string MenuItem)
-        //{
-        //    try
-        //    {
-        //        var ops = _client.SpAsType<Operation>("OperationsForMenuItem", ("@ItemName", MenuItem)).ToArray();
+        public Task<IOperable> GetNextAsync(IAbility ability)
+        {
+            // uncompleted items that qualify for the ability
+            // should be traiged and the next operable returned
+            // after flagging it as busy
+            throw new NotImplementedException();
+        }
 
-        //        foreach (var operation in ops)
-        //        {
-        //            operation.Attempts = 0;
-        //            operation.RequestId = requestId;
-        //            operation.ErrorCount = 0;
-        //            operation.IsComplete = 0;
-        //            operation.DinerIndex = DinerNumber;
-        //            operation.ItemIndex = itemIndex;
-        //            await _client.InsertAsync("Operations", operation);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await Console.Out.WriteLineAsync(ex.Message);
-        //    }
-        //}
+        public Task<IOperable> UpdateAsync(IOperable operation)
+        {
+            // this can be used to update progress,
+            // check for cancellation and
+            // inform of errors or successes.
+            throw new NotImplementedException();
+        }
+
+
         // new version
-        public async Task<long> RequestDeliverableAsync<IManageable>(Request request, IManageable[] selections ) where T : IFlowManageable 
+        /*public async Task<long> RequestDeliverableAsync<IFlowManageable>(Request request, IFlowManageable[] selections ) where T : IFlowManageable 
         {
          //   request.ReceivedAt = DateTime.Now;
          //   request.IsActive = 1;
@@ -86,7 +107,7 @@ namespace WorkflowManager
                 .Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x))}")
                 .ToArray()) + "\n";
             int requestId = (int)await _client.SpInsertAsync("Request_insert",
-                 ("@origin", request.Origin),
+                 ("@origin", request.OriginId),
                  ("@initiator", request.Initiator),
                  ("@contact", request.Contact),
                  ("Request", summary)
@@ -181,5 +202,7 @@ namespace WorkflowManager
         ////    await Task.CompletedTask;
         ////    return _client.SpAsType<Statistics>("Operations_Summary").First();    
         ////}
+        ///*/
     }
+
 }
