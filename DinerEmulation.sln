@@ -33,8 +33,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emulator.Test", "Test\Unit\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{77D46B1B-AEF9-44C8-9443-C17D78AA965E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nix.Library.SqlStore", "..\..\Tooling\Nix-Tooling-Library-SqlStore\Nix.Library.SqlStore\Nix.Library.SqlStore.csproj", "{6E8ECC42-5CAD-48D2-A04E-2CE053EFA9E0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,10 +79,6 @@ Global
 		{77D46B1B-AEF9-44C8-9443-C17D78AA965E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77D46B1B-AEF9-44C8-9443-C17D78AA965E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77D46B1B-AEF9-44C8-9443-C17D78AA965E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E8ECC42-5CAD-48D2-A04E-2CE053EFA9E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E8ECC42-5CAD-48D2-A04E-2CE053EFA9E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E8ECC42-5CAD-48D2-A04E-2CE053EFA9E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E8ECC42-5CAD-48D2-A04E-2CE053EFA9E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

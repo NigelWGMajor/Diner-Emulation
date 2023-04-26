@@ -4,4 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Imports\WorkflowManager\WorkflowManager.csproj" />
+  </ItemGroup>
 </Project>

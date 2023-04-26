@@ -2,15 +2,13 @@ using Bogus;
 using Emulator.Hubs;
 using Emulator.Models.Log;
 using Microsoft.AspNetCore.SignalR;
-using Models.Common;
 using WorkflowManager;
+using WorkflowManager.Models;
 using RestaurantService;
 using Azure.Core;
 using System.Text;
 using Person = Bogus.Person;
-using System.Xml;
-using System.Diagnostics.Metrics;
-using System.Security.Cryptography;
+
 
 namespace Emulator.Services
 {

@@ -6,8 +6,8 @@ using Emulator.Models.Log;
 using Emulator.Services;
 using Microsoft.JSInterop;
 using System.Threading;
-using Models.Common;
 using Emulator.Pages.Shared;
+using WorkflowManager.Models;
 
 namespace Emulator.Pages
 {

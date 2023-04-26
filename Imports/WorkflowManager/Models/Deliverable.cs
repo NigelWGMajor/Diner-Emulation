@@ -6,5 +6,6 @@ namespace WorkflowManager.Models
 {
     public class Deliverable
     {
+
     }
 }

@@ -1,20 +1,17 @@
 ﻿using System;
 using Nix.Library.SqlStore;
-using Models.Common;
 using WorkflowManager.Models;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
-using Emulator.Models.Log;
-using Emulator.Models;
-using Models;
+
+
 
 namespace WorkflowManager
 {
     public class Manager
     {
-        private SqlClient _client;
-        private string _connection = Environment.GetEnvironmentVariable("NIX_DB");
+       
         public Manager()
         {
             Initialize();
@@ -23,10 +20,7 @@ namespace WorkflowManager
         {
             InitializeDatabase();
         }
-        private void InitializeDatabase()
-        {
-            _client = new SqlClient(_connection);
-        }
+       
         // The Initiator Places the work request 
         //[Obsolete("Need to use RequestDeliverable")]
         //public async Task<int> RequestWork(WorkRequest request, Table table)
@@ -83,41 +77,42 @@ namespace WorkflowManager
         //    }
         //}
         // new version
-        public async Task<int> RequestDeliverableAsync(Request request, Table table)
+        public async Task<long> RequestDeliverableAsync<IManageable>(Request request, IManageable[] selections ) where T : IFlowManageable 
         {
-            request.ReceivedAt = DateTime.Now;
-            request.IsActive = 1;
+         //   request.ReceivedAt = DateTime.Now;
+         //   request.IsActive = 1;
             var summary = String.Join("\n",
-                table.Diners.Select(d => (d.Name, d.Selection))
-                .Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}")
+                selections.Select(d => (d.Identifier, d.Items))
+                .Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x))}")
                 .ToArray()) + "\n";
             int requestId = (int)await _client.SpInsertAsync("Request_insert",
-                 ("@origin", table.TableNumber),
+                 ("@origin", request.Origin),
                  ("@initiator", request.Initiator),
                  ("@contact", request.Contact),
                  ("Request", summary)
                 );
             int dinerIndex = 0;
-            foreach (var diner in table.Diners)
+            foreach (T element in selections)
             {
                 int itemIndex = 0;
-                foreach (var item in diner.Selection)
+                foreach (var item in element.Items)
                 {
                     int count = (int)await _client.SpInsertAsync("Deliverable_insert",
                         ("@requestId", requestId),
                         ("@dinerIndex", dinerIndex),
                         ("@itemIndex", itemIndex),
-                        ("@itemName", item.ItemName)
+                        ("@itemName", item),
+                        ("@Itemdata", element.Data.ToArray()[itemIndex])
                         );
                     itemIndex++;
                 }
                 dinerIndex++;
             }
-            LoggedEvents.Insert(0, new EventLogItem
-            {
-                Content = $"Ordered: {String.Join("\n", table.Diners.Select(d => (d.Name, d.Selection)).Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x.ItemName))}").ToArray())}",
-                EventTime = DateTime.Now
-            });
+            ////LoggedEvents.Insert(0, new EventLogItem
+            ////{
+            ////    Content = $"Ordered: {summary}",
+            ////    EventTime = DateTime.Now
+            ////});
             return requestId;
         }
         // executor claim responsibility and gets a deliverable ID to work on.
@@ -126,9 +121,9 @@ namespace WorkflowManager
             int deliverableId = (int)await _client.SpExecuteAsync("Claim_Responsibility",
                 ("@executor", executor)
                 );
-            if (deliverableId > 0)
-            LoggedEvents.Insert(0, new EventLogItem { 
-                EventClass="log-blue", Content = $"{executor} Claimed Responsibility" });
+            ////if (deliverableId > 0)
+            ////LoggedEvents.Insert(0, new EventLogItem { 
+            ////    EventClass="log-blue", Content = $"{executor} Claimed Responsibility" });
             return deliverableId;
         }
         public async Task<Attempt> GetNextOperationAsync(string executor)
@@ -138,28 +133,28 @@ namespace WorkflowManager
             var result = _client.SpAsType<Attempt>("Operation_Next",
                 ("@executor", executor)
                ).FirstOrDefault();
-            if (result != null)
-                LoggedEvents.Insert(0, new EventLogItem
-                {
-                    EventClass = "log-green",
-                    Content = $"Next operation for {executor}: {result.OperationName}"
-                });
-            else
-                LoggedEvents.Insert(0, new EventLogItem
-                {
-                    EventClass = "log-blue",
-                    Content = $"No pending operations."
-                });
+            ////if (result != null)
+            ////    LoggedEvents.Insert(0, new EventLogItem
+            ////    {
+            ////        EventClass = "log-green",
+            ////        Content = $"Next operation for {executor}: {result.OperationName}"
+            ////    });
+            ////else
+            ////    LoggedEvents.Insert(0, new EventLogItem
+            ////    {
+            ////        EventClass = "log-blue",
+            ////        Content = $"No pending operations."
+            ////    });
 
             return result;
         }
-        public IEnumerable<EventLogItem> GetEvents()
-        {
-            var result = LoggedEvents.Take(20).ToArray();
-            return result;
-        }
+        ////public IEnumerable<EventLogItem> GetEvents()
+        ////{
+        ////    var result = LoggedEvents.Take(20).ToArray();
+        ////    return result;
+        ////}
 
-        private static List<EventLogItem> LoggedEvents { get; set; } = new List<EventLogItem>();
+        ////private static List<EventLogItem> LoggedEvents { get; set; } = new List<EventLogItem>();
         public async Task NotifyResultAsync(Attempt attempt)
         {
             string x = "log-yellow";
@@ -173,18 +168,18 @@ namespace WorkflowManager
             }
             await _client.SpExecuteAsync("Attempt_Update", ("@deliverableId", attempt.DeliverableId), ("@outcome", attempt.Outcome));
 
-            LoggedEvents.Insert(0, new EventLogItem
-            {
-                Content = $"{attempt.OperationName}: {attempt.Outcome}. {(showMessage ? attempt.Message : "" )} ",
-                EventClass = x,
-                EventTime = DateTime.Now
-            });
+            ////LoggedEvents.Insert(0, new EventLogItem
+            ////{
+            ////    Content = $"{attempt.OperationName}: {attempt.Outcome}. {(showMessage ? attempt.Message : "" )} ",
+            ////    EventClass = x,
+            ////    EventTime = DateTime.Now
+            ////});
         }
         
-        public async Task<Statistics>GetStatistics()
-        {
-            await Task.CompletedTask;
-            return _client.SpAsType<Statistics>("Operations_Summary").First();    
-        }
+        ////public async Task<Statistics>GetStatistics()
+        ////{
+        ////    await Task.CompletedTask;
+        ////    return _client.SpAsType<Statistics>("Operations_Summary").First();    
+        ////}
     }
 }
