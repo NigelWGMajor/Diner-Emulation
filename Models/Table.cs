@@ -18,10 +18,29 @@ namespace Models.Common
         }
         public int TableNumber {get; set; }
         public Server Server {get; set;}
-        public List<Diner> Diners {get; set; } = new();
-        public IEnumerable<IWorkItem> Items { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IEnumerable<string> Data { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public CompletionState Completion { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Name { get; set; }
+        public List<Diner> Diners
+        {
+            set 
+            { 
+                foreach(var diner in value)
+                {
+                    foreach(var menuItem in diner.Selection)
+                    {
+                        _items.Add(new WorkItem
+                        {
+                            Name = menuItem.ItemName,
+                            Data = menuItem.ItemKind
+                        });
+                        _data.Add(diner.Name);
+                    }
+                }
+            }
+        }
+        private List<string> _data = new List<string>();
+        private List<IWorkItem> _items = new List<IWorkItem>();
+        public IEnumerable<IWorkItem> WorkItems { get => _items; } 
+        public IEnumerable<string> Data { get => _data; }   
+        public CompletionState Completion { get; set; }
+        public string Name { get => $"Table {TableNumber}";  }
     }
 }

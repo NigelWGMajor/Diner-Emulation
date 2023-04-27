@@ -11,9 +11,9 @@ namespace WorkflowManager
     public interface IFlowManager
     {
         Task<IActivation> ActivateAsync(IActivation activation); // Consumer Activates a request
-        Task<IOperable> GetNextAsync(IAbility ability = null);          // Provider gets operation based on ability
+        Task<IOperable> ProceedAsync(IAbility ability = null);   // Provider gets operation based on ability
         Task<IOperable> UpdateAsync(IOperable operation);        // Update final or intermediate status or detect cancellation
-        Task<IActivation> DeliverAsync(IActivation activation);  // Consumer retrieves final state/status
+        Task<IActivation> ProgressAsync(IActivation activation);  // Consumer retrieves final state/status
         Task<List<FlowLogItem>> GetLog(int count = 100, int minSeverity = 3);  // Retrieve recent events 
         Task<FlowMetrics> GetMetrics(); // Get the prevailing state of the activations
     }
@@ -39,7 +39,7 @@ namespace WorkflowManager
             await Task.CompletedTask;
             return default(Activation);
         }
-        public async Task<IOperable> GetNextAsync(IAbility ability)
+        public async Task<IOperable> ProceedAsync(IAbility ability)
         {
             // uncompleted items that qualify for the ability
             // should be traiged and the next operable returned

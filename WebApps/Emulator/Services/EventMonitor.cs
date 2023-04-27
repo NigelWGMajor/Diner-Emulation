@@ -55,13 +55,6 @@ namespace Emulator.Services
         public async Task OrderFromTable()
         {
             var table = _restaurant.GetNewTable();
-            //WorkflowManager.Models.Request request = new WorkflowManager.Models.Request
-            //{
-            //    Initiator = table.Server.Name,
-            //    Contact = table.Server.Name,
-            //    ReceivedAt = DateTime.Now,
-            //    OriginId = table.TableNumber
-            //};
             await _manager.ActivateAsync(table);
         }
         private Stack<string> busyChefs = new Stack<string>();
@@ -77,7 +70,7 @@ namespace Emulator.Services
         }
         public async Task<IOperable> GetNextOperationAsync()
         {
-            var x = await _manager.GetNextAsync();
+            var x = await _manager.ProceedAsync();
             //if (x == null)
             //{
             //    ClaimResponsibility();
