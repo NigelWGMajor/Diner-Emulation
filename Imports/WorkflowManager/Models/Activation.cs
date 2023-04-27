@@ -6,14 +6,16 @@ namespace WorkflowManager.Models
 {
     public interface IActivation       // The information needed to start or end a flow.
     {
+        string Name { get; set; }
         IEnumerable<IWorkItem> Items { get; set; }   // the items that make up this set
         IEnumerable<string> Data { get; set; }   // json data
         CompletionState Completion { get; set; } // progress?
     }
-    internal class Activation : IActivation
+    public class Activation : IActivation
     {
         public IEnumerable<IWorkItem> Items { get; set ; }
         public IEnumerable<string> Data { get; set; }
         public CompletionState Completion { get; set; }
+        public string Name { get; set; }
     }
 }

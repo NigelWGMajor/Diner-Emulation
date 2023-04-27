@@ -26,7 +26,7 @@ namespace WorkflowManager
         {
             _store = new DataService(connectionString);
         }
-        public Task<IActivation> ActivateAsync(IActivation activation)
+        public async Task<IActivation> ActivateAsync(IActivation activation)
         {
             // An activation may request multiple items.
             // Each Item has its own initial state
@@ -34,30 +34,34 @@ namespace WorkflowManager
             // Multiple items can be started in parallel.
 
             // This method must enter the activation in the database
-            // enter the item instances requred with their metadata
-            // return the activation which shuold now have an identity
-            throw new NotImplementedException();
+            // enter the item instances required with their metadata
+            // return the activation which should now have an identity
+            await Task.CompletedTask;
+            return default(Activation);
         }
-        public Task<IOperable> GetNextAsync(IAbility ability)
+        public async Task<IOperable> GetNextAsync(IAbility ability)
         {
             // uncompleted items that qualify for the ability
             // should be traiged and the next operable returned
             // after flagging it as busy
-            throw new NotImplementedException();
+            await Task.CompletedTask;
+            return default(Operable);
         }
-        public Task<IOperable> UpdateAsync(IOperable operation)
+        public async Task<IOperable> UpdateAsync(IOperable operation)
         {
             // this can be used to update progress,
             // check for cancellation and
             // inform of errors or successes.
-            throw new NotImplementedException();
+            await Task.CompletedTask;
+            return operation;
         }
-        public Task<IActivation> DeliverAsync(IActivation activation)
+        public async Task<IActivation> DeliverAsync(IActivation activation)
         {
             // update the status of an activation.
             // If it is complete, the data can be finalized and the 
             // activation slated for archive
-            throw new NotImplementedException();
+            await Task.CompletedTask;
+            return activation;
         }
         public async Task<List<FlowLogItem>> GetLog(int count = 100, int minSeverity = 3)
         {
