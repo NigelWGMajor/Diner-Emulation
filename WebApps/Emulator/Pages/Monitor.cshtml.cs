@@ -8,6 +8,7 @@ using Microsoft.JSInterop;
 using System.Threading;
 using Emulator.Pages.Shared;
 using WorkflowManager.Models;
+using WorkflowManager;
 
 namespace Emulator.Pages
 {
@@ -46,16 +47,16 @@ namespace Emulator.Pages
         {
             _eventMonitor.ClaimResponsibility();
         }
-        private static Queue<Attempt> _lastAttempts = new Queue<Attempt>();
+        private static Queue<IOperable> _lastAttempts = new Queue<IOperable>();
         public async Task OnPostTryNext()
         {
-            Attempt attempt = await _eventMonitor.GetNextOperationAsync();
+            IOperable attempt = await _eventMonitor.GetNextOperationAsync();
             if (attempt != null)
                 _lastAttempts.Enqueue(attempt);
         }
         public async Task OnPostTrySucceed()
         {
-            Attempt attempt;
+            IOperable attempt;
             if (_lastAttempts.Count > 0)
             {
                 attempt = _lastAttempts.Dequeue();
@@ -66,14 +67,13 @@ namespace Emulator.Pages
             }
             if (attempt != null)
             {
-                attempt.Outcome = "Succeeded";
-                // pretend to do something good!
+                attempt.Completion = OperationState.Succeeded;
                 _eventMonitor.NotifyResultAsync(attempt);
             }
         }
         public async Task OnPostTryFail()
         {
-            Attempt attempt;
+            IOperable attempt;
             if (_lastAttempts.Count > 0)
             {
                 attempt = _lastAttempts.Dequeue();
@@ -83,8 +83,7 @@ namespace Emulator.Pages
                 attempt = await _eventMonitor.GetNextOperationAsync();
             }
             if (attempt == null) return;
-            attempt.Outcome = "Failed";
-            // pretend to do something bad!
+            attempt.Completion = OperationState.Failed;
             _eventMonitor.NotifyResultAsync(attempt);
         }
     }

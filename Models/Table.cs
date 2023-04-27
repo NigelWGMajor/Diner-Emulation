@@ -1,8 +1,9 @@
+using WorkflowManager;
 using WorkflowManager.Models;
 
 namespace Models.Common
 {
-    public class Table : WorkflowManager.Models.IFlowManageable
+    public class Table : WorkflowManager.IActivation
     {
         static int _firstTable = 1;
         public Table(Server server)
@@ -18,11 +19,8 @@ namespace Models.Common
         public int TableNumber {get; set; }
         public Server Server {get; set;}
         public List<Diner> Diners {get; set; } = new();
-        long IFlowManageable.OriginId { get => (long)TableNumber; }
-        string IFlowManageable.Identifier { get => Server.Name;}
-        IEnumerable<string> IFlowManageable.Items { get => Diners.Select(d => d.Name); }
-        IEnumerable<IEnumerable<string>> IFlowManageable.Data { get => 
-                Diners.Select(d => d.Selection.Select(s => s.ItemName).ToArray()); }
-
+        public IEnumerable<IItem> Items { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IEnumerable<string> Data { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public ActivationState CycleState { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

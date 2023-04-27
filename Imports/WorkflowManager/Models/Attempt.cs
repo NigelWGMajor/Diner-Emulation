@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WorkflowManager.Models
 {
-    public class Attempt
+    public class Attempt : IOperable
     {
         public long PlanId { get; set; }
         public int StageIndex { get; set; }
@@ -21,5 +21,7 @@ namespace WorkflowManager.Models
         public string Executor { get; set; }
         public long DeliverableId { get; set; }
         public int AttemptedCount { get; set; }
+        public string Data { get; set; }
+        OperationState IOperable.Completion { get; set; }
     }
 }

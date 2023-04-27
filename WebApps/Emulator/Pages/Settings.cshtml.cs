@@ -10,7 +10,6 @@ namespace Emulator.Pages
 
         public string Message { get; set; }
         private readonly ILogger<SettingsModel> _logger;
-        private readonly IStorage _storage;
         private int _sliderValue;
 
         [BindProperty(SupportsGet = true)]
@@ -29,7 +28,6 @@ namespace Emulator.Pages
         public SettingsModel(ILogger<SettingsModel> logger, IStorage storage)
         {
             _logger = logger;
-            _storage = storage;
             Message = storage.GetTime();
         }
 

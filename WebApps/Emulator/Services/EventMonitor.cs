@@ -9,7 +9,6 @@ using Azure.Core;
 using System.Text;
 using Person = Bogus.Person;
 
-
 namespace Emulator.Services
 {
     public interface IUpdateable
@@ -19,21 +18,20 @@ namespace Emulator.Services
 
     public interface IEventMonitor
     {
-        //Task<IEnumerable<EventLogItem>> GetEvents();
         Task OrderFromTable();
 
         Task ClaimResponsibility();
-        string AddEvent();
+        Task<string> AddEvent();
 
-        Task<Attempt> GetNextOperationAsync();
+        Task<IOperable> GetNextOperationAsync();
 
-        Task NotifyResultAsync(Attempt attempt);
+        Task NotifyResultAsync(IOperable attempt);
 
     }
 
     public class EventMonitor : BackgroundService, IEventMonitor
     {
-        private WorkflowManager.FlowManager _manager;
+        private WorkflowManager.IFlowManager _manager;
         private RestaurantService.Restaurant _restaurant;
         private Faker _faker = new Faker();
         private static string[] classes = { "log-red", "log-yellow", "log-green", "log-blue" };
@@ -57,98 +55,66 @@ namespace Emulator.Services
         public async Task OrderFromTable()
         {
             var table = _restaurant.GetNewTable();
-            WorkflowManager.Models.Request request = new WorkflowManager.Models.Request
-            {
-                Initiator = table.Server.Name,
-                Contact = table.Server.Name,
-                ReceivedAt = DateTime.Now,
-                OriginId = table.TableNumber
-            };
-            await _manager.RequestDeliverableAsync(request, table);
+            //WorkflowManager.Models.Request request = new WorkflowManager.Models.Request
+            //{
+            //    Initiator = table.Server.Name,
+            //    Contact = table.Server.Name,
+            //    ReceivedAt = DateTime.Now,
+            //    OriginId = table.TableNumber
+            //};
+            await _manager.ActivateAsync(table);
         }
         private Stack<string> busyChefs = new Stack<string>();
         public async Task ClaimResponsibility()
         {
-            int x = await _manager.ClaimResponsibilityAsync(executors[0]);
-            if (x ==0)
-            {
-                // nothing to claim
-                OrderFromTable();
-                _manager.ClaimResponsibilityAsync(executors[0]);
-            }
+            ////   int x = await _manager.GetNextAsync();
+            //if (x ==0)
+            //{
+            // nothing to claim
+            //OrderFromTable();
+            //_manager.ClaimResponsibilityAsync(executors[0]);
+            //}
         }
-        public async Task<Attempt> GetNextOperationAsync()
+        public async Task<IOperable> GetNextOperationAsync()
         {
-            var x = await _manager.GetNextOperationAsync(executors[0]);
-            if (x == null)
-            {
-                ClaimResponsibility();
-                x = await _manager.GetNextOperationAsync(executors[0]);
-            }
+            var x = await _manager.GetNextAsync();
+            //if (x == null)
+            //{
+            //    ClaimResponsibility();
+            //    x = await _manager.GetNextOperationAsync(executors[0]);
+            //}
             return x;
         }
-        public async Task NotifyResultAsync(Attempt attempt)
+        public async Task NotifyResultAsync(IOperable operable)
         {
-            await _manager.NotifyResultAsync(attempt);
+            var result = _manager.UpdateAsync(operable);
+            // if (result.IsCanceled) ...
         }
 
-        //public async Task<IEnumerable<EventLogItem>> GetEvents()
-        //{
-        //    _events.AddRange(GenerateRandomEvents(1));
-        //    if (_events.Count > _length)
-        //    {
-        //        _events.RemoveAt(0);
-        //    }
-        //    await Task.CompletedTask;
-        //    return _events;
-        //}
 
-        // private static IUpdateable? _remote;
-        public delegate void UpdateRemoteEvents(List<EventLogItem> events);
-
-        // public void SetRemote(IUpdateable remote)
-        // {
-        //     _remote = remote;
-        // }
-
-        public string AddEvent()
+        public async Task<string> AddEvent()
         {
-            var x = _manager.GetEvents();
-            //var x = GenerateRandomEvents(1);
-            EventLogItem item = x.FirstOrDefault(); ;
-            foreach (var i in x)
-            {
-                item = i;
-                _events.Add(i);
-            }
-            if (_events.Count > _length)
-            {
-                _events.RemoveAt(0);
-            }
+            var x = await _manager.GetLog(20);
             return AsListItems(x);
         }
         private static int _counter = 1;
-        private string AsListItems(IEnumerable<EventLogItem> items)
+        private static string[] _eventClasses = { "log-blue", "log-green", "log-yellow", "log-red" };
+        private string AsListItems(IEnumerable<FlowLogItem> items)
         {
+
             StringBuilder sb = new StringBuilder();
             if (items != null)
                 foreach (var item in items)
                 {
-                    sb.Append($"<li class='{item.EventClass}'> {item.Content}</li>");
+                    sb.Append($"<li class='{_eventClasses[item.Severity]}'> {item.EventTime:t} {item.Content}</li>");
                 }
             return sb.ToString();
         }
-
-        //public List<EventLogItem> GenerateRandomEvents(int n)
-        //{
-        //    return _userFaker.Generate(n);
-        //}
-
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                var x = AddEvent();
+                var x = await AddEvent();
                 if (!String.IsNullOrEmpty(x))
                 {
 
@@ -160,16 +126,14 @@ namespace Emulator.Services
                 }
                 if (_counter++ % 5 == 0)
                 {
-                    var stats = await _manager.GetStatistics();
-
-                    var data = new PointSet($"{_counter++}", new int[] { stats.Pending, stats.Started, stats.Failed, stats.Complete });
+                    var stats = await _manager.GetMetrics();
+                    var data = new PointSet($"{_counter++}", new int[] { stats.ActivationsPending, stats.ActivationsActive, stats.ActivationsFailed, stats.ActivationsSucceeded });
                     await _chartHub.Clients.All.SendAsync(
                         "addChartData",
                          data,
                         cancellationToken: stoppingToken
                     );
                 }
-
                 await Task.Delay(TimeSpan.FromSeconds(0.5), stoppingToken);
             }
         }
