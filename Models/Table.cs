@@ -22,5 +22,6 @@ namespace Models.Common
         public IEnumerable<IWorkItem> Items { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IEnumerable<string> Data { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public CompletionState Completion { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Name { get; set; }
     }
 }
