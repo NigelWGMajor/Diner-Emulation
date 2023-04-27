@@ -21,6 +21,6 @@ namespace Models.Common
         public List<Diner> Diners {get; set; } = new();
         public IEnumerable<IItem> Items { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IEnumerable<string> Data { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public ActivationState CycleState { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public CompletionState Completion { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

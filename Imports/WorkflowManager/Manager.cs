@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace WorkflowManager
 {
     [Flags]
-    public enum ActivationState
+    public enum CompletionState
     {   // need to be simple but useful
         Pending = 0,     // waiting for service
         Active = 1,      // is started, actively being worked 
@@ -18,16 +18,6 @@ namespace WorkflowManager
         Failed = 64,     // completed but unsuccessful
         Succeeded = 128, // Completed, done
         Archived = 256   // retired to storage
-    }
-    public enum OperationState
-    {
-        Pending = 0,
-        Active = 1,
-        Retrying = 2,
-        Cancelled = 32,
-        Failed = 64,
-        Succeeded = 128,
-        Archived = 256
     }
     public interface IFlowManager
     {
@@ -42,7 +32,7 @@ namespace WorkflowManager
     {
         IEnumerable<IItem> Items { get; set; }   // the items that make up this set
         IEnumerable<string> Data { get; set; }   // json data
-        ActivationState CycleState { get; set; } // progress?
+        CompletionState Completion { get; set; } // progress?
     }
     public class FlowLogItem
     {
@@ -65,12 +55,12 @@ namespace WorkflowManager
     public interface IItem           // identifies a single thing that has a single defined workflow
     {
         string Name { get; set; }    //  important, because this defines the workflow rules
-        string State { get; set; }   // json payload
+        string Data { get; set; }   // json payload
     }
     public interface IOperable       // Information for the immediate task to be done 
     {
         string OperationName { get; set; } // to direct to the correct function
-        OperationState Completion { get; set; }  // how complete this is (for progress)
+        CompletionState Completion { get; set; }  // how complete this is (for progress)
 
         string Data { get; set; }
     }
@@ -148,111 +138,3 @@ namespace WorkflowManager
         }
     }
 }
-
-
-// new version
-/*public async Task<long> RequestDeliverableAsync<IFlowManageable>(Request request, IFlowManageable[] selections ) where T : IFlowManageable 
-{
- //   request.ReceivedAt = DateTime.Now;
- //   request.IsActive = 1;
-    var summary = String.Join("\n",
-        selections.Select(d => (d.Identifier, d.Items))
-        .Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x))}")
-        .ToArray()) + "\n";
-    int requestId = (int)await _client.SpInsertAsync("Request_insert",
-         ("@origin", request.OriginId),
-         ("@initiator", request.Initiator),
-         ("@contact", request.Contact),
-         ("Request", summary)
-        );
-    int dinerIndex = 0;
-    foreach (T element in selections)
-    {
-        int itemIndex = 0;
-        foreach (var item in element.Items)
-        {
-            int count = (int)await _client.SpInsertAsync("Deliverable_insert",
-                ("@requestId", requestId),
-                ("@dinerIndex", dinerIndex),
-                ("@itemIndex", itemIndex),
-                ("@itemName", item),
-                ("@Itemdata", element.Data.ToArray()[itemIndex])
-                );
-            itemIndex++;
-        }
-        dinerIndex++;
-    }
-    ////LoggedEvents.Insert(0, new EventLogItem
-    ////{
-    ////    Content = $"Ordered: {summary}",
-    ////    EventTime = DateTime.Now
-    ////});
-    return requestId;
-}
-// executor claim responsibility and gets a deliverable ID to work on.
-public async Task<int> ClaimResponsibilityAsync(string executor) //! could also claim a particular type of deliverable....
-{
-    int deliverableId = (int)await _client.SpExecuteAsync("Claim_Responsibility",
-        ("@executor", executor)
-        );
-    ////if (deliverableId > 0)
-    ////LoggedEvents.Insert(0, new EventLogItem { 
-    ////    EventClass="log-blue", Content = $"{executor} Claimed Responsibility" });
-    return deliverableId;
-}
-public async Task<Attempt> GetNextOperationAsync(string executor)
-{
-    await Task.CompletedTask;
-
-    var result = _client.SpAsType<Attempt>("Operation_Next",
-        ("@executor", executor)
-       ).FirstOrDefault();
-    ////if (result != null)
-    ////    LoggedEvents.Insert(0, new EventLogItem
-    ////    {
-    ////        EventClass = "log-green",
-    ////        Content = $"Next operation for {executor}: {result.OperationName}"
-    ////    });
-    ////else
-    ////    LoggedEvents.Insert(0, new EventLogItem
-    ////    {
-    ////        EventClass = "log-blue",
-    ////        Content = $"No pending operations."
-    ////    });
-
-    return result;
-}
-////public IEnumerable<EventLogItem> GetEvents()
-////{
-////    var result = LoggedEvents.Take(20).ToArray();
-////    return result;
-////}
-
-////private static List<EventLogItem> LoggedEvents { get; set; } = new List<EventLogItem>();
-public async Task NotifyResultAsync(Attempt attempt)
-{
-    string x = "log-yellow";
-    bool showMessage= false;
-    if (attempt.Outcome == "Succeeded")
-        x = "log-green";
-    if (attempt.Outcome == "Failed")
-    {
-        x = "log-red";
-        showMessage = true;
-    }
-    await _client.SpExecuteAsync("Attempt_Update", ("@deliverableId", attempt.DeliverableId), ("@outcome", attempt.Outcome));
-
-    ////LoggedEvents.Insert(0, new EventLogItem
-    ////{
-    ////    Content = $"{attempt.OperationName}: {attempt.Outcome}. {(showMessage ? attempt.Message : "" )} ",
-    ////    EventClass = x,
-    ////    EventTime = DateTime.Now
-    ////});
-}
-
-////public async Task<Statistics>GetStatistics()
-////{
-////    await Task.CompletedTask;
-////    return _client.SpAsType<Statistics>("Operations_Summary").First();    
-////}
-///*/

@@ -25,10 +25,9 @@ namespace Emulator.Pages
         [BindProperty(SupportsGet = true)]
         public int SliderValue3 { get; set; }
 
-        public SettingsModel(ILogger<SettingsModel> logger, IStorage storage)
+        public SettingsModel(ILogger<SettingsModel> logger)
         {
             _logger = logger;
-            Message = storage.GetTime();
         }
 
         public void OnGet()

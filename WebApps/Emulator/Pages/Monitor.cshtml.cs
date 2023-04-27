@@ -67,7 +67,7 @@ namespace Emulator.Pages
             }
             if (attempt != null)
             {
-                attempt.Completion = OperationState.Succeeded;
+                attempt.Completion = CompletionState.Succeeded;
                 _eventMonitor.NotifyResultAsync(attempt);
             }
         }
@@ -83,7 +83,7 @@ namespace Emulator.Pages
                 attempt = await _eventMonitor.GetNextOperationAsync();
             }
             if (attempt == null) return;
-            attempt.Completion = OperationState.Failed;
+            attempt.Completion = CompletionState.Failed;
             _eventMonitor.NotifyResultAsync(attempt);
         }
     }
