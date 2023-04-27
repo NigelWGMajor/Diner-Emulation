@@ -3,7 +3,7 @@ using WorkflowManager.Models;
 
 namespace Models.Common
 {
-    public class Table : WorkflowManager.IActivation
+    public class Table : IActivation
     {
         static int _firstTable = 1;
         public Table(Server server)

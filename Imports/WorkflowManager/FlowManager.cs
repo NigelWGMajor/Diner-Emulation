@@ -17,25 +17,7 @@ namespace WorkflowManager
         Task<List<FlowLogItem>> GetLog(int count = 100, int minSeverity = 3);  // Retrieve recent events 
         Task<FlowMetrics> GetMetrics(); // Get the prevailing state of the activations
     }
-       
-    public interface IWorkItem           // identifies a single thing that has a single defined workflow
-    {
-        string Name { get; set; }    //  important, because this defines the workflow rules
-        string Data { get; set; }   // json payload
-    }
-    public interface IOperable       // Information for the immediate task to be done 
-    {
-        string OperationName { get; set; } // to direct to the correct function
-        CompletionState Completion { get; set; }  // how complete this is (for progress)
-
-        string Data { get; set; }
-    }
-    public interface IAbility        // Qualifications for types of operation
-    {
-        string Name { get; set; }    // a predefined set 
-        int Capacity { get; set; }   // used for load balancing
-    }
-
+    
     public class FlowManager : IFlowManager
     {
         // 
