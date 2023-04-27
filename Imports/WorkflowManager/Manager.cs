@@ -72,7 +72,7 @@ namespace WorkflowManager
         string OperationName { get; set; } // to direct to the correct function
         OperationState Completion { get; set; }  // how complete this is (for progress)
 
-        string Data { get; set; }    
+        string Data { get; set; }
     }
     public interface IAbility        // Qualifications for types of operation
     {
@@ -131,126 +131,128 @@ namespace WorkflowManager
                 { Content = "Test", EventTime = DateTime.Now, Severity = 0 }
             };
         }
+        private int x = 1;
         public async Task<FlowMetrics> GetMetrics()
         {
             await Task.CompletedTask;
+            x = new Random().Next(1, 5);
             return new FlowMetrics
             {
-                ActivationsActive = 20,
-                ActivationsFailed = 3,
-                ActivationsRetrying = 5,
-                ActivationsPending = 10,
-                ActivationsSucceeded = 20,
-                ActivationsArchived = 200
+                ActivationsActive = 20 - x,
+                ActivationsFailed = 3 + 2 * x,
+                ActivationsRetrying = 5 - x,
+                ActivationsPending = 10 + 4 * x,
+                ActivationsSucceeded = 20 - x,
+                ActivationsArchived = 200 + 10 * x
             };
         }
     }
 }
-        
-        
-        // new version
-        /*public async Task<long> RequestDeliverableAsync<IFlowManageable>(Request request, IFlowManageable[] selections ) where T : IFlowManageable 
+
+
+// new version
+/*public async Task<long> RequestDeliverableAsync<IFlowManageable>(Request request, IFlowManageable[] selections ) where T : IFlowManageable 
+{
+ //   request.ReceivedAt = DateTime.Now;
+ //   request.IsActive = 1;
+    var summary = String.Join("\n",
+        selections.Select(d => (d.Identifier, d.Items))
+        .Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x))}")
+        .ToArray()) + "\n";
+    int requestId = (int)await _client.SpInsertAsync("Request_insert",
+         ("@origin", request.OriginId),
+         ("@initiator", request.Initiator),
+         ("@contact", request.Contact),
+         ("Request", summary)
+        );
+    int dinerIndex = 0;
+    foreach (T element in selections)
+    {
+        int itemIndex = 0;
+        foreach (var item in element.Items)
         {
-         //   request.ReceivedAt = DateTime.Now;
-         //   request.IsActive = 1;
-            var summary = String.Join("\n",
-                selections.Select(d => (d.Identifier, d.Items))
-                .Select(s => $"{s.Item1}: {String.Join(", ", s.Item2.Select(x => x))}")
-                .ToArray()) + "\n";
-            int requestId = (int)await _client.SpInsertAsync("Request_insert",
-                 ("@origin", request.OriginId),
-                 ("@initiator", request.Initiator),
-                 ("@contact", request.Contact),
-                 ("Request", summary)
+            int count = (int)await _client.SpInsertAsync("Deliverable_insert",
+                ("@requestId", requestId),
+                ("@dinerIndex", dinerIndex),
+                ("@itemIndex", itemIndex),
+                ("@itemName", item),
+                ("@Itemdata", element.Data.ToArray()[itemIndex])
                 );
-            int dinerIndex = 0;
-            foreach (T element in selections)
-            {
-                int itemIndex = 0;
-                foreach (var item in element.Items)
-                {
-                    int count = (int)await _client.SpInsertAsync("Deliverable_insert",
-                        ("@requestId", requestId),
-                        ("@dinerIndex", dinerIndex),
-                        ("@itemIndex", itemIndex),
-                        ("@itemName", item),
-                        ("@Itemdata", element.Data.ToArray()[itemIndex])
-                        );
-                    itemIndex++;
-                }
-                dinerIndex++;
-            }
-            ////LoggedEvents.Insert(0, new EventLogItem
-            ////{
-            ////    Content = $"Ordered: {summary}",
-            ////    EventTime = DateTime.Now
-            ////});
-            return requestId;
+            itemIndex++;
         }
-        // executor claim responsibility and gets a deliverable ID to work on.
-        public async Task<int> ClaimResponsibilityAsync(string executor) //! could also claim a particular type of deliverable....
-        {
-            int deliverableId = (int)await _client.SpExecuteAsync("Claim_Responsibility",
-                ("@executor", executor)
-                );
-            ////if (deliverableId > 0)
-            ////LoggedEvents.Insert(0, new EventLogItem { 
-            ////    EventClass="log-blue", Content = $"{executor} Claimed Responsibility" });
-            return deliverableId;
-        }
-        public async Task<Attempt> GetNextOperationAsync(string executor)
-        {
-            await Task.CompletedTask;
+        dinerIndex++;
+    }
+    ////LoggedEvents.Insert(0, new EventLogItem
+    ////{
+    ////    Content = $"Ordered: {summary}",
+    ////    EventTime = DateTime.Now
+    ////});
+    return requestId;
+}
+// executor claim responsibility and gets a deliverable ID to work on.
+public async Task<int> ClaimResponsibilityAsync(string executor) //! could also claim a particular type of deliverable....
+{
+    int deliverableId = (int)await _client.SpExecuteAsync("Claim_Responsibility",
+        ("@executor", executor)
+        );
+    ////if (deliverableId > 0)
+    ////LoggedEvents.Insert(0, new EventLogItem { 
+    ////    EventClass="log-blue", Content = $"{executor} Claimed Responsibility" });
+    return deliverableId;
+}
+public async Task<Attempt> GetNextOperationAsync(string executor)
+{
+    await Task.CompletedTask;
 
-            var result = _client.SpAsType<Attempt>("Operation_Next",
-                ("@executor", executor)
-               ).FirstOrDefault();
-            ////if (result != null)
-            ////    LoggedEvents.Insert(0, new EventLogItem
-            ////    {
-            ////        EventClass = "log-green",
-            ////        Content = $"Next operation for {executor}: {result.OperationName}"
-            ////    });
-            ////else
-            ////    LoggedEvents.Insert(0, new EventLogItem
-            ////    {
-            ////        EventClass = "log-blue",
-            ////        Content = $"No pending operations."
-            ////    });
+    var result = _client.SpAsType<Attempt>("Operation_Next",
+        ("@executor", executor)
+       ).FirstOrDefault();
+    ////if (result != null)
+    ////    LoggedEvents.Insert(0, new EventLogItem
+    ////    {
+    ////        EventClass = "log-green",
+    ////        Content = $"Next operation for {executor}: {result.OperationName}"
+    ////    });
+    ////else
+    ////    LoggedEvents.Insert(0, new EventLogItem
+    ////    {
+    ////        EventClass = "log-blue",
+    ////        Content = $"No pending operations."
+    ////    });
 
-            return result;
-        }
-        ////public IEnumerable<EventLogItem> GetEvents()
-        ////{
-        ////    var result = LoggedEvents.Take(20).ToArray();
-        ////    return result;
-        ////}
+    return result;
+}
+////public IEnumerable<EventLogItem> GetEvents()
+////{
+////    var result = LoggedEvents.Take(20).ToArray();
+////    return result;
+////}
 
-        ////private static List<EventLogItem> LoggedEvents { get; set; } = new List<EventLogItem>();
-        public async Task NotifyResultAsync(Attempt attempt)
-        {
-            string x = "log-yellow";
-            bool showMessage= false;
-            if (attempt.Outcome == "Succeeded")
-                x = "log-green";
-            if (attempt.Outcome == "Failed")
-            {
-                x = "log-red";
-                showMessage = true;
-            }
-            await _client.SpExecuteAsync("Attempt_Update", ("@deliverableId", attempt.DeliverableId), ("@outcome", attempt.Outcome));
+////private static List<EventLogItem> LoggedEvents { get; set; } = new List<EventLogItem>();
+public async Task NotifyResultAsync(Attempt attempt)
+{
+    string x = "log-yellow";
+    bool showMessage= false;
+    if (attempt.Outcome == "Succeeded")
+        x = "log-green";
+    if (attempt.Outcome == "Failed")
+    {
+        x = "log-red";
+        showMessage = true;
+    }
+    await _client.SpExecuteAsync("Attempt_Update", ("@deliverableId", attempt.DeliverableId), ("@outcome", attempt.Outcome));
 
-            ////LoggedEvents.Insert(0, new EventLogItem
-            ////{
-            ////    Content = $"{attempt.OperationName}: {attempt.Outcome}. {(showMessage ? attempt.Message : "" )} ",
-            ////    EventClass = x,
-            ////    EventTime = DateTime.Now
-            ////});
-        }
-        
-        ////public async Task<Statistics>GetStatistics()
-        ////{
-        ////    await Task.CompletedTask;
-        ////    return _client.SpAsType<Statistics>("Operations_Summary").First();    
-        ////}
-        ///*/
+    ////LoggedEvents.Insert(0, new EventLogItem
+    ////{
+    ////    Content = $"{attempt.OperationName}: {attempt.Outcome}. {(showMessage ? attempt.Message : "" )} ",
+    ////    EventClass = x,
+    ////    EventTime = DateTime.Now
+    ////});
+}
+
+////public async Task<Statistics>GetStatistics()
+////{
+////    await Task.CompletedTask;
+////    return _client.SpAsType<Statistics>("Operations_Summary").First();    
+////}
+///*/
