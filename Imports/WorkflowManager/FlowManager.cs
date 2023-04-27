@@ -8,17 +8,6 @@ using System.Collections.Generic;
 
 namespace WorkflowManager
 {
-    [Flags]
-    public enum CompletionState
-    {   // need to be simple but useful
-        Pending = 0,     // waiting for service
-        Active = 1,      // is started, actively being worked 
-        Retrying = 2,    // had errors but not fatal
-        Cancelled = 32,  // future?
-        Failed = 64,     // completed but unsuccessful
-        Succeeded = 128, // Completed, done
-        Archived = 256   // retired to storage
-    }
     public interface IFlowManager
     {
         Task<IActivation> ActivateAsync(IActivation activation); // Consumer Activates a request
@@ -28,31 +17,8 @@ namespace WorkflowManager
         Task<List<FlowLogItem>> GetLog(int count = 100, int minSeverity = 3);  // Retrieve recent events 
         Task<FlowMetrics> GetMetrics(); // Get the prevailing state of the activations
     }
-    public interface IActivation       // The information needed to start or end a flow.
-    {
-        IEnumerable<IItem> Items { get; set; }   // the items that make up this set
-        IEnumerable<string> Data { get; set; }   // json data
-        CompletionState Completion { get; set; } // progress?
-    }
-    public class FlowLogItem
-    {
-        public string Content { get; set; }
-        /// <summary>
-        /// 0 = Informational/blue 1 = Good/green 2 = Warn/yellow 3 = Error/Red
-        /// </summary>
-        public int Severity { get; set; }
-        public DateTime EventTime { get; set; }
-    }
-    public class FlowMetrics
-    {
-        public int ActivationsPending { get; set; }
-        public int ActivationsActive { get; set; }
-        public int ActivationsRetrying { get; set; }
-        public int ActivationsFailed { get; set; }
-        public int ActivationsSucceeded { get; set; }
-        public int ActivationsArchived { get; set; }
-    }
-    public interface IItem           // identifies a single thing that has a single defined workflow
+       
+    public interface IWorkItem           // identifies a single thing that has a single defined workflow
     {
         string Name { get; set; }    //  important, because this defines the workflow rules
         string Data { get; set; }   // json payload

@@ -19,7 +19,7 @@ namespace Models.Common
         public int TableNumber {get; set; }
         public Server Server {get; set;}
         public List<Diner> Diners {get; set; } = new();
-        public IEnumerable<IItem> Items { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IEnumerable<IWorkItem> Items { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IEnumerable<string> Data { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public CompletionState Completion { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
